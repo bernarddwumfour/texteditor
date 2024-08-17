@@ -1,0 +1,26 @@
+@layer components {
+  input:is([type='url'], [type='email'], [type='password'], [type='number'], [type='tel'], [type='search'], [type='text']) {
+    @apply h-10 rounded border border-gray-300/75 px-3 transition-colors;
+    @apply text-black placeholder:text-gray-300;
+    &:disabled {
+      @apply pointer-events-auto cursor-not-allowed opacity-80;
+    }
+  }
+  textarea {
+    @apply rounded border border-gray-300/75 px-3 transition-colors;
+    @apply text-black placeholder:text-gray-300;
+  }
+
+  button {
+    &[data-variant='primary'] {
+      @apply h-8 rounded px-3;
+      @apply hover:brightness-110 focus-visible:brightness-110 active:brightness-110;
+      @apply bg-gradient-to-b from-primary-600 to-primary-700 text-white;
+      @apply border border-primary-500;
+    }
+    &[data-variant='outline'] {
+      @apply h-8 rounded px-3;
+      @apply border border-primary-800 bg-white font-normal text-primary-950;
+    }
+  }
+}

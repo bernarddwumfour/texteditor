@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply h-dvh w-dvw overflow-hidden font-inter;
+}
+
+img {
+  @apply object-cover;
+}
+
+@layer components {
+  .absolute-center {
+    @apply left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+}
+
+.tooltip {
+  @apply pointer-events-none fixed z-[99999] translate-y-2;
+  @apply rounded border border-gray-200 bg-white px-2 py-1 text-xs leading-none;
+}
+
+@import 'input';
+@import 'dropdown';
+@import 'ribbon';
+@import 'dialog';
+@import 'posts';
+@import 'workarea';
+
+@page {
+  size: auto;
+  margin: 0;
+  padding: 0;
+}

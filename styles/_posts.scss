@@ -1,0 +1,54 @@
+.template {
+  @apply relative flex aspect-[4/3] w-full flex-col bg-gray-100;
+  @apply overflow-hidden rounded-md border border-gray-300;
+  &__header {
+    @apply z-10 flex items-start gap-3 px-4 py-3 text-white;
+    // @apply backdrop-blur-sm;
+    &_close {
+      @apply inline-flex size-5 shrink-0 items-center justify-center text-sm;
+    }
+    &_price {
+      @apply z-10 mb-auto flex-1 font-medium;
+    }
+  }
+  &__title {
+    @apply relative z-10 mt-auto px-4 py-3 text-white;
+    p {
+      @apply mb-3 text-sm leading-[1.2];
+    }
+  }
+  .template__image,
+  & > img {
+    @apply aspect-video object-cover;
+    @apply absolute inset-0 z-0 h-full w-full object-cover;
+  }
+
+  &::after {
+    content: '';
+    @apply absolute inset-0 flex bg-black opacity-30;
+  }
+}
+
+.social_post {
+  &__image {
+    @apply mb-3 aspect-[3/2] rounded-xl border border-gray-300;
+  }
+  &__author {
+    @apply mb-3 flex items-center gap-1.5;
+    img {
+      @apply aspect-square size-8 rounded-full border border-gray-300;
+    }
+    :is(h3, h4, h5, h6) {
+      @apply line-clamp-1 text-lg font-medium;
+    }
+  }
+  &__title {
+    @apply mb-1 text-base font-medium leading-tight;
+  }
+  &__metrics {
+    @apply text-xs text-gray-500;
+    > *:not(:last-child)::after {
+      content: ' · ';
+    }
+  }
+}

@@ -1,0 +1,116 @@
+.modal-header {
+  button[data-bs-dismiss] {
+  }
+  button[data-bs-dismiss] {
+    @apply flex size-8 items-center justify-center rounded focus-visible:ring-4;
+    &::after {
+      content: '\f00d';
+      @apply inline-flex items-center justify-center font-fa;
+    }
+  }
+}
+
+.modal-footer {
+  @apply justify-start;
+  button {
+    @apply h-10 rounded px-3 text-white;
+    @apply hover:brightness-110 focus-visible:brightness-110 active:brightness-110;
+    &:not([data-bs-dismiss]) {
+      @apply bg-gradient-to-b from-primary-600 to-primary-700;
+      @apply border border-primary-800;
+    }
+    &[data-bs-dismiss] {
+      @apply border border-primary-800 bg-white font-normal text-primary-950;
+    }
+  }
+}
+
+.template_modal {
+  &__body {
+    @apply container max-w-7xl;
+  }
+  &__contents {
+    @apply grid gap-4;
+    &[data-size='normal'] {
+      @apply sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+    }
+    &[data-size='large'] {
+      @apply md:grid-cols-2 xl:grid-cols-3;
+    }
+  }
+}
+
+.diagram_modal {
+  &__body {
+    $w: var(--cell-width, 38px);
+    grid-template-columns: repeat(auto-fill, minmax($w, 1fr));
+    @apply grid gap-4;
+
+    button {
+      @apply rounded border border-gray-200 bg-gray-100 p-1;
+      @apply flex flex-col items-center;
+      small {
+        @apply mt-1 hidden text-sm text-gray-700;
+      }
+      img {
+        aspect-ratio: var(--cell-aspect-ratio, 1/1);
+        @apply object-contain;
+      }
+    }
+    &[data-has-label] button small {
+      @apply block;
+    }
+  }
+}
+
+.checkout_card {
+  @apply grid w-full grid-cols-[1fr_2fr] gap-4;
+  &:not(:last-child) {
+    @apply mb-4 border-b border-gray-300 pb-4;
+  }
+  &__image {
+    @apply relative;
+    small {
+      @apply absolute left-2 top-2 py-1 shadow-xl backdrop-blur;
+      @apply rounded-sm border border-gray-300 px-2;
+      @apply bg-black/25  font-medium uppercase leading-none text-white;
+    }
+    img {
+      @apply aspect-[4/3] rounded;
+    }
+  }
+  &__body {
+    &_title {
+      @apply mb-2 line-clamp-2 text-base font-medium leading-tight;
+    }
+    &_price {
+      @apply text-lg tabular-nums;
+    }
+  }
+  &__footer {
+    @apply mt-2 flex gap-6;
+    & > * {
+      @apply decoration-gray-400 underline-offset-2 hover:underline;
+    }
+  }
+}
+
+.payment_modal {
+  &__tabs {
+    @apply flex w-full gap-2 border-none;
+    & > button {
+      @apply inline flex-1 rounded-md py-4 text-center;
+      @apply border-none text-gray-600 #{!important};
+      &.active {
+        @apply bg-gray-200 text-primary-900 #{!important};
+        @apply font-medium ring-2 ring-primary-800;
+      }
+      img {
+        @apply inline rounded border border-gray-300 object-cover;
+      }
+      h4 {
+        @apply mt-3 text-sm;
+      }
+    }
+  }
+}

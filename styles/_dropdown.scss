@@ -1,0 +1,61 @@
+.dropdown-label {
+  @apply clear-both block w-full border-0 px-4 py-1 text-gray-300;
+}
+
+.dropdown-toggle::after {
+  @apply hidden xs:inline;
+}
+
+.dropdown-menu {
+  .dropdown-menu {
+    @apply mx-0;
+  }
+  .dropdown-item {
+    @apply flex items-center gap-2.5 text-ellipsis;
+    svg[data-icon] {
+      @apply size-4;
+    }
+  }
+  > li {
+    @apply relative [&:hover>.submenu]:block;
+    a:has(+ .submenu) {
+      @apply flex shrink-0 items-center;
+      &::after {
+        content: '\f105';
+        @apply ml-auto font-fa text-[8px] text-gray-400;
+      }
+    }
+  }
+  .submenu {
+    @apply absolute -top-3 left-full hidden;
+  }
+}
+
+.insert_table_dropdown {
+  --cols: 12;
+  --rows: 12;
+  --cell-width: calc(100% / var(--cols));
+  --cell-height: calc(100% / var(--rows));
+  --selected-col: 2;
+  --selected-row: 2;
+  @apply flex flex-col gap-2 rounded;
+  &::before {
+    content: 'Inert Table : ' attr(data-selected-col) '\00D7' attr(data-selected-row);
+    @apply text-sm text-gray-600;
+  }
+  .selection {
+    @apply relative -mx-1 aspect-square text-gray-300/60;
+    background-size: calc(100% / var(--cols)) calc(100% / var(--cols));
+    background-image: linear-gradient(to right, currentcolor 1px, transparent 1px), linear-gradient(to bottom, currentcolor 1px, transparent 1px);
+    &::after {
+      content: '';
+      @apply absolute inset-0 rounded border border-gray-400;
+    }
+    &::before {
+      content: '';
+      width: calc(var(--cell-width) * var(--selected-col) + 2px);
+      height: calc(var(--cell-height) * var(--selected-row) + 2px);
+      @apply absolute -inset-px z-10 rounded border-2 border-primary-700 bg-primary-500/50;
+    }
+  }
+}

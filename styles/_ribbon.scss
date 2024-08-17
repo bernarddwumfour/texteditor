@@ -1,0 +1,121 @@
+.ribbon {
+  // ribbon tabs wrapper -> primary nav
+  &_tab__wrapper {
+    @apply bg-primary-700 px-2 py-3 xs:px-4 md:gap-[--tabs-gap];
+    // @apply hidden md:flex; // hide in small screens
+    &_group {
+      @apply flex w-full items-center gap-[--tabs-gap];
+    }
+    --tabs-gap: 0 clamp(0.25rem, 4.4vw, 5rem);
+    @screen md {
+      --tabs-gap: 0 clamp(0.5rem, 1.5vw, 2rem);
+    }
+  }
+  // tab buttons
+  &_tab {
+    @apply relative inline-flex items-center justify-items-center;
+    @apply h-8 cursor-pointer rounded px-1 text-base text-white md:px-2;
+
+    @apply text-xs sm:text-sm md:text-base;
+    .dropdown-toggle {
+      &::after {
+        content: '\f107';
+        @apply ml-0.5 border-0 align-[0.15em] font-fa text-[8px] opacity-50;
+      }
+      &.show::after {
+        @apply rotate-180;
+      }
+    }
+    .dropdown-menu {
+      @apply -ml-2 mt-2 rounded-md shadow-xl;
+    }
+    .dropdown-item {
+      &:focus-visible,
+      &:hover {
+        @apply bg-primary-200/50 text-gray-800;
+      }
+      &:active:hover {
+        @apply bg-primary-200/75 text-gray-800;
+      }
+    }
+  }
+
+  &_content {
+    @apply relative h-32 overflow-x-auto border-b border-gray-300;
+    @apply hidden justify-center  md:flex;
+    &::-webkit-scrollbar {
+      appearance: none;
+      display: none;
+    }
+  }
+
+  &_carousel {
+    @apply absolute inset-0 flex divide-x divide-gray-300;
+  }
+
+  &_templates {
+    @apply relative my-2 h-28 flex-1 overflow-hidden overflow-x-auto px-2;
+    @apply hidden aria-expanded:flex;
+    > div {
+      @apply absolute inset-x-auto inset-y-0 flex gap-2;
+    }
+    article {
+      @apply my-2 flex flex-col justify-center gap-1 px-6 last:mr-2;
+      @apply relative z-0 aspect-[3/2] overflow-hidden rounded;
+      @apply border border-gray-200;
+      &::before {
+        content: '';
+        @apply absolute inset-0 z-10 bg-black/40 opacity-0 transition-opacity;
+      }
+      img {
+        @apply absolute inset-0 -z-10;
+      }
+      button {
+        @apply z-10 h-6 rounded bg-black/25 px-2 text-sm text-white backdrop-blur;
+        @apply hover:brightness-110 focus-visible:brightness-110 active:brightness-110;
+        @apply opacity-0 transition-opacity hover:underline focus-visible:underline;
+      }
+      &:hover::before,
+      &:hover button {
+        @apply opacity-100;
+      }
+    }
+  }
+  // ribbon contents wrapper
+  &_content__wrapper {
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: subgrid;
+    @apply my-2 grid h-28 grid-flow-col gap-1.5 px-2;
+    @apply first:ml-auto last:mr-auto;
+    > :is(button, a) {
+      @apply min-h-8 min-w-8 rounded-sm hover:bg-gray-200;
+      @apply inline-flex items-center justify-center;
+    }
+  }
+
+  &_content__section {
+    @apply grid grid-flow-col gap-x-4 gap-y-1;
+    @apply mb-3 h-full max-w-max px-2;
+
+    @apply border-r border-gray-200 last:border-r-0;
+  }
+}
+
+@layer utilities {
+  .tw-order-1 {
+    @apply order-1;
+  }
+  .tw-order-2 {
+    @apply order-2;
+  }
+  .tw-order-3 {
+    @apply order-3;
+  }
+  .tw-order-4 {
+    @apply order-4;
+  }
+}
+
+svg[data-icon] {
+  @apply size-5;
+}

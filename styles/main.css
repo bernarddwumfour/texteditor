@@ -1,0 +1,437 @@
+@charset "UTF-8";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html {
+  @apply h-dvh w-dvw overflow-hidden font-inter;
+}
+
+img {
+  @apply object-cover;
+}
+
+@layer components {
+  .absolute-center {
+    @apply left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+}
+.tooltip {
+  @apply pointer-events-none fixed z-[99999] translate-y-2;
+  @apply rounded border border-gray-200 bg-white px-2 py-1 text-xs leading-none;
+}
+
+@layer components {
+  input:is([type=url], [type=email], [type=password], [type=number], [type=tel], [type=search], [type=text]) {
+    @apply h-10 rounded border border-gray-300/75 px-3 transition-colors;
+    @apply text-black placeholder:text-gray-300;
+  }
+  input:is([type=url], [type=email], [type=password], [type=number], [type=tel], [type=search], [type=text]):disabled {
+    @apply pointer-events-auto cursor-not-allowed opacity-80;
+  }
+  textarea {
+    @apply rounded border border-gray-300/75 px-3 transition-colors;
+    @apply text-black placeholder:text-gray-300;
+  }
+  button[data-variant=primary] {
+    @apply h-8 rounded px-3;
+    @apply hover:brightness-110 focus-visible:brightness-110 active:brightness-110;
+    @apply bg-gradient-to-b from-primary-600 to-primary-700 text-white;
+    @apply border border-primary-500;
+  }
+  button[data-variant=outline] {
+    @apply h-8 rounded px-3;
+    @apply border border-primary-800 bg-white font-normal text-primary-950;
+  }
+}
+.dropdown-label {
+  @apply clear-both block w-full border-0 px-4 py-1 text-gray-300;
+}
+
+.dropdown-toggle::after {
+  @apply hidden xs:inline;
+}
+
+.dropdown-menu .dropdown-menu {
+  @apply mx-0;
+}
+.dropdown-menu .dropdown-item {
+  @apply flex items-center gap-2.5 text-ellipsis;
+}
+.dropdown-menu .dropdown-item svg[data-icon] {
+  @apply size-4;
+}
+.dropdown-menu > li {
+  @apply relative [&:hover>.submenu]:block;
+}
+.dropdown-menu > li a:has(+ .submenu) {
+  @apply flex shrink-0 items-center;
+}
+.dropdown-menu > li a:has(+ .submenu)::after {
+  content: "\f105";
+  @apply ml-auto font-fa text-[8px] text-gray-400;
+}
+.dropdown-menu .submenu {
+  @apply absolute -top-3 left-full hidden;
+}
+
+.insert_table_dropdown {
+  --cols: 12;
+  --rows: 12;
+  --cell-width: calc(100% / var(--cols));
+  --cell-height: calc(100% / var(--rows));
+  --selected-col: 2;
+  --selected-row: 2;
+  @apply flex flex-col gap-2 rounded;
+}
+.insert_table_dropdown::before {
+  content: "Inert Table : " attr(data-selected-col) "×" attr(data-selected-row);
+  @apply text-sm text-gray-600;
+}
+.insert_table_dropdown .selection {
+  @apply relative -mx-1 aspect-square text-gray-300/60;
+  background-size: calc(100% / var(--cols)) calc(100% / var(--cols));
+  background-image: linear-gradient(to right, currentcolor 1px, transparent 1px), linear-gradient(to bottom, currentcolor 1px, transparent 1px);
+}
+.insert_table_dropdown .selection::after {
+  content: "";
+  @apply absolute inset-0 rounded border border-gray-400;
+}
+.insert_table_dropdown .selection::before {
+  content: "";
+  width: calc(var(--cell-width) * var(--selected-col) + 2px);
+  height: calc(var(--cell-height) * var(--selected-row) + 2px);
+  @apply absolute -inset-px z-10 rounded border-2 border-primary-700 bg-primary-500/50;
+}
+
+.ribbon_tab__wrapper {
+  @apply bg-primary-700 px-2 py-3 xs:px-4 md:gap-[--tabs-gap];
+  --tabs-gap: 0 clamp(0.25rem, 4.4vw, 5rem);
+}
+.ribbon_tab__wrapper_group {
+  @apply flex w-full items-center gap-[--tabs-gap];
+}
+@screen md {
+  .ribbon_tab__wrapper {
+    --tabs-gap: 0 clamp(0.5rem, 1.5vw, 2rem);
+  }
+}
+.ribbon_tab {
+  @apply relative inline-flex items-center justify-items-center;
+  @apply h-8 cursor-pointer rounded px-1 text-base text-white md:px-2;
+  @apply text-xs sm:text-sm md:text-base;
+}
+.ribbon_tab .dropdown-toggle::after {
+  content: "\f107";
+  @apply ml-0.5 border-0 align-[0.15em] font-fa text-[8px] opacity-50;
+}
+.ribbon_tab .dropdown-toggle.show::after {
+  @apply rotate-180;
+}
+.ribbon_tab .dropdown-menu {
+  @apply -ml-2 mt-2 rounded-md shadow-xl;
+}
+.ribbon_tab .dropdown-item:focus-visible, .ribbon_tab .dropdown-item:hover {
+  @apply bg-primary-200/50 text-gray-800;
+}
+.ribbon_tab .dropdown-item:active:hover {
+  @apply bg-primary-200/75 text-gray-800;
+}
+.ribbon_content {
+  @apply relative h-32 overflow-x-auto border-b border-gray-300;
+  @apply hidden justify-center  md:flex;
+}
+.ribbon_content::-webkit-scrollbar {
+  -webkit-appearance: none;
+          appearance: none;
+  display: none;
+}
+.ribbon_carousel {
+  @apply absolute inset-0 flex divide-x divide-gray-300;
+}
+.ribbon_templates {
+  @apply relative my-2 h-28 flex-1 overflow-hidden overflow-x-auto px-2;
+  @apply hidden aria-expanded:flex;
+}
+.ribbon_templates > div {
+  @apply absolute inset-x-auto inset-y-0 flex gap-2;
+}
+.ribbon_templates article {
+  @apply my-2 flex flex-col justify-center gap-1 px-6 last:mr-2;
+  @apply relative z-0 aspect-[3/2] overflow-hidden rounded;
+  @apply border border-gray-200;
+}
+.ribbon_templates article::before {
+  content: "";
+  @apply absolute inset-0 z-10 bg-black/40 opacity-0 transition-opacity;
+}
+.ribbon_templates article img {
+  @apply absolute inset-0 -z-10;
+}
+.ribbon_templates article button {
+  @apply z-10 h-6 rounded bg-black/25 px-2 text-sm text-white backdrop-blur;
+  @apply hover:brightness-110 focus-visible:brightness-110 active:brightness-110;
+  @apply opacity-0 transition-opacity hover:underline focus-visible:underline;
+}
+.ribbon_templates article:hover::before, .ribbon_templates article:hover button {
+  @apply opacity-100;
+}
+.ribbon_content__wrapper {
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: subgrid;
+  @apply my-2 grid h-28 grid-flow-col gap-1.5 px-2;
+  @apply first:ml-auto last:mr-auto;
+}
+.ribbon_content__wrapper > :is(button, a) {
+  @apply min-h-8 min-w-8 rounded-sm hover:bg-gray-200;
+  @apply inline-flex items-center justify-center;
+}
+.ribbon_content__section {
+  @apply grid grid-flow-col gap-x-4 gap-y-1;
+  @apply mb-3 h-full max-w-max px-2;
+  @apply border-r border-gray-200 last:border-r-0;
+}
+
+@layer utilities {
+  .tw-order-1 {
+    @apply order-1;
+  }
+  .tw-order-2 {
+    @apply order-2;
+  }
+  .tw-order-3 {
+    @apply order-3;
+  }
+  .tw-order-4 {
+    @apply order-4;
+  }
+}
+svg[data-icon] {
+  @apply size-5;
+}
+
+.modal-header button[data-bs-dismiss] {
+  @apply flex size-8 items-center justify-center rounded focus-visible:ring-4;
+}
+.modal-header button[data-bs-dismiss]::after {
+  content: "\f00d";
+  @apply inline-flex items-center justify-center font-fa;
+}
+
+.modal-footer {
+  @apply justify-start;
+}
+.modal-footer button {
+  @apply h-10 rounded px-3 text-white;
+  @apply hover:brightness-110 focus-visible:brightness-110 active:brightness-110;
+}
+.modal-footer button:not([data-bs-dismiss]) {
+  @apply bg-gradient-to-b from-primary-600 to-primary-700;
+  @apply border border-primary-800;
+}
+.modal-footer button[data-bs-dismiss] {
+  @apply border border-primary-800 bg-white font-normal text-primary-950;
+}
+
+.template_modal__body {
+  @apply container max-w-7xl;
+}
+.template_modal__contents {
+  @apply grid gap-4;
+}
+.template_modal__contents[data-size=normal] {
+  @apply sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+.template_modal__contents[data-size=large] {
+  @apply md:grid-cols-2 xl:grid-cols-3;
+}
+
+.diagram_modal__body {
+  grid-template-columns: repeat(auto-fill, minmax(var(--cell-width, 38px), 1fr));
+  @apply grid gap-4;
+}
+.diagram_modal__body button {
+  @apply rounded border border-gray-200 bg-gray-100 p-1;
+  @apply flex flex-col items-center;
+}
+.diagram_modal__body button small {
+  @apply mt-1 hidden text-sm text-gray-700;
+}
+.diagram_modal__body button img {
+  aspect-ratio: var(--cell-aspect-ratio, 1/1);
+  @apply object-contain;
+}
+.diagram_modal__body[data-has-label] button small {
+  @apply block;
+}
+
+.checkout_card {
+  @apply grid w-full grid-cols-[1fr_2fr] gap-4;
+}
+.checkout_card:not(:last-child) {
+  @apply mb-4 border-b border-gray-300 pb-4;
+}
+.checkout_card__image {
+  @apply relative;
+}
+.checkout_card__image small {
+  @apply absolute left-2 top-2 py-1 shadow-xl backdrop-blur;
+  @apply rounded-sm border border-gray-300 px-2;
+  @apply bg-black/25  font-medium uppercase leading-none text-white;
+}
+.checkout_card__image img {
+  @apply aspect-[4/3] rounded;
+}
+.checkout_card__body_title {
+  @apply mb-2 line-clamp-2 text-base font-medium leading-tight;
+}
+.checkout_card__body_price {
+  @apply text-lg tabular-nums;
+}
+.checkout_card__footer {
+  @apply mt-2 flex gap-6;
+}
+.checkout_card__footer > * {
+  @apply decoration-gray-400 underline-offset-2 hover:underline;
+}
+
+.payment_modal__tabs {
+  @apply flex w-full gap-2 border-none;
+}
+.payment_modal__tabs > button {
+  @apply inline flex-1 rounded-md py-4 text-center;
+  @apply border-none text-gray-600 !important;
+}
+.payment_modal__tabs > button.active {
+  @apply bg-gray-200 text-primary-900 !important;
+  @apply font-medium ring-2 ring-primary-800;
+}
+.payment_modal__tabs > button img {
+  @apply inline rounded border border-gray-300 object-cover;
+}
+.payment_modal__tabs > button h4 {
+  @apply mt-3 text-sm;
+}
+
+.template {
+  @apply relative flex aspect-[4/3] w-full flex-col bg-gray-100;
+  @apply overflow-hidden rounded-md border border-gray-300;
+}
+.template__header {
+  @apply z-10 flex items-start gap-3 px-4 py-3 text-white;
+}
+.template__header_close {
+  @apply inline-flex size-5 shrink-0 items-center justify-center text-sm;
+}
+.template__header_price {
+  @apply z-10 mb-auto flex-1 font-medium;
+}
+.template__title {
+  @apply relative z-10 mt-auto px-4 py-3 text-white;
+}
+.template__title p {
+  @apply mb-3 text-sm leading-[1.2];
+}
+.template .template__image, .template > img {
+  @apply aspect-video object-cover;
+  @apply absolute inset-0 z-0 h-full w-full object-cover;
+}
+.template::after {
+  content: "";
+  @apply absolute inset-0 flex bg-black opacity-30;
+}
+
+.social_post__image {
+  @apply mb-3 aspect-[3/2] rounded-xl border border-gray-300;
+}
+.social_post__author {
+  @apply mb-3 flex items-center gap-1.5;
+}
+.social_post__author img {
+  @apply aspect-square size-8 rounded-full border border-gray-300;
+}
+.social_post__author :is(h3, h4, h5, h6) {
+  @apply line-clamp-1 text-lg font-medium;
+}
+.social_post__title {
+  @apply mb-1 text-base font-medium leading-tight;
+}
+.social_post__metrics {
+  @apply text-xs text-gray-500;
+}
+.social_post__metrics > *:not(:last-child)::after {
+  content: " · ";
+}
+
+[data-page=docs] #workarea {
+  @apply flex flex-wrap items-center justify-center gap-6 print:gap-0;
+}
+
+#workarea iframe {
+  --scale-factor: 1;
+  @apply mx-auto h-full w-full max-w-7xl shadow-xl md:rounded;
+}
+@media print {
+  #workarea iframe {
+    --scale-factor: 1 !important;
+  }
+}
+@screen md {
+  #workarea iframe {
+    width: calc(var(--scale-factor) * 210mm);
+    height: calc(var(--scale-factor) * 297mm);
+  }
+}
+
+#workarea_scale {
+  @apply h-1 appearance-none rounded-full border border-primary-300/50 bg-primary-200;
+}
+#workarea_scale::-webkit-slider-thumb {
+  @apply size-3 cursor-pointer appearance-none rounded-full bg-primary-700;
+}
+
+#spreadsheet {
+  @apply grid h-full w-full overflow-auto;
+  grid-template-areas: "corner cols" "rows wrapper";
+}
+#spreadsheet .ruler_corner {
+  grid-area: corner;
+  @apply border-b border-r border-gray-200 bg-white;
+  @apply sticky left-0 top-0 z-50;
+}
+#spreadsheet :is(.ruler_cols, .ruler_rows) > * {
+  @apply flex w-full items-center justify-center p-1 text-center text-xs uppercase;
+  @apply sticky border-b border-r border-gray-200 bg-white text-gray-400;
+}
+#spreadsheet .ruler_cols {
+  grid-area: cols;
+  grid-template-columns: repeat(var(--col-count), 150px);
+  @apply sticky top-0 z-50 grid;
+}
+#spreadsheet .ruler_cols > *:last-child {
+  @apply border-r-0;
+}
+#spreadsheet .ruler_rows {
+  grid-area: rows;
+  grid-template-rows: repeat(var(--row-count), theme("space.8"));
+  @apply sticky left-0 grid min-w-12 *:last:bg-red-500;
+}
+#spreadsheet .ruler_rows > *:last-child {
+  @apply border-b-0;
+}
+#spreadsheet #cells_wrapper {
+  grid-area: wrapper;
+  @apply -ml-px -mt-px grid grid-flow-row;
+  grid-template-columns: repeat(var(--col-count), 150px);
+  grid-template-rows: repeat(var(--row-count), theme("space.8"));
+}
+#spreadsheet .cell {
+  @apply rounded-none border-b-0 border-r-0 focus-visible:z-[99999];
+  @apply h-full text-sm;
+  @apply data-[col="1"]:border-l-0 data-[row="1"]:border-t-0;
+}
+
+@page {
+  size: auto;
+  margin: 0;
+  padding: 0;
+}/*# sourceMappingURL=main.css.map */
