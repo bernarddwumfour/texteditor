@@ -1,4 +1,3 @@
-const bold = document.getElementsByClassName('bold')[0];
 const undo = document.getElementsByClassName('undo')[0];
 const redo = document.getElementsByClassName('redo')[0];
 const editor = document.getElementsByClassName('editor')[0];
@@ -6,6 +5,14 @@ const iframe = document.getElementsByClassName('editorIframe')[0];
 const copy = document.getElementsByClassName('copy')[0];
 const paste = document.getElementsByClassName('paste')[0];
 const cut = document.getElementsByClassName('cut')[0];
+
+const bold = document.getElementsByClassName('bold')[0];
+const italic = document.getElementsByClassName('italic')[0];
+const strikethrough = document.getElementsByClassName('strikethrough')[0];
+const superscript = document.getElementsByClassName('superscript')[0];
+const subscript = document.getElementsByClassName('subscript')[0];
+const outline = document.getElementsByClassName('outline')[0];
+const underline = document.getElementsByClassName('underline')[0];
 
 
 
@@ -146,3 +153,45 @@ iframe.addEventListener('load', () => {
   initializeEditor();
 });
 
+
+
+
+//Second box
+//Formatting text with the execCommand() function
+function execCommandInIframe(command, value = null) {
+  const editorDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+  if (!editorDoc) return;
+
+  // Focus on the contenteditable element inside the iframe
+  editorDoc.execCommand(command, false, value);
+}
+
+
+bold.addEventListener('click',()=>{
+  execCommandInIframe('bold');
+})
+
+italic.addEventListener('click',()=>{
+  execCommandInIframe('italic');
+})
+
+subscript.addEventListener('click',()=>{
+  execCommandInIframe('subscript');
+})
+
+superscript.addEventListener('click',()=>{
+  execCommandInIframe('superscript');
+})
+
+strikethrough.addEventListener('click',()=>{
+  execCommandInIframe('strikethrough');
+})
+
+outline.addEventListener('click',()=>{
+  execCommandInIframe('outline');
+})
+
+underline.addEventListener('click',()=>{
+  execCommandInIframe('underline');
+})
