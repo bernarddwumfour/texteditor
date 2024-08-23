@@ -3,9 +3,9 @@
   &_tab__wrapper {
     @apply bg-primary-700 px-2 py-3 xs:px-4 md:gap-[--tabs-gap];
     // @apply hidden md:flex; // hide in small screens
-    &_group {
-      @apply flex w-full items-center gap-[--tabs-gap];
-    }
+    // &_group {
+    //   @apply flex w-full items-center gap-[--tabs-gap];
+    // }
     --tabs-gap: 0 clamp(0.25rem, 4.4vw, 5rem);
     @screen md {
       --tabs-gap: 0 clamp(0.5rem, 1.5vw, 2rem);
