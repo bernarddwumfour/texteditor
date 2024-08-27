@@ -25,9 +25,15 @@ const fontSize = document.getElementsByClassName('fontSize')[0];
 const fontFamily = document.getElementsByClassName('fontFamily')[0];
 
 const notification_toggle = document.querySelector('.toggle_notification')
+const close_notification = document.querySelector('.close-notification')
+
 const app_notification = document.querySelector('.app_notification')
 notification_toggle.addEventListener('click',()=>{
-  app_notification.classList.toggle('hidden-modal')
+  app_notification.classList.toggle('!hidden')
+})
+
+close_notification.addEventListener('click',()=>{
+  app_notification.classList.add('!hidden')
 })
 
 
