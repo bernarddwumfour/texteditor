@@ -103,6 +103,8 @@ function pasteText() {
 paste.addEventListener('click', pasteText);
 
 
+
+// UNDO AND REDO
 // Store the history of changes
 let history = [];
 let historyIndex = -1;
@@ -110,18 +112,34 @@ let historyIndex = -1;
 // Save the current state of the contenteditable element to history
 function saveState() {
   const editor = getEditorElement();
-  // Only save if there are changes
-  if (historyIndex === -1 || history[historyIndex] !== editor.innerHTML) {
-    // Remove any future states if we are adding a new state in the middle of history
+  const currentState = editor.innerHTML;
+  console.log('Saving state:', currentState);
+
+  if (historyIndex === -1 || history[historyIndex] !== currentState) {
     if (historyIndex < history.length - 1) {
       history = history.slice(0, historyIndex + 1);
     }
-
-    // Add the current state and update the index
-    history.push(editor.innerHTML);
+    history.push(currentState);
     historyIndex++;
   }
+  // console.log('History:', history);
+  // console.log('History Index:', historyIndex);
 }
+
+
+let debounceTimer;
+function addInputListeners() {
+  const editor = getEditorElement();
+  if (editor) {
+    editor.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        saveState();
+      }, 300); // Adjust the timeout as needed
+    });
+  }
+}
+
 
 // Undo the last change
 function undoAction() {
@@ -133,7 +151,9 @@ function undoAction() {
   }
 }
 
-undo.addEventListener('click', undoAction);
+undo.addEventListener('click', ()=>{
+  undoAction()
+});
 
 // Redo the last undone change
 function redoAction() {
@@ -144,18 +164,9 @@ function redoAction() {
     editor.innerHTML = history[historyIndex];
   }
 }
-
-redo.addEventListener('click', redoAction);
-
-// Add event listeners to save state after each input event
-function addInputListeners() {
-  const editor = getEditorElement();
-
-  // Save the state on input
-  editor.addEventListener('input', () => {
-    saveState();
-  });
-}
+redo.addEventListener('click', ()=>{
+  redoAction()
+});
 
 // Initialize the editor (this function should be called after the iframe is fully loaded)
 function initializeEditor() {
