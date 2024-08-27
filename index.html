@@ -13,11 +13,13 @@
   <!-- stylesheets -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <!-- custom stylesheet -->
+  <!-- <link rel="stylesheet" href="./converted.css" /> -->
   <link rel="stylesheet" href="./styles/bootstrap.min.css" />
   <link rel="stylesheet" href="./styles/main.scss" />
   <link rel="import" href="./icons/sprite.svg" />
     <link rel="stylesheet" href="./notification.css" />
     <!-- <link rel="stylesheet" href="./notification_page.css" /> -->
+
 </head>
 
   <body>
@@ -505,13 +507,20 @@
                 ></a>
               </li>
               <li
-                class="rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
-                <button class="dropdown-item" href="/notification.html">
+                class="rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]  header_action__button" id="Message-btn">
+                <button class="dropdown-item toggle_notification">
                   <svg data-icon="create-fill" class="!size-8">
                     <use href="./icons/sprite.svg#create-fill" />
                   </svg>
                 </button>
               </li>
+
+              <!-- <button id="Message-btn" class="header_action__button">
+                <svg data-icon="chat-fill" class="!size-8">
+                  <use href="./icons/sprite.svg#chat-fill"></use>
+                </svg>
+                <i class="tooltip">Message</i>
+              </button> -->
             </ul>
 
             <!-- user icon -->
@@ -1087,23 +1096,23 @@
               <div class="ribbon_content__wrapper">
                 <div class="col-span-6 flex items-center gap-1">
                   <select
-                    class="col-span-5 h-full flex-1 rounded border border-gray-300 bg-gray-100 p-0 px-1.5 text-left"
-                    value="Times of India">
-                    <option>Calibri Light</option>
-                    <option>Times of India</option>
-                    <option>Arial</option>
+                    class="fontFamily col-span-5 h-full flex-1 rounded border border-gray-300 bg-gray-100 p-0 px-1.5 text-left">
+                    <option value="Calibri Light">Calibri Light</option>
+                    <option value="Times New Romant">Times New Romant</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Arial">Arial</option>
                   </select>
                   <select
-                    class="col-span-5 h-full w-16 rounded border border-gray-300 bg-gray-100 p-0 px-1.5 text-left"
-                    value="Times of India">
-                    <option>10</option>
-                    <option>12</option>
-                    <option>14</option>
-                    <option>16</option>
-                    <option>18</option>
-                    <option>20</option>
-                    <option>24</option>
-                    <option>32</option>
+                    class="fontSize col-span-5 h-full w-16 rounded border border-gray-300 bg-gray-100 p-0 px-1.5 text-left"
+                    >
+                    <option value="1">10</option>
+                    <option value="2">12</option>
+                    <option value="3">14</option>
+                    <option value="4">16</option>
+                    <option value="5">18</option>
+                    <option value="6">20</option>
+                    <option value="7">24</option>
+                    <option value="8">32</option>
                   </select>
                 </div>
                 <button class="bold" data-tooltip="Bold">
@@ -1156,7 +1165,7 @@
                     <use href="/icons/sprite.svg#subscript" />
                   </svg>
                 </button>
-                <button class="outline" data-tooltip="Outline">
+                <button class="outline outline-none" data-tooltip="Outline">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#outline" />
                   </svg>
@@ -1173,7 +1182,7 @@
                     <use href="/icons/sprite.svg#speech-recognition" />
                   </svg>
                 </button>
-                <button data-tooltip="Wrap Paragraph">
+                <button class="paragraphWrap" data-tooltip="Wrap Paragraph">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#paragraph-wrap" />
                   </svg>
@@ -1183,7 +1192,7 @@
                     <use href="/icons/sprite.svg#image-indent-right" />
                   </svg>
                 </button>
-                <button data-tooltip="Align Center">
+                <button class="alignCenter" data-tooltip="Align Center">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#center-alighnment" />
                   </svg>
@@ -1193,32 +1202,32 @@
                     <use href="/icons/sprite.svg#paragraph-spacing" />
                   </svg>
                 </button>
-                <button data-tooltip="Bullet List">
+                <button class="bulletList" data-tooltip="Bullet List">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#bullet-list" />
                   </svg>
                 </button>
-                <button data-tooltip="Justify">
+                <button class="alignJustify" data-tooltip="Justify">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#center-justification" />
                   </svg>
                 </button>
-                <button data-tooltip="Indent Left">
+                <button class="indentLeft"  data-tooltip="Indent Left">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#left-indent" />
                   </svg>
                 </button>
-                <button data-tooltip="Number List">
+                <button class="numberList" data-tooltip="Number List">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#number-list" />
                   </svg>
                 </button>
-                <button data-tooltip="Left Alignment">
+                <button class="alignLeft" data-tooltip="Left Alignment">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#left-alignment" />
                   </svg>
                 </button>
-                <button data-tooltip="Right Indent">
+                <button class="indentRight" data-tooltip="Right Indent">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#right-indent" />
                   </svg>
@@ -1228,7 +1237,7 @@
                     <use href="/icons/sprite.svg#image-indent-left" />
                   </svg>
                 </button>
-                <button data-tooltip="Right Alignment">
+                <button class="alignRight" data-tooltip="Right Alignment">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#right-alignment" />
                   </svg>
@@ -2387,5 +2396,9 @@
     <script src="./scripts/main.js" type="module"></script>
     <script src="./scripts/docs.js" type="module"></script>
     <script src="./scripts/functionality.js" type="module"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./script.js"></script>
+    <script src="./notification.js"></script>
   </body>
 </html>

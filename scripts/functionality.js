@@ -5,7 +5,12 @@ const iframe = document.getElementsByClassName('editorIframe')[0];
 const copy = document.getElementsByClassName('copy')[0];
 const paste = document.getElementsByClassName('paste')[0];
 const cut = document.getElementsByClassName('cut')[0];
-
+const alignLeft = document.getElementsByClassName('alignLeft')[0];
+const alignRight = document.getElementsByClassName('alignRight')[0];
+const alignCenter = document.getElementsByClassName('alignCenter')[0];
+const alignJustify = document.getElementsByClassName('alignJustify')[0];
+const bulletList = document.getElementsByClassName('bulletList')[0];
+const numberList = document.getElementsByClassName('numberList')[0];
 const bold = document.getElementsByClassName('bold')[0];
 const italic = document.getElementsByClassName('italic')[0];
 const strikethrough = document.getElementsByClassName('strikethrough')[0];
@@ -13,7 +18,17 @@ const superscript = document.getElementsByClassName('superscript')[0];
 const subscript = document.getElementsByClassName('subscript')[0];
 const outline = document.getElementsByClassName('outline')[0];
 const underline = document.getElementsByClassName('underline')[0];
+const indentLeft = document.getElementsByClassName('indentLeft')[0];
+const indentRight = document.getElementsByClassName('indentRight')[0];
+const paragraphWrap = document.getElementsByClassName('paragraphWrap')[0];
+const fontSize = document.getElementsByClassName('fontSize')[0];
+const fontFamily = document.getElementsByClassName('fontFamily')[0];
 
+const notification_toggle = document.querySelector('.toggle_notification')
+const app_notification = document.querySelector('.app_notification')
+notification_toggle.addEventListener('click',()=>{
+  app_notification.classList.toggle('hidden-modal')
+})
 
 
 function getIframeDocument() {
@@ -168,30 +183,75 @@ function execCommandInIframe(command, value = null) {
 }
 
 
-bold.addEventListener('click',()=>{
+bold && bold.addEventListener('click',()=>{
   execCommandInIframe('bold');
 })
 
-italic.addEventListener('click',()=>{
+italic && italic.addEventListener('click',()=>{
   execCommandInIframe('italic');
 })
 
-subscript.addEventListener('click',()=>{
+subscript && subscript.addEventListener('click',()=>{
   execCommandInIframe('subscript');
 })
 
-superscript.addEventListener('click',()=>{
+superscript && superscript.addEventListener('click',()=>{
   execCommandInIframe('superscript');
 })
 
-strikethrough.addEventListener('click',()=>{
+strikethrough && strikethrough.addEventListener('click',()=>{
   execCommandInIframe('strikethrough');
 })
 
-outline.addEventListener('click',()=>{
+outline && outline.addEventListener('click',()=>{
   execCommandInIframe('outline');
 })
 
-underline.addEventListener('click',()=>{
+underline && underline.addEventListener('click',()=>{
   execCommandInIframe('underline');
+})
+
+alignCenter && alignCenter.addEventListener('click',()=>{
+  execCommandInIframe('justifyCenter');
+})
+
+alignLeft && alignLeft.addEventListener('click',()=>{
+  execCommandInIframe('justifyLeft');
+})
+
+alignRight && alignRight.addEventListener('click',()=>{
+  execCommandInIframe('justifyRight');
+})
+
+alignJustify && alignJustify.addEventListener('click',()=>{
+  execCommandInIframe('justifyfull');
+})
+
+bulletList && bulletList.addEventListener('click',()=>{
+  execCommandInIframe('insertUnorderedList');
+})
+
+numberList && numberList.addEventListener('click',()=>{
+  execCommandInIframe('insertOrderedList');
+})
+
+indentLeft && indentLeft.addEventListener('click',()=>{
+  execCommandInIframe('indent');
+})
+
+indentRight && indentRight.addEventListener('click',()=>{
+  execCommandInIframe('outdent');
+})
+
+paragraphWrap && paragraphWrap.addEventListener('click',()=>{
+  alert('click')
+  execCommandInIframe('formatBlock');
+})
+
+fontSize && fontSize.addEventListener('click',()=>{
+  execCommandInIframe('fontSize',fontSize.value)
+})
+
+fontFamily && fontFamily.addEventListener('click',()=>{
+  execCommandInIframe('fontName',fontFamily.value)
 })
