@@ -25,11 +25,21 @@ const fontSize = document.getElementsByClassName('fontSize')[0];
 const fontFamily = document.getElementsByClassName('fontFamily')[0];
 
 const notification_toggle = document.querySelector('.toggle_notification')
+const messages_toggle = document.querySelector('.toggle_messages')
 const close_notification = document.querySelector('.close-notification')
 
 const app_notification = document.querySelector('.app_notification')
+const top_message = document.querySelector('.top-message')
+
+//Toggling Notifications slider
 notification_toggle.addEventListener('click',()=>{
   app_notification.classList.toggle('!hidden')
+  top_message.classList.add('!hidden')
+})
+
+//Toggling messages modal
+messages_toggle.addEventListener('click',()=>{
+  top_message.classList.toggle('!hidden')
 })
 
 close_notification.addEventListener('click',()=>{

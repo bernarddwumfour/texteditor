@@ -363,7 +363,7 @@
                     <use href="/assets/sprite-BXKd8WYt.svg#chat-fill"></use></svg></button>
               </li>
               <li class="rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
-                <button class="dropdown-item" ><svg data-icon="bell-fill" class="!size-6">
+                <button class="toggle_messages dropdown-item" ><svg data-icon="bell-fill" class="!size-6">
                     <use href="/assets/sprite-BXKd8WYt.svg#bell-fill" class="not-pop"></use></svg></button>
               </li>
               <li class="rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
@@ -1213,7 +1213,7 @@
                     <use href="/icons/sprite.svg#row-grid-top" />
                   </svg>
                 </button>
-                <button data-tooltip="otline grid">
+                <button data-tooltip="outline grid">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#otline-grid" />
                   </svg>
@@ -1222,6 +1222,418 @@
             </div>
           </div>
         </nav>
+
+        
+    <!--top-message-->
+    <div
+    x-transition:enter="transition ease-out duration-150"
+    x-transition:enter-start="opacity-60 transform scale-95"
+    x-transition:enter-end="opacity-100 transform scale-100"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-end="opacity-0 transform scale-95"
+    x-transition:leave-start="opacity-100 x-translate-100 transform scale-100"
+    x-show="push__top=='messages'"
+    @click.away="push__top=''"
+    aria-haspopup="false"
+    class="top-message modal-wrapper z-52 !hidden"
+  >
+    <div class="top-message-title">
+      <span
+        class="close-message material-symbols-outlined back"
+        @click="push__top=''"
+        >chevron_left</span
+      >
+      <span class="label">Messages</span>
+    </div>
+    <div class="top-message-content">
+      <div class="top-message-items thin-scroll">
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-red"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-red"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-blue"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-red"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-orange"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-red"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-red"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-red"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-blue"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-orange"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-orange"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-red"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-green"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-green"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-green"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-green"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developer, Using React, Laravel,
+              Codeigniter, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-red"></span>
+          </div>
+        </a>
+        <a class="top-message-item" href="#">
+          <div class="sender__avatar">
+            <img src="../images/img5.jpg" alt="sender avatar" />
+          </div>
+          <div class="notify-sender-message">
+            <div class="sender__name__time">
+              <div class="sender__name">West Warren</div>
+              <div class="dot__separator">
+                <span class="dot__separator_sm bg-gray-300"></span>
+              </div>
+              <div class="send__time">Just now</div>
+            </div>
+            <p class="message__slug ellipsis">
+              Hello, I'm Full stack developers, Using React, Laravel,
+              Codeigniter,, Node etc.
+            </p>
+          </div>
+          <div class="message__indicator">
+            <span class="ind-blue"></span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="top-message-footer">
+      <a href="#">
+        <span>See all messages</span>
+        <i class="material-symbols-outlined">arrow_right_alt</i>
+      </a>
+    </div>
+  </div>
 
         <!-- top notification -->
         <div
