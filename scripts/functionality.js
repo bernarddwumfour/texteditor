@@ -24,10 +24,17 @@ const paragraphWrap = document.getElementsByClassName('paragraphWrap')[0];
 const fontSize = document.getElementsByClassName('fontSize')[0];
 const fontFamily = document.getElementsByClassName('fontFamily')[0];
 
+//Modal Buttons
 const notification_toggle = document.querySelector('.toggle_notification')
 const messages_toggle = document.querySelector('.toggle_messages')
-const close_notification = document.querySelector('.close-notification')
+const profile_toggle = document.querySelector('.toggle_profile')
 
+//Modal back buttons
+const close_notification = document.querySelector('.close-notification')
+const close_message = document.querySelector('.close-message')
+const close_profile = document.querySelector('.close-profile')
+
+//Modals
 const app_notification = document.querySelector('.app_notification')
 const top_message = document.querySelector('.top-message')
 
@@ -44,6 +51,10 @@ messages_toggle.addEventListener('click',()=>{
 
 close_notification.addEventListener('click',()=>{
   app_notification.classList.add('!hidden')
+})
+
+close_message.addEventListener('click',()=>{
+  top_message.classList.add('!hidden')
 })
 
 

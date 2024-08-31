@@ -26,7 +26,7 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <!-- <link rel="stylesheet" href="./notification_page.css" /> -->
+    <link rel="stylesheet" href="./notification_page.css" />
 
 </head>
 
@@ -357,26 +357,90 @@
               </span>
             </li>
 
+            <!-- modal buttons -->
+
             <ul class="flex gap-1 text-[white]">
               <li class="rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
-                <button class="dropdown-item" ><svg data-icon="chat-fill" class="!size-6">
-                    <use href="/assets/sprite-BXKd8WYt.svg#chat-fill"></use></svg></button>
-              </li>
-              <li class="rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
-                <button class="toggle_messages dropdown-item" ><svg data-icon="bell-fill" class="!size-6">
-                    <use href="/assets/sprite-BXKd8WYt.svg#bell-fill" class="not-pop"></use></svg></button>
-              </li>
-              <li class="rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
-                <button class="dropdown-item toggle_notification" ><svg data-icon="create-fill" class="!size-6">
+                <button class="dropdown-item" ><svg data-icon="create-fill" class="!size-6">
                   <use href="/assets/sprite-BXKd8WYt.svg#create-fill"></use>
                 </svg></button>
               </li>
             
+              <li class="toggle_messages rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
+                <button class="dropdown-item" ><svg data-icon="chat-fill" class="!size-6">
+                    <use href="/assets/sprite-BXKd8WYt.svg#chat-fill"></use></svg></button>
+              </li>
+              <li class="toggle_notification rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
+                <button class="dropdown-item" ><svg data-icon="bell-fill" class="!size-6">
+                    <use href="/assets/sprite-BXKd8WYt.svg#bell-fill" class="not-pop"></use></svg></button>
+              </li>
             </ul>
             <!-- user icon -->
-            <li class="flex items-center gap-4">
-              <div class="size-6 rounded-full border border-gray-500 bg-white md:size-8"></div>
-            </li>
+            <img loading="lazy" src="./icons/Avatar.svg" width="40" height="40" class=".toggle_profile object-cover rounded-full border border-purple-600 shrink-0 hidden md:flex" id="show_header_modal">
+
+              <!-- profile modal -->
+
+      <div id="header_modal_list" class="header_modal z-10">
+        <div id="header_modal_list" class="header_modal_content">
+          <div class="head">
+            <div class="holder_name">
+              <span>Olivia Ryne</span>
+              <img src="./icons/Avatar.svg">
+            </div>
+            <div class="holder_assest">
+              <img src="./icons/dollar.svg">
+              <p>Coins: <span>3,400</span></p>
+            </div>
+          </div>
+          <div class="header_list">
+            <a href="#">
+              <img src="./icons/notification_icons/Award.svg">
+              <h3>Upgrade to Pro</h3>
+            </a>
+          </div>
+          <hr>
+          <div class="header_list">
+            <a href="#">
+              <img src="./icons/notification_icons/Status.svg">
+              <h3>Campaign</h3>
+            </a>
+          </div>
+          <hr>
+          <div class="header_list">
+            <a href="#">
+              <img src="./icons/notification_icons/User.svg">
+              <h3>View Profile</h3>
+            </a>
+          </div>
+          <div class="header_list">
+            <a href="#">
+              <img src="./icons/notification_icons/Setting.svg">
+              <h3>Profile Settings</h3>
+            </a>
+          </div>
+          <hr>
+          <div class="header_list">
+            <a href="#">
+              <img src="./icons/notification_icons/Two-user.svg">
+              <h3>Community</h3>
+            </a>
+          </div>
+          <hr>
+          <div class="header_list">
+            <a href="#">
+              <img src="./icons/notification_icons/Arrow - Left.svg">
+              <h3>Log Out</h3>
+            </a>
+          </div>
+          <div class="header_list switch-account">
+            <a href="#">
+              <img src="./icons/notification_icons/Arrow - Swap.svg">
+              <h3>Switch Account</h3>
+            </a>
+          </div>
+        </div>
+      </div>
+       
           </ul>
           <!-- ribbon tabs mobile -->
           <div class="ribbon_tab__wrapper flex md:hidden flex-wrap items-center">
@@ -1221,8 +1285,12 @@
               </div>
             </div>
           </div>
+
+        
+
         </nav>
 
+      
         
     <!--top-message-->
     <div
