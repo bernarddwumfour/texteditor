@@ -135,6 +135,31 @@ function pasteText() {
     });
 }
 
+// editor && editor.addEventListener('paste', function(e) {
+//   e.preventDefault(); // Prevent the default paste behavior
+
+//   const clipboardData = e.clipboardData || window.clipboardData;
+//   const pastedHtml = clipboardData.getData('text/html');
+//   const pastedText = clipboardData.getData('text/plain');
+
+//   let contentToInsert;
+
+//   // Handle HTML content if available
+//   if (pastedHtml) {
+//       contentToInsert = pastedHtml;
+//   } else if (pastedText) {
+//       // Convert plain text to HTML
+//       contentToInsert = `<p>${pastedText.replace(/\n/g, '</p><p>').replace(/<\/p><p>$/, '')}</p>`;
+//   } else {
+//       contentToInsert = '';
+//   }
+
+//   // Insert the content into the contenteditable element
+//   const contentEditable = e.target;
+//   contentEditable.focus();
+//    execCommandInIframe('insertHTML', false, contentToInsert);
+// });
+
 paste && paste.addEventListener('click', pasteText);
 
 let history;
