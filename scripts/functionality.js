@@ -24,6 +24,10 @@ const paragraphWrap = document.getElementsByClassName('paragraphWrap')[0];
 const fontSize = document.getElementsByClassName('fontSize')[0];
 const fontFamily = document.getElementsByClassName('fontFamily')[0];
 const wrapParagraph = document.getElementsByClassName('wrapParagraph')[0];
+const preview = document.getElementsByClassName('preview')[0];
+const fullScreen = document.getElementsByClassName('fullScreen')[0];
+const workarea_scale = document.getElementById('workarea_scale');
+const workarea_scale_output = document.getElementById('workarea_scale_output');
 
 //Modal Buttons
 const notification_toggle = document.querySelector('.toggle_notification');
@@ -344,3 +348,25 @@ wrapParagraph &&
     iframe.contentWindow.focus();
     execCommandInIframe('insertParagraph','p');
   });
+
+
+  preview && preview.addEventListener('click',()=>{
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const text = iframeDoc.getElementsByTagName('html')[0]
+    iframe.style.setProperty('--scale-factor', '0.57');
+    text.style.setProperty('--scale-factor', '0.57');
+    workarea_scale.value = 57;
+    workarea_scale_output.innerText = "57"
+
+  })
+
+
+  fullScreen && fullScreen.addEventListener('click',()=>{
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const text = iframeDoc.getElementsByTagName('html')[0]
+    iframe.style.setProperty('--scale-factor', '1.65');
+    text.style.setProperty('--scale-factor', '1.65');
+    workarea_scale.value = 165;
+    workarea_scale_output.innerText = "165"
+
+  })

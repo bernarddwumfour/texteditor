@@ -804,7 +804,7 @@
                     <use href="/icons/sprite.svg#paste-2x" stroke-width="2" />
                   </svg>
                 </button>
-                <button data-tooltip="Full Screen">
+                <button class="fullScreen" data-tooltip="Full Screen">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#full-screen" />
                   </svg>
@@ -819,7 +819,7 @@
                     <use href="/icons/sprite.svg#copy" />
                   </svg>
                 </button>
-                <button data-tooltip="Preview">
+                <button class="preview" data-tooltip="Preview">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#preview-proper" />
                   </svg>
@@ -2300,11 +2300,11 @@
               <input
                 type="range"
                 min="25"
-                max="125"
+                max="170"
                 value="100"
                 id="workarea_scale" />
               <output
-                class="w-9 cursor-pointer select-none text-right tabular-nums"
+                class="w-9 cursor-pointer select-none text-right tabular-nums" id="workarea_scale_output"
                 >100%</output
               >
             </lavel>
