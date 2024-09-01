@@ -23,40 +23,44 @@ const indentRight = document.getElementsByClassName('indentRight')[0];
 const paragraphWrap = document.getElementsByClassName('paragraphWrap')[0];
 const fontSize = document.getElementsByClassName('fontSize')[0];
 const fontFamily = document.getElementsByClassName('fontFamily')[0];
+const wrapParagraph = document.getElementsByClassName('wrapParagraph')[0];
 
 //Modal Buttons
-const notification_toggle = document.querySelector('.toggle_notification')
-const messages_toggle = document.querySelector('.toggle_messages')
-const profile_toggle = document.querySelector('.toggle_profile')
+const notification_toggle = document.querySelector('.toggle_notification');
+const messages_toggle = document.querySelector('.toggle_messages');
+const profile_toggle = document.querySelector('.toggle_profile');
 
 //Modal back buttons
-const close_notification = document.querySelector('.close-notification')
-const close_message = document.querySelector('.close-message')
-const close_profile = document.querySelector('.close-profile')
+const close_notification = document.querySelector('.close-notification');
+const close_message = document.querySelector('.close-message');
+const close_profile = document.querySelector('.close-profile');
 
 //Modals
-const app_notification = document.querySelector('.app_notification')
-const top_message = document.querySelector('.top-message')
+const app_notification = document.querySelector('.app_notification');
+const top_message = document.querySelector('.top-message');
 
 //Toggling Notifications slider
-notification_toggle.addEventListener('click',()=>{
-  app_notification.classList.toggle('!hidden')
-  top_message.classList.add('!hidden')
-})
+notification_toggle &&
+  notification_toggle.addEventListener('click', () => {
+    app_notification.classList.toggle('!hidden');
+    top_message.classList.add('!hidden');
+  });
 
 //Toggling messages modal
-messages_toggle.addEventListener('click',()=>{
-  top_message.classList.toggle('!hidden')
-})
+messages_toggle &&
+  messages_toggle.addEventListener('click', () => {
+    top_message.classList.toggle('!hidden');
+  });
 
-close_notification.addEventListener('click',()=>{
-  app_notification.classList.add('!hidden')
-})
+close_notification &&
+  close_notification.addEventListener('click', () => {
+    app_notification.classList.add('!hidden');
+  });
 
-close_message.addEventListener('click',()=>{
-  top_message.classList.add('!hidden')
-})
-
+close_message &&
+  close_message.addEventListener('click', () => {
+    top_message.classList.add('!hidden');
+  });
 
 function getIframeDocument() {
   return iframe.contentDocument || iframe.contentWindow.document;
@@ -84,7 +88,7 @@ function copyText() {
   }
 }
 
-copy.addEventListener('click', copyText);
+copy && copy.addEventListener('click', copyText);
 
 // Cut text to the clipboard
 function cutText() {
@@ -104,7 +108,7 @@ function cutText() {
   }
 }
 
-cut.addEventListener('click', cutText);
+cut && cut.addEventListener('click', cutText);
 
 // Paste text from the clipboard
 function pasteText() {
@@ -127,14 +131,16 @@ function pasteText() {
     });
 }
 
-paste.addEventListener('click', pasteText);
+paste && paste.addEventListener('click', pasteText);
 
-
-
+let history;
+let historyIndex;
 // UNDO AND REDO
 // Store the history of changes
-let history = [];
-let historyIndex = -1;
+iframe && iframe.addEventListener('load', () => {
+  history = [];
+  historyIndex = -1;
+});
 
 // Save the current state of the contenteditable element to history
 function saveState() {
@@ -149,10 +155,9 @@ function saveState() {
     history.push(currentState);
     historyIndex++;
   }
-  // console.log('History:', history);
-  // console.log('History Index:', historyIndex);
+  console.log('History:', history);
+  console.log('History Index:', historyIndex);
 }
-
 
 let debounceTimer;
 function addInputListeners() {
@@ -162,15 +167,14 @@ function addInputListeners() {
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
         saveState();
-      }, 300); // Adjust the timeout as needed
+      }, 500); // Adjust the timeout as needed
     });
   }
 }
 
-
 // Undo the last change
 function undoAction() {
-    console.log("undo")
+  console.log('undo');
   if (historyIndex > 0) {
     historyIndex--;
     const editor = getEditorElement();
@@ -178,22 +182,24 @@ function undoAction() {
   }
 }
 
-undo.addEventListener('click', ()=>{
-  undoAction()
-});
+undo &&
+  undo.addEventListener('click', () => {
+    undoAction();
+  });
 
 // Redo the last undone change
 function redoAction() {
-    console.log("redo")
+  console.log('redo');
   if (historyIndex < history.length - 1) {
     historyIndex++;
     const editor = getEditorElement();
     editor.innerHTML = history[historyIndex];
   }
 }
-redo.addEventListener('click', ()=>{
-  redoAction()
-});
+redo &&
+  redo.addEventListener('click', () => {
+    redoAction();
+  });
 
 // Initialize the editor (this function should be called after the iframe is fully loaded)
 function initializeEditor() {
@@ -202,12 +208,12 @@ function initializeEditor() {
 }
 
 // Wait for the iframe to load before initializing
-iframe.addEventListener('load', () => {
+// document.addEventListener('load',()=>{
+  iframe && iframe.addEventListener('load', () => {
+  console.log('initialized');
   initializeEditor();
 });
-
-
-
+// });
 
 //Second box
 //Formatting text with the execCommand() function
@@ -220,76 +226,121 @@ function execCommandInIframe(command, value = null) {
   editorDoc.execCommand(command, false, value);
 }
 
+bold &&
+  bold.addEventListener('click', () => {
+    execCommandInIframe('bold');
+  });
 
-bold && bold.addEventListener('click',()=>{
-  execCommandInIframe('bold');
-})
+italic &&
+  italic.addEventListener('click', () => {
+    execCommandInIframe('italic');
+  });
 
-italic && italic.addEventListener('click',()=>{
-  execCommandInIframe('italic');
-})
+subscript &&
+  subscript.addEventListener('click', () => {
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const selection = iframeDoc.getSelection();
 
-subscript && subscript.addEventListener('click',()=>{
-  execCommandInIframe('subscript');
-})
+    if (!selection.rangeCount) return;
 
-superscript && superscript.addEventListener('click',()=>{
-  execCommandInIframe('superscript');
-})
+    const parentElement = selection.anchorNode.parentElement;
 
-strikethrough && strikethrough.addEventListener('click',()=>{
-  execCommandInIframe('strikethrough');
-})
+    if (parentElement.tagName === 'SUB') {
+      execCommandInIframe('removeFormat'); // Applies superscript formatting
+    } else {
+      execCommandInIframe('subscript');
+    }
+  });
 
-outline && outline.addEventListener('click',()=>{
-  execCommandInIframe('outline');
-})
+superscript &&
+  superscript.addEventListener('click', () => {
+     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const selection = iframeDoc.getSelection();
+    
+    if (!selection.rangeCount) return;
 
-underline && underline.addEventListener('click',()=>{
-  execCommandInIframe('underline');
-})
+    const parentElement = selection.anchorNode.parentElement;
 
-alignCenter && alignCenter.addEventListener('click',()=>{
-  execCommandInIframe('justifyCenter');
-})
+    if (parentElement.tagName === 'SUP') {
+      execCommandInIframe('removeFormat'); // Applies superscript formatting
+    } else {
+      execCommandInIframe('superscript');
+    }
+  });
 
-alignLeft && alignLeft.addEventListener('click',()=>{
-  execCommandInIframe('justifyLeft');
-})
+strikethrough &&
+  strikethrough.addEventListener('click', () => {
+    execCommandInIframe('strikethrough');
+  });
 
-alignRight && alignRight.addEventListener('click',()=>{
-  execCommandInIframe('justifyRight');
-})
+outline &&
+  outline.addEventListener('click', () => {
+    execCommandInIframe('outline');
+  });
 
-alignJustify && alignJustify.addEventListener('click',()=>{
-  execCommandInIframe('justifyfull');
-})
+underline &&
+  underline.addEventListener('click', () => {
+    execCommandInIframe('underline');
+  });
 
-bulletList && bulletList.addEventListener('click',()=>{
-  execCommandInIframe('insertUnorderedList');
-})
+alignCenter &&
+  alignCenter.addEventListener('click', () => {
+    execCommandInIframe('justifyCenter');
+  });
 
-numberList && numberList.addEventListener('click',()=>{
-  execCommandInIframe('insertOrderedList');
-})
+alignLeft &&
+  alignLeft.addEventListener('click', () => {
+    execCommandInIframe('justifyLeft');
+  });
 
-indentLeft && indentLeft.addEventListener('click',()=>{
-  execCommandInIframe('indent');
-})
+alignRight &&
+  alignRight.addEventListener('click', () => {
+    execCommandInIframe('justifyRight');
+  });
 
-indentRight && indentRight.addEventListener('click',()=>{
-  execCommandInIframe('outdent');
-})
+alignJustify &&
+  alignJustify.addEventListener('click', () => {
+    execCommandInIframe('justifyfull');
+  });
 
-paragraphWrap && paragraphWrap.addEventListener('click',()=>{
-  alert('click')
-  execCommandInIframe('formatBlock');
-})
+bulletList &&
+  bulletList.addEventListener('click', () => {
+    execCommandInIframe('insertUnorderedList');
+  });
 
-fontSize && fontSize.addEventListener('click',()=>{
-  execCommandInIframe('fontSize',fontSize.value)
-})
+numberList &&
+  numberList.addEventListener('click', () => {
+    execCommandInIframe('insertOrderedList');
+  });
 
-fontFamily && fontFamily.addEventListener('click',()=>{
-  execCommandInIframe('fontName',fontFamily.value)
-})
+indentLeft &&
+  indentLeft.addEventListener('click', () => {
+    execCommandInIframe('indent');
+  });
+
+indentRight &&
+  indentRight.addEventListener('click', () => {
+    execCommandInIframe('outdent');
+  });
+
+paragraphWrap &&
+  paragraphWrap.addEventListener('click', () => {
+    alert('click');
+    execCommandInIframe('formatBlock');
+  });
+
+fontSize &&
+  fontSize.addEventListener('click', () => {
+    execCommandInIframe('fontSize', fontSize.value);
+  });
+
+fontFamily &&
+  fontFamily.addEventListener('click', () => {
+    execCommandInIframe('fontName', fontFamily.value);
+  });
+
+wrapParagraph &&
+  wrapParagraph.addEventListener('click', () => {
+    iframe.contentWindow.focus();
+    execCommandInIframe('insertParagraph','p');
+  });
