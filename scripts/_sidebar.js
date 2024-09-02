@@ -32,7 +32,7 @@ $(window).on('resize', (e) => {
 // recalculate visibility on window load
 $(() => calcRibbonWidth());
 
-for (let i = 0; i < 2; i++) {
+for (let i = 0; i < 10; i++) {
   const $clone = cloneSocialPost({
     permalink: '/#custom-post',
     image: randomImage(),

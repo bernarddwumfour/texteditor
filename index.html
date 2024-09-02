@@ -16,11 +16,12 @@
   <!-- stylesheets -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <!-- custom stylesheet -->
-  <!-- <link rel="stylesheet" href="./converted.css" /> -->
+  <link rel="stylesheet" href="./converted.css" />
   <link rel="stylesheet" href="./styles/bootstrap.min.css" />
   <link rel="stylesheet" href="./styles/main.scss" />
   <link rel="import" href="./icons/sprite.svg" />
     <link rel="stylesheet" href="./notification.css" />
+    <!-- <link rel="stylesheet" href="./notification_page.css" /> -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
@@ -370,11 +371,11 @@
                 </svg></button>
               </li>
             
-              <li class="toggle_messages rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
+              <li id="Message-btn" class="toggle_messages rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
                 <button class="dropdown-item" ><svg data-icon="chat-fill" class="!size-6">
                     <use href="/assets/sprite-BXKd8WYt.svg#chat-fill"></use></svg></button>
               </li>
-              <li class="toggle_notification rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
+              <li id="Notification-btn"  class="toggle_notification rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
                 <button class="dropdown-item" ><svg data-icon="bell-fill" class="!size-6">
                     <use href="/assets/sprite-BXKd8WYt.svg#bell-fill" class="not-pop"></use></svg></button>
               </li>
@@ -444,6 +445,83 @@
           </div>
         </div>
       </div>
+
+       <!-- Switch account modal -->
+       <div id="Switch-modal" class="header_modal z-10">
+        <div class="switch-content">
+          <div class="switch_header">
+            <div class="switch-left">
+              <img src="./icons/notification_icons/Arrow - Swap.svg" />
+              <span>Switch Account</span>
+            </div>
+            <div id="close" class="close-switch">
+              <img src="./icons/cancel.svg" />
+            </div>
+          </div>
+          <hr />
+          <div class="switch-footer add-account">
+            <button>
+              <img src="./icons/notification_icons/Add_round.svg" />
+              <span>Add Account</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Accounts -->
+      <div id="Add-account-modal" class="header_modal z-10">
+        <div class="switch-content account-modal">
+          <div class="switch_header">
+            <div class="switch-left">
+              <img src="./icons/notification_icons/Arrow - Swap.svg" />
+              <span>Switch Account</span>
+            </div>
+            <div class="close-switch">
+              <img src="./icons/cancel.svg" />
+            </div>
+          </div>
+          <hr />
+          <div class="switch-body">
+            <div class="switch-left">
+              <img src="./icons/Avatar.svg" />
+              <div class="avater-desc">
+                <h3>Esther Howward</h3>
+                <span>Logged in 20 mins ago</span>
+              </div>
+            </div>
+            <div class="switch-counter">
+              <span>10</span>
+            </div>
+          </div>
+          <div class="switch-body">
+            <div class="switch-left">
+              <img src="./icons/Avatar.svg" />
+              <div class="avater-desc">
+                <h3>Esther Howward</h3>
+                <span>Logged in 20 mins ago</span>
+              </div>
+            </div>
+            <div class="switch-counter switch-counter-wide">
+              <span>99+</span>
+            </div>
+          </div>
+          <div class="switch-body">
+            <div class="switch-left">
+              <img src="./icons/Avatar.svg" />
+              <div class="avater-desc">
+                <h3>Esther Howward</h3>
+                <span>Logged in 20 mins ago</span>
+              </div>
+            </div>
+          </div>
+          <div class="switch-footer">
+            <button>
+              <img src="./icons/notification_icons/Add_round.svg" />
+              <span>Add Account</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
        
           </ul>
           <!-- ribbon tabs mobile -->
@@ -780,7 +858,7 @@
   
           </div>
           <!-- ribbon content -->
-          <div class="ribbon_content">
+          <div class="ribbon_content ">
             <div class="ribbon_carousel">
               <div class="ribbon_content__wrapper">
                 <button class="undo" data-tooltip="Undo" data-icon="undo">
@@ -876,7 +954,7 @@
                   </svg>
                 </button>
               </div>
-              <div class="ribbon_content__wrapper">
+              <div class="ribbon_content__wrapper ">
                 <div class="col-span-6 flex items-center gap-1">
                   <select
                     class="fontFamily col-span-5 h-full flex-1 rounded border border-gray-300 bg-gray-100 p-0 px-1.5 text-left">
@@ -957,10 +1035,16 @@
                     <use href="/icons/sprite.svg#italics" />
                   </svg>
                 </button>
-                <button data-tooltip="Line Height">
+                <button data-tooltip="Line Height" class="relative outline-none bg-white w-9">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#line-height" />
                   </svg>
+                 <!-- <ul class="absolute bg-white p-2 shadow-md">
+                  <li class="pe-7">1</li>
+                  <li class="pe-7">1</li>
+                  <li class="pe-7">1</li>
+                  <li class="pe-7">1</li>
+                 </ul> -->
                 </button>
                 <button class="underline" data-tooltip="Underline">
                   <svg data-icon>
@@ -1307,7 +1391,7 @@
     x-show="push__top=='messages'"
     @click.away="push__top=''"
     aria-haspopup="false"
-    class="top-message modal-wrapper z-52 !hidden"
+    class="top-message modal-wrapper z-52"
   >
     <div class="top-message-title">
       <span
@@ -1717,7 +1801,7 @@
           x-transition:leave-end="opacity-0 transform scale-95"
           x-transition:leave-start="opacity-100 x-translate-100 transform scale-100"
           @click.away="push__top=''"
-          class="app_notification !hidden">
+          class="app_notification">
           <header class="app_notification_header">
             <div class="app_notification_header_title">
               <span
@@ -2319,7 +2403,7 @@
       <!-- posts sidebar -->
       <aside
         id="post_sidebar"
-        class="hidden flex-col gap-6 self-stretch border-l border-gray-300 bg-gray-100 p-6 aria-expanded:w-[calc(15vw_+_5rem)] 2xl:aria-expanded:flex print:hidden"
+        class="hidden flex-col gap-6 self-stretch border-l border-gray-300 bg-gray-100 p-6 aria-expanded:w-[calc(15vw_+_5rem)] 2xl:aria-expanded:flex print:hidden !overflow-y-scroll"
         aria-expanded="true"></aside>
     </div>
 
@@ -2400,7 +2484,7 @@
 
     <!-- Modal: Template -->
     <!-- Handles both templates and slides -->
-    <aside class="modal template_modal" id="template_modal" aria-hidden="true">
+    <!-- <aside class="modal template_modal" id="template_modal" aria-hidden="true">
       <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
           <div class="modal-header">
@@ -2421,10 +2505,10 @@
           </div>
         </div>
       </div>
-    </aside>
+    </aside> -->
 
     <!-- Modal Import -->
-    <aside class="modal" id="import_url_modal" aria-hidden="true">
+    <!-- <aside class="modal" id="import_url_modal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <form class="modal-content">
           <header class="modal-header">
@@ -2450,10 +2534,10 @@
           </footer>
         </form>
       </div>
-    </aside>
+    </aside> -->
 
     <!-- Modal rename -->
-    <aside class="modal" id="rename_modal" aria-hidden="true">
+    <!-- <aside class="modal" id="rename_modal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <header class="modal-header">
@@ -2475,10 +2559,10 @@
           </footer>
         </div>
       </div>
-    </aside>
+    </aside> -->
 
     <!-- confirmation dialog modal -->
-    <aside class="modal" id="confirmation_modal" aria-hidden="true">
+    <!-- <aside class="modal" id="confirmation_modal" aria-hidden="true">
       <div class="modal-dialog modal-sm modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-body py-8 text-center">Confirm the action</div>
@@ -2488,10 +2572,10 @@
           </footer>
         </div>
       </div>
-    </aside>
+    </aside> -->
 
     <!-- Modal Diagrams -->
-    <aside class="modal" aria-hidden="true" id="diagram_modal">
+    <!-- <aside class="modal" aria-hidden="true" id="diagram_modal">
       <div class="modal-dialog modal-dialog-centered">
         <form class="modal-content">
           <header class="modal-header">
@@ -2529,10 +2613,10 @@
           </div>
         </form>
       </div>
-    </aside>
+    </aside> -->
 
     <!-- modal checkout -->
-    <aside class="modal checkout_modal" aria-hidden="true" id="checkout_modal">
+    <!-- <aside class="modal checkout_modal" aria-hidden="true" id="checkout_modal">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <header class="modal-header">
@@ -2554,10 +2638,10 @@
           </footer>
         </div>
       </div>
-    </aside>
+    </aside> -->
 
     <!-- modal payment methods -->
-    <aside class="modal payment_modal" aria-hidden="true" id="payment_modal">
+    <!-- <aside class="modal payment_modal" aria-hidden="true" id="payment_modal">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <header class="modal-header">
@@ -2630,7 +2714,7 @@
           </footer>
         </div>
       </div>
-    </aside>
+    </aside> -->
 
     <!-- javascript assets -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js"></script>

@@ -29,42 +29,41 @@ const fullScreen = document.getElementsByClassName('fullScreen')[0];
 const workarea_scale = document.getElementById('workarea_scale');
 const workarea_scale_output = document.getElementById('workarea_scale_output');
 
-//Modal Buttons
-const notification_toggle = document.querySelector('.toggle_notification');
-const messages_toggle = document.querySelector('.toggle_messages');
-const profile_toggle = document.querySelector('.toggle_profile');
+// //Modal Buttons
+// const notification_toggle = document.querySelector('.toggle_notification');
+// const messages_toggle = document.querySelector('.toggle_messages');
 
-//Modal back buttons
-const close_notification = document.querySelector('.close-notification');
-const close_message = document.querySelector('.close-message');
-const close_profile = document.querySelector('.close-profile');
+// //Modal back buttons
+// const close_notification = document.querySelector('.close-notification');
+// const close_message = document.querySelector('.close-message');
 
-//Modals
-const app_notification = document.querySelector('.app_notification');
-const top_message = document.querySelector('.top-message');
+// //Modals
+// const app_notification = document.querySelector('.app_notification');
+// const top_message = document.querySelector('.top-message');
 
-//Toggling Notifications slider
-notification_toggle &&
-  notification_toggle.addEventListener('click', () => {
-    app_notification.classList.toggle('!hidden');
-    top_message.classList.add('!hidden');
-  });
+// //Toggling Notifications slider
+// notification_toggle &&
+//   notification_toggle.addEventListener('click', () => {
+//     // alert("notifi...")
+//     app_notification.classList.remove('hidden-modal');
+//     top_message.classList.add('hidden-modal');
+//   });
 
-//Toggling messages modal
-messages_toggle &&
-  messages_toggle.addEventListener('click', () => {
-    top_message.classList.toggle('!hidden');
-  });
+// //Toggling messages modal
+// messages_toggle &&
+//   messages_toggle.addEventListener('click', () => {
+//     top_message.classList.remove('hidden-modal');
+//   });
 
-close_notification &&
-  close_notification.addEventListener('click', () => {
-    app_notification.classList.add('!hidden');
-  });
+// close_notification &&
+//   close_notification.addEventListener('click', () => {
+//     app_notification.classList.add('hidden-modal');
+//   });
 
-close_message &&
-  close_message.addEventListener('click', () => {
-    top_message.classList.add('!hidden');
-  });
+// close_message &&
+//   close_message.addEventListener('click', () => {
+//     top_message.classList.add('hidden-modal');
+//   });
 
 function getIframeDocument() {
   return iframe.contentDocument || iframe.contentWindow.document;
@@ -370,28 +369,37 @@ fontFamily &&
 
 wrapParagraph &&
   wrapParagraph.addEventListener('click', () => {
+    // var selection = window.getSelection();
+    // if (selection.rangeCount > 0) {
+    //     var range = selection.getRangeAt(0);
+        
+    //     // Collapse the range to the start of the selected text, placing the cursor there
+    //     range.collapse(true);
+
+    // // //     // Clear the selection and add the collapsed range
+    // //     selection.removeAllRanges();
+    // //     selection.addRange(range);
+    // }
     iframe.contentWindow.focus();
-    execCommandInIframe('insertParagraph','p');
+    execCommandInIframe('formatBlock', 'p');
+    // execCommandInIframe('insertParagraph','p');
   });
 
 
   preview && preview.addEventListener('click',()=>{
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    const text = iframeDoc.getElementsByTagName('html')[0]
-    iframe.style.setProperty('--scale-factor', '0.57');
-    text.style.setProperty('--scale-factor', '0.57');
-    workarea_scale.value = 57;
-    workarea_scale_output.innerText = "57"
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+    // const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    // const text = iframeDoc.getElementsByTagName('html')[0]
+    // iframe.style.setProperty('--scale-factor', '0.57');
+    // text.style.setProperty('--scale-factor', '0.57');
+    // workarea_scale.value = 57;
+    // workarea_scale_output.innerText = "57"
 
   })
 
 
   fullScreen && fullScreen.addEventListener('click',()=>{
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    const text = iframeDoc.getElementsByTagName('html')[0]
-    iframe.style.setProperty('--scale-factor', '1.65');
-    text.style.setProperty('--scale-factor', '1.65');
-    workarea_scale.value = 165;
-    workarea_scale_output.innerText = "165"
-
+    document.documentElement.requestFullscreen();
   })
