@@ -29,41 +29,6 @@ const fullScreen = document.getElementsByClassName('fullScreen')[0];
 const workarea_scale = document.getElementById('workarea_scale');
 const workarea_scale_output = document.getElementById('workarea_scale_output');
 
-// //Modal Buttons
-// const notification_toggle = document.querySelector('.toggle_notification');
-// const messages_toggle = document.querySelector('.toggle_messages');
-
-// //Modal back buttons
-// const close_notification = document.querySelector('.close-notification');
-// const close_message = document.querySelector('.close-message');
-
-// //Modals
-// const app_notification = document.querySelector('.app_notification');
-// const top_message = document.querySelector('.top-message');
-
-// //Toggling Notifications slider
-// notification_toggle &&
-//   notification_toggle.addEventListener('click', () => {
-//     // alert("notifi...")
-//     app_notification.classList.remove('hidden-modal');
-//     top_message.classList.add('hidden-modal');
-//   });
-
-// //Toggling messages modal
-// messages_toggle &&
-//   messages_toggle.addEventListener('click', () => {
-//     top_message.classList.remove('hidden-modal');
-//   });
-
-// close_notification &&
-//   close_notification.addEventListener('click', () => {
-//     app_notification.classList.add('hidden-modal');
-//   });
-
-// close_message &&
-//   close_message.addEventListener('click', () => {
-//     top_message.classList.add('hidden-modal');
-//   });
 
 function getIframeDocument() {
   return iframe.contentDocument || iframe.contentWindow.document;
