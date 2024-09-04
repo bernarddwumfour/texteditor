@@ -461,13 +461,13 @@ lineHeight && lineHeight.addEventListener('click', () => {
     execCommandInIframe('hiliteColor', value);
   };
 
-textColor.lastElementChild.addEventListener('change',()=>{
+ textColor && textColor.lastElementChild.addEventListener('change',()=>{
   // alert(textColor.lastElementChild.value)
   changeTextColor(textColor.lastElementChild.value)
 })
 
 
-mark.lastElementChild.addEventListener('change',()=>{
+mark && mark.lastElementChild.addEventListener('change',()=>{
   // alert(hiliteColor.lastElementChild.value)
   changeHiliteColor(mark.lastElementChild.value)
 })
