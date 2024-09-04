@@ -1,3 +1,6 @@
+
+
+//Declaring variables for buttons
 const undo = document.getElementsByClassName('undo')[0];
 const redo = document.getElementsByClassName('redo')[0];
 const editor = document.getElementsByClassName('editor')[0];
@@ -27,8 +30,11 @@ const wrapParagraph = document.getElementsByClassName('wrapParagraph')[0];
 const preview = document.getElementsByClassName('preview')[0];
 const fullScreen = document.getElementsByClassName('fullScreen')[0];
 const workarea_scale = document.getElementById('workarea_scale');
+const textColor = document.getElementsByClassName('textColor')[0];
+const lineHeight = document.getElementsByClassName('lineHeight')[0];
+const hiliteColor = document.getElementsByClassName('hiliteColor')[0];
+const mark = document.getElementsByClassName('mark')[0];
 const workarea_scale_output = document.getElementById('workarea_scale_output');
-
 
 function getIframeDocument() {
   return iframe.contentDocument || iframe.contentWindow.document;
@@ -130,10 +136,11 @@ let history;
 let historyIndex;
 // UNDO AND REDO
 // Store the history of changes
-iframe && iframe.addEventListener('load', () => {
-  history = [];
-  historyIndex = -1;
-});
+iframe &&
+  iframe.addEventListener('load', () => {
+    history = [];
+    historyIndex = -1;
+  });
 
 // Save the current state of the contenteditable element to history
 function saveState() {
@@ -202,10 +209,11 @@ function initializeEditor() {
 
 // Wait for the iframe to load before initializing
 // document.addEventListener('load',()=>{
-  iframe && iframe.addEventListener('load', () => {
-  console.log('initialized');
-  initializeEditor();
-});
+iframe &&
+  iframe.addEventListener('load', () => {
+    console.log('initialized');
+    initializeEditor();
+  });
 // });
 
 //Second box
@@ -247,9 +255,9 @@ subscript &&
 
 superscript &&
   superscript.addEventListener('click', () => {
-     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
     const selection = iframeDoc.getSelection();
-    
+
     if (!selection.rangeCount) return;
 
     const parentElement = selection.anchorNode.parentElement;
@@ -337,7 +345,7 @@ wrapParagraph &&
     // var selection = window.getSelection();
     // if (selection.rangeCount > 0) {
     //     var range = selection.getRangeAt(0);
-        
+
     //     // Collapse the range to the start of the selected text, placing the cursor there
     //     range.collapse(true);
 
@@ -350,8 +358,8 @@ wrapParagraph &&
     // execCommandInIframe('insertParagraph','p');
   });
 
-
-  preview && preview.addEventListener('click',()=>{
+preview &&
+  preview.addEventListener('click', () => {
     if (document.exitFullscreen) {
       document.exitFullscreen();
     }
@@ -361,10 +369,105 @@ wrapParagraph &&
     // text.style.setProperty('--scale-factor', '0.57');
     // workarea_scale.value = 57;
     // workarea_scale_output.innerText = "57"
+  });
 
-  })
-
-
-  fullScreen && fullScreen.addEventListener('click',()=>{
+fullScreen &&
+  fullScreen.addEventListener('click', () => {
     document.documentElement.requestFullscreen();
-  })
+  });
+
+// Function to apply text outline
+function toggleOutline() {
+  const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+  const selection = iframeDoc.getSelection();
+  if (!selection.rangeCount) return;
+
+  const range = selection.getRangeAt(0);
+  const selectedText = range.toString();
+
+  if (selectedText) {
+      const commonAncestor = range.commonAncestorContainer;
+
+      // Find the closest SPAN element with the border style
+      let parentNode = commonAncestor.nodeType === 3 ? commonAncestor.parentNode : commonAncestor;
+      let spanToRemove = null;
+
+      while (parentNode && parentNode !== iframeDoc.body) {
+          if (parentNode.tagName === 'SPAN' && parentNode.style.border === '1px solid black') {
+              spanToRemove = parentNode;
+              break;
+          }
+          parentNode = parentNode.parentNode;
+      }
+
+      if (spanToRemove) {
+          // If the outline is already applied, remove it
+          const textNode = iframeDoc.createTextNode(spanToRemove.textContent);
+          spanToRemove.parentNode.replaceChild(textNode, spanToRemove);
+
+          // Restore the selection to the text
+          range.selectNodeContents(textNode);
+          selection.removeAllRanges();
+          selection.addRange(range);
+      } else {
+          // If the outline is not applied, apply it
+          const span = iframeDoc.createElement('span');
+          span.style.border = '1px solid black';
+          span.textContent = selectedText;
+
+          // Replace the selected text with the span element
+          range.deleteContents();
+          range.insertNode(span);
+
+          // Restore the selection to the span
+          range.selectNodeContents(span);
+          selection.removeAllRanges();
+          selection.addRange(range);
+      }
+  }
+}
+
+outline && outline.addEventListener('click', () => {
+  toggleOutline();
+});
+
+textColor && textColor.addEventListener('click',()=>{
+  textColor.lastElementChild.click()
+})
+
+mark && mark.addEventListener('click',()=>{
+  mark.lastElementChild.click()
+})
+
+
+lineHeight && lineHeight.addEventListener('click', () => {
+  lineHeight.lastElementChild.click()
+  console.log('clicked')
+
+  // if (lineHeight.lastElementChild) {
+  //   console.log(lineHeight.lastElementChild);
+  // } else {
+  //   console.log('No focusable child element found.');
+  // }
+});
+
+
+ const changeTextColor = (value) => {
+    // execCommandInIframe('hiliteColor', value);
+    execCommandInIframe('foreColor', value);
+  };
+
+ const changeHiliteColor = (value) => {
+    execCommandInIframe('hiliteColor', value);
+  };
+
+textColor.lastElementChild.addEventListener('change',()=>{
+  // alert(textColor.lastElementChild.value)
+  changeTextColor(textColor.lastElementChild.value)
+})
+
+
+mark.lastElementChild.addEventListener('change',()=>{
+  // alert(hiliteColor.lastElementChild.value)
+  changeHiliteColor(mark.lastElementChild.value)
+})

@@ -2301,11 +2301,13 @@
       </main>
     </section>
 
-    <!-- posts sidebar -->
-    <aside id="post_sidebar"
-      class="hidden flex-col gap-6 self-stretch border-l border-gray-300 bg-gray-100 p-6 aria-expanded:w-[calc(15vw_+_5rem)] 2xl:aria-expanded:flex print:hidden"
-      aria-expanded="true"></aside>
-  </div>
+      <!-- posts sidebar -->
+      <aside
+        id="post_sidebar"
+        class="hidden h-[100vh] flex-col gap-6 self-stretch border-l border-gray-300 bg-gray-100 p-6 aria-expanded:w-[calc(15vw_+_5rem)] 2xl:aria-expanded:flex print:hidden !overflow-y-scroll"
+        aria-expanded="true"></aside>
+    </div>
+
 
   <!-- Template: Post  -->
   <!-- <template id="post_template">

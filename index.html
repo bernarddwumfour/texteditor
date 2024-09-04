@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="./styles/bootstrap.min.css" />
   <link rel="stylesheet" href="./styles/main.scss" />
   <link rel="import" href="./icons/sprite.svg" />
+  <link rel="import" href="./assets/sprite.svg" />
     <link rel="stylesheet" href="./notification.css" />
     <!-- <link rel="stylesheet" href="./notification_page.css" /> -->
     <link
@@ -1025,46 +1026,58 @@
                     <use href="/icons/sprite.svg#bold" />
                   </svg>
                 </button>
-                <button data-tooltip="Letter Spacing">
+                <button data-tooltip="Letter Spacing" class="letterSpacing">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#letter-spacing" />
                   </svg>
+                  <select class="w-3 border-transparent bg-white outline-none">
+                    <option class="!px-3 p-1">1.0&nbsp;&nbsp;</option>
+                    <option class="!px-3 p-1">1.15&nbsp;&nbsp;</option>
+                    <option class="!px-3 p-1">1.5&nbsp;&nbsp;</option>
+                    <option class="!px-3 p-1">2.0&nbsp;&nbsp;</option>
+                   </select>
                 </button>
                 <button class="italic" data-tooltip="Italics">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#italics" />
                   </svg>
                 </button>
-                <button data-tooltip="Line Height" class="relative outline-none bg-white w-9">
-                  <svg data-icon>
-                    <use href="/icons/sprite.svg#line-height" />
-                  </svg>
-                 <!-- <select class="!min-w-16">
-                  <option class="!px-3 p-1">1</option>
-                  <option class="!px-3 p-1">1</option>
-                  <option class="!px-3 p-1">1</option>
-                  <option class="!px-3 p-1">1</option>
-                 </select> -->
+                <button data-tooltip="Line Height" class="relative outline-none border-none bg-white w-9 lineHeight">
+                  <span>
+                    <svg data-icon>
+                      <use href="/icons/sprite.svg#line-height" />
+                    </svg>
+                  </span>
+                  <select class="w-3 bg-transparent outline-none">
+                  <option class="!px-3 p-1">1.0&nbsp;&nbsp;</option>
+                  <option class="!px-3 p-1">1.15&nbsp;&nbsp;</option>
+                  <option class="!px-3 p-1">1.5&nbsp;&nbsp;</option>
+                  <option class="!px-3 p-1">2.0&nbsp;&nbsp;</option>
+                 </select>
                 </button>
                 <button class="underline" data-tooltip="Underline">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#underline" />
                   </svg>
                 </button>
-                <button data-tooltip="Type Color">
+                <button data-tooltip="Type Color" class="textColor">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#type-color" />
                   </svg>
+                  </select>
+                  <input class="w-0 h-0" type="color" name="textColor" id="text-color">
+
                 </button>
                 <button class="strikethrough" data-tooltip="Strike Through">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#strike-through" />
                   </svg>
                 </button>
-                <button data-tooltip="Mark">
+                <button data-tooltip="Mark" class="mark">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#mark" />
                   </svg>
+                  <input class="w-0 h-0" type="color" name="hiliteColor" id="hiliteColor">
                 </button>
                 <button data-tooltip="Heading">
                   <svg data-icon>
@@ -2403,7 +2416,7 @@
       <!-- posts sidebar -->
       <aside
         id="post_sidebar"
-        class="hidden flex-col gap-6 self-stretch border-l border-gray-300 bg-gray-100 p-6 aria-expanded:w-[calc(15vw_+_5rem)] 2xl:aria-expanded:flex print:hidden !overflow-y-scroll"
+        class="hidden h-[100vh] flex-col gap-6 self-stretch border-l border-gray-300 bg-gray-100 p-6 aria-expanded:w-[calc(15vw_+_5rem)] 2xl:aria-expanded:flex print:hidden !overflow-y-scroll"
         aria-expanded="true"></aside>
     </div>
 
