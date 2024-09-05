@@ -859,8 +859,8 @@
   
           </div>
           <!-- ribbon content -->
-          <div class="ribbon_content">
-            <div class="ribbon_carousel ">
+          <div class="ribbon_content !overflow-visible">
+            <div class="ribbon_carousel h-full">
               <div class="ribbon_content__wrapper ">
                 <button class="undo" data-tooltip="Undo" data-icon="undo">
                   <svg data-icon>
@@ -1026,46 +1026,53 @@
                     <use href="/icons/sprite.svg#bold" />
                   </svg>
                 </button>
-                <button data-tooltip="Letter Spacing" class="letterSpacing">
+                <button data-tooltip="Letter Spacing" class="relative dropDownButton">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#letter-spacing" />
                   </svg>
-                  <select class="w-3 border-transparent bg-white outline-none">
-                    <option class="!px-3 p-1">1.0&nbsp;&nbsp;</option>
-                    <option class="!px-3 p-1">1.15&nbsp;&nbsp;</option>
-                    <option class="!px-3 p-1">1.5&nbsp;&nbsp;</option>
-                    <option class="!px-3 p-1">2.0&nbsp;&nbsp;</option>
-                   </select>
+                  <ul class="absolute bg-white p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full hidden dropDownMenu text-[.9rem]">
+                    <li class="pr-5" data-value=1.5>1.15</li>
+                    <li class="pr-5" data-value=1.5>1.15</li>
+                    <li class="pr-5" data-value=1.5>1.15</li>
+                    <li class="pr-5" data-value=1.5>1.15</li>
+                  </ul>
+                 
                 </button>
                 <button class="italic" data-tooltip="Italics">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#italics" />
                   </svg>
                 </button>
-                <button data-tooltip="Line Height" class="relative outline-none border-none bg-white w-9 lineHeight">
+                <button data-tooltip="Line Height" class="relative outline-none border-none bg-white w-9 lineHeight dropDownButton">
                   <span>
                     <svg data-icon>
                       <use href="/icons/sprite.svg#line-height" />
                     </svg>
                   </span>
-                  <select class="w-3 bg-transparent outline-none">
-                  <option class="!px-3 p-1">1.0&nbsp;&nbsp;</option>
-                  <option class="!px-3 p-1">1.15&nbsp;&nbsp;</option>
-                  <option class="!px-3 p-1">1.5&nbsp;&nbsp;</option>
-                  <option class="!px-3 p-1">2.0&nbsp;&nbsp;</option>
-                 </select>
+                  <ul class="absolute bg-white p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full hidden dropDownMenu text-[.9rem]">
+                    <li class="pr-5">1.0</li>
+                    <li class="pr-5">1.15</li>
+                    <li class="pr-5">1.5</li>
+                    <li class="pr-5">2.0</li>
+                  </ul>
                 </button>
                 <button class="underline" data-tooltip="Underline">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#underline" />
                   </svg>
                 </button>
-                <button data-tooltip="Type Color" class="textColor">
+                <button data-tooltip="Type Color" class="textColor dropDownButton relative">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#type-color" />
                   </svg>
-                  </select>
-                  <input class="w-0 h-0" type="color" name="textColor" id="text-color">
+                  <ul class="absolute bg-white hidden p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full dropDownMenu text-[.9rem] grid grid-cols-3 grid-flow-row gap-2 w-28">
+                    <li class="rounded-sm w-full h-7" data-color="red" style="background:red"></li>
+                    <li class="rounded-sm w-full h-7" data-color="yellow" style="background:yellow"></li>
+                    <li class="rounded-sm w-full h-7" data-color="blue" style="background:blue"></li>
+                    <li class="rounded-sm w-full h-7" data-color="green" style="background:green"></li>
+                    <li class="rounded-sm w-full h-7" data-color="black" style="background:black"></li>
+                    <li class="rounded-sm w-full h-7" data-color="gray" style="background:gray"></li>
+                  </ul>
 
                 </button>
                 <button class="strikethrough" data-tooltip="Strike Through">
@@ -1073,16 +1080,35 @@
                     <use href="/icons/sprite.svg#strike-through" />
                   </svg>
                 </button>
-                <button data-tooltip="Mark" class="mark">
+                <button data-tooltip="Mark" class="mark relative dropDownButton">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#mark" />
                   </svg>
-                  <input class="w-0 h-0" type="color" name="hiliteColor" id="hiliteColor">
+
+                  <ul class="absolute bg-white hidden p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full dropDownMenu text-[.9rem] grid grid-cols-3 grid-flow-row gap-2 w-28">
+                    <li class="pr-5  w-full h-7 rounded-sm" data-color="#dc8f8f" style="background:red"></li>
+                    <li class="pr-5  w-full h-7 rounded-sm" data-color="#e2daa7" style="background:yellow"></li>
+                    <li class="pr-5  w-full h-7 rounded-sm" data-color="#a2ade2" style="background:blue"></li>
+                    <li class="pr-5  w-full h-7 rounded-sm" data-color="#a2e2ba" style="background:green"></li>
+                    <li class="pr-5  w-full h-7 rounded-sm" data-color="transparent" style="background:transparent;border:6px solid red"></li>
+                    <input class="pr-5  w-full h-8 rounded-sm" type="color" name="hiliteColor" id="hiliteColor">
+                  </ul>
+
+                  
                 </button>
-                <button data-tooltip="Heading">
+                <button data-tooltip="Heading" class="dropDownButton heading relative">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#heading" />
                   </svg>
+                  <ul class="absolute bg-white p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full hidden dropDownMenu text-[.9rem] text-left">
+                    <li class="pr-5 cursor-pointer font-bold text-[1.2rem] hover:bg-gray-100 rounded" data-heading="h1">h1</li>
+                    <li class="pr-5 cursor-pointer font-bold text-[1.1rem] hover:bg-gray-100 rounded" data-heading="h2">h2</li>
+                    <li class="pr-5 cursor-pointer font-bold text-[1rem] hover:bg-gray-100 rounded" data-heading="h3">h3</li>
+                    <li class="pr-5 cursor-pointer font-bold text-[0.9rem] hover:bg-gray-100 rounded" data-heading="h4">h4</li>
+                    <li class="pr-5 cursor-pointer font-bold text-[0.8rem] hover:bg-gray-100 rounded" data-heading="h5">h5</li>
+                    <li class="pr-5 cursor-pointer hover:bg-gray-100 rounded" data-heading="p">normal</li>
+                  </ul>
+                  
                 </button>
                 <button class="subscript" data-tooltip="Subscript">
                   <svg data-icon>

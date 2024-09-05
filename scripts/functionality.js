@@ -1,5 +1,3 @@
-
-
 //Declaring variables for buttons
 const undo = document.getElementsByClassName('undo')[0];
 const redo = document.getElementsByClassName('redo')[0];
@@ -33,7 +31,9 @@ const workarea_scale = document.getElementById('workarea_scale');
 const textColor = document.getElementsByClassName('textColor')[0];
 const lineHeight = document.getElementsByClassName('lineHeight')[0];
 const hiliteColor = document.getElementsByClassName('hiliteColor')[0];
+const dropDowmButton = document.getElementsByClassName('dropDownButton');
 const mark = document.getElementsByClassName('mark')[0];
+const heading = document.getElementsByClassName('heading')[0];
 const workarea_scale_output = document.getElementById('workarea_scale_output');
 
 function getIframeDocument() {
@@ -386,88 +386,108 @@ function toggleOutline() {
   const selectedText = range.toString();
 
   if (selectedText) {
-      const commonAncestor = range.commonAncestorContainer;
+    const commonAncestor = range.commonAncestorContainer;
 
-      // Find the closest SPAN element with the border style
-      let parentNode = commonAncestor.nodeType === 3 ? commonAncestor.parentNode : commonAncestor;
-      let spanToRemove = null;
+    // Find the closest SPAN element with the border style
+    let parentNode =
+      commonAncestor.nodeType === 3
+        ? commonAncestor.parentNode
+        : commonAncestor;
+    let spanToRemove = null;
 
-      while (parentNode && parentNode !== iframeDoc.body) {
-          if (parentNode.tagName === 'SPAN' && parentNode.style.border === '1px solid black') {
-              spanToRemove = parentNode;
-              break;
-          }
-          parentNode = parentNode.parentNode;
+    while (parentNode && parentNode !== iframeDoc.body) {
+      if (
+        parentNode.tagName === 'SPAN' &&
+        parentNode.style.border === '1px solid black'
+      ) {
+        spanToRemove = parentNode;
+        break;
       }
+      parentNode = parentNode.parentNode;
+    }
 
-      if (spanToRemove) {
-          // If the outline is already applied, remove it
-          const textNode = iframeDoc.createTextNode(spanToRemove.textContent);
-          spanToRemove.parentNode.replaceChild(textNode, spanToRemove);
+    if (spanToRemove) {
+      // If the outline is already applied, remove it
+      const textNode = iframeDoc.createTextNode(spanToRemove.textContent);
+      spanToRemove.parentNode.replaceChild(textNode, spanToRemove);
 
-          // Restore the selection to the text
-          range.selectNodeContents(textNode);
-          selection.removeAllRanges();
-          selection.addRange(range);
-      } else {
-          // If the outline is not applied, apply it
-          const span = iframeDoc.createElement('span');
-          span.style.border = '1px solid black';
-          span.textContent = selectedText;
+      // Restore the selection to the text
+      range.selectNodeContents(textNode);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    } else {
+      // If the outline is not applied, apply it
+      const span = iframeDoc.createElement('span');
+      span.style.border = '1px solid black';
+      span.textContent = selectedText;
 
-          // Replace the selected text with the span element
-          range.deleteContents();
-          range.insertNode(span);
+      // Replace the selected text with the span element
+      range.deleteContents();
+      range.insertNode(span);
 
-          // Restore the selection to the span
-          range.selectNodeContents(span);
-          selection.removeAllRanges();
-          selection.addRange(range);
-      }
+      // Restore the selection to the span
+      range.selectNodeContents(span);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
   }
 }
 
-outline && outline.addEventListener('click', () => {
-  toggleOutline();
-});
+outline &&
+  outline.addEventListener('click', () => {
+    toggleOutline();
+  });
 
-textColor && textColor.addEventListener('click',()=>{
-  textColor.lastElementChild.click()
-})
+const changeTextColor = (value) => {
+  // execCommandInIframe('hiliteColor', value);
+  execCommandInIframe('foreColor', value);
+};
 
-mark && mark.addEventListener('click',()=>{
-  mark.lastElementChild.click()
-})
-
-
-lineHeight && lineHeight.addEventListener('click', () => {
-  lineHeight.lastElementChild.click()
-  console.log('clicked')
-
-  // if (lineHeight.lastElementChild) {
-  //   console.log(lineHeight.lastElementChild);
-  // } else {
-  //   console.log('No focusable child element found.');
-  // }
-});
+//toggling Drop downs
+for (let i = 0; i < dropDowmButton.length; i++) {
+  dropDowmButton[i].addEventListener('click', () => {
+    dropDowmButton[i].querySelector('.dropDownMenu').classList.toggle('hidden');
+  });
+  dropDowmButton[i].addEventListener('blur', () => {
+    dropDowmButton[i].querySelector('.dropDownMenu').classList.add('hidden');
+  });
+}
 
 
- const changeTextColor = (value) => {
-    // execCommandInIframe('hiliteColor', value);
-    execCommandInIframe('foreColor', value);
-  };
+const changeHiliteColor = (value) => {
+  execCommandInIframe('hiliteColor', value);
+};
 
- const changeHiliteColor = (value) => {
-    execCommandInIframe('hiliteColor', value);
-  };
-
- textColor && textColor.lastElementChild.addEventListener('change',()=>{
-  // alert(textColor.lastElementChild.value)
-  changeTextColor(textColor.lastElementChild.value)
-})
+const markcolors = mark.querySelectorAll('li')
+for (let i = 0; i < markcolors.length; i++) {
+  markcolors[i].addEventListener('click', () => {
+    changeHiliteColor(markcolors[i].dataset.color);
+    markcolors[i].parentElement.classList.add("hidden")
+  });
+}
 
 
-mark && mark.lastElementChild.addEventListener('change',()=>{
-  // alert(hiliteColor.lastElementChild.value)
-  changeHiliteColor(mark.lastElementChild.value)
-})
+const changeHeading = (value)=>{
+  execCommandInIframe('formatBlock',`<${value}>`)
+}
+const textcolors = textColor.querySelectorAll('li')
+for (let i = 0; i < textcolors.length; i++) {
+  textcolors[i].addEventListener('click', () => {
+    changeTextColor(textcolors[i].dataset.color);
+    textcolors[i].parentElement.classList.add("hidden")
+  });
+}
+
+const headings = heading.querySelectorAll('li')
+for (let i = 0; i < headings.length; i++) {
+  headings[i].addEventListener('click', () => {
+    changeHeading(headings[i].dataset.heading);
+    // headings[i].parentElement.classList.add("hidden")
+  });
+}
+
+// textColor &&
+//   textColor.lastElementChild.addEventListener('change', () => {
+//     // alert(textColor.lastElementChild.value)
+//     changeTextColor(textColor.lastElementChild.value);
+//   });
