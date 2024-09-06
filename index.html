@@ -37,8 +37,9 @@
 
   <body>
     <!-- primary section -->
-    <div class="flex min-h-screen">
-      <section class="grid max-h-dvh flex-1 grid-rows-[auto,1fr,auto]">
+     <nav>
+        <div class="flex min-h-screen">
+        <section class="grid max-h-dvh flex-1 grid-rows-[auto,1fr,auto]">
         <!-- RIBBON -->
         <nav class="ribbon w-full print:hidden">
           <!-- ribbon tabs desktop -->
@@ -50,12 +51,12 @@
                 View
               </button>
               <ul class="dropdown-menu">
-                <li>
+                <li class="preview">
                   <a class="dropdown-item" href="#"><svg data-icon>
                       <use href="/icons/sprite.svg#preview-proper" />
                     </svg>Preview Proper</a>
                 </li>
-                <li>
+                <li class="fullScreen">
                   <a class="dropdown-item" href="#"><svg data-icon>
                       <use href="/icons/sprite.svg#full-screen" />
                     </svg>Full Screen</a>
@@ -155,7 +156,7 @@
                 Text
               </button>
               <ul class="dropdown-menu">
-                <li>
+                <li class="bold">
                   <a class="dropdown-item" href="#">
                     <svg data-icon>
                       <use href="/icons/sprite.svg#bold" />
@@ -163,7 +164,7 @@
                     Bold
                   </a>
                 </li>
-                <li>
+                <li class="italic !not-italic" >
                   <a class="dropdown-item" href="#">
                     <svg data-icon>
                       <use href="/icons/sprite.svg#italics" />
@@ -171,7 +172,7 @@
                     Italic
                   </a>
                 </li>
-                <li>
+                <li class="underline !no-underline">
                   <a class="dropdown-item" href="#">
                     <svg data-icon>
                       <use href="/icons/sprite.svg#underline" />
@@ -179,7 +180,7 @@
                     Underline
                   </a>
                 </li>
-                <li>
+                <li class="strikethrough">
                   <a class="dropdown-item" href="#">
                     <svg data-icon>
                       <use href="/icons/sprite.svg#strike-through" />
@@ -210,7 +211,7 @@
                       <use href="/icons/sprite.svg#heading" />
                     </svg>Emphasize</a>
                 </li>
-                <li>
+                <li class="outline outline-none">
                   <a class="dropdown-item" href="#"><svg data-icon>
                       <use href="/icons/sprite.svg#outline" />
                     </svg>Outline</a>
@@ -220,12 +221,12 @@
                       <use href="/icons/sprite.svg#speech-recognition" />
                     </svg>Speech Recognision</a>
                 </li>
-                <li>
+                <li class="subscript">
                   <a class="dropdown-item" href="#"><svg data-icon>
                       <use href="/icons/sprite.svg#subscript" />
                     </svg>Subscript</a>
                 </li>
-                <li>
+                <li class="superscript">
                   <a class="dropdown-item" href="#"><svg data-icon>
                       <use href="/icons/sprite.svg#superscript" />
                     </svg>Superscript</a>
@@ -522,7 +523,7 @@
               </div>
             </div>
           </div>
-    </nav>
+        </nav>
        
           </ul>
           <!-- ribbon tabs mobile -->
@@ -859,8 +860,8 @@
   
           </div>
           <!-- ribbon content -->
-          <div class="ribbon_content !overflow-y-visible">
-            <div class="ribbon_carousel h-full">
+          <div class="ribbon_content !block relative overflow-visible  !oveflow-x-scroll">
+            <div class="ribbon_carousel max-w-full">
               <div class="ribbon_content__wrapper ">
                 <button class="undo" data-tooltip="Undo" data-icon="undo">
                   <svg data-icon>
@@ -955,7 +956,7 @@
                   </svg>
                 </button>
               </div>
-              <div class="ribbon_content__wrapper ">
+              <div class="ribbon_content__wrapper">
                 <div class="col-span-6 flex items-center gap-1">
                   <select
                     class="fontFamily col-span-5 h-full flex-1 rounded border border-gray-300 bg-gray-100 p-0 px-1.5 text-left">
@@ -1066,12 +1067,12 @@
                     <use href="/icons/sprite.svg#type-color" />
                   </svg>
                   <ul class="absolute bg-white hidden p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full dropDownMenu text-[.9rem] grid grid-cols-3 grid-flow-row gap-2 w-28">
-                    <li class="rounded-sm w-full h-7" data-color="red" style="background:red"></li>
-                    <li class="rounded-sm w-full h-7" data-color="yellow" style="background:yellow"></li>
-                    <li class="rounded-sm w-full h-7" data-color="blue" style="background:blue"></li>
-                    <li class="rounded-sm w-full h-7" data-color="green" style="background:green"></li>
-                    <li class="rounded-sm w-full h-7" data-color="black" style="background:black"></li>
-                    <li class="rounded-sm w-full h-7" data-color="gray" style="background:gray"></li>
+                    <li class="rounded-full w-full h-7" data-color="red" style="background:red"></li>
+                    <li class="rounded-full w-full h-7" data-color="yellow" style="background:yellow"></li>
+                    <li class="rounded-full w-full h-7" data-color="blue" style="background:blue"></li>
+                    <li class="rounded-full w-full h-7" data-color="green" style="background:green"></li>
+                    <li class="rounded-full w-full h-7" data-color="black" style="background:black"></li>
+                    <li class="rounded-full w-full h-7" data-color="gray" style="background:gray"></li>
                   </ul>
 
                 </button>
@@ -1086,11 +1087,11 @@
                   </svg>
 
                   <ul class="absolute bg-white hidden p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full dropDownMenu text-[.9rem] grid grid-cols-3 grid-flow-row gap-2 w-28">
-                    <li class="pr-5  w-full h-7 rounded-sm" data-color="#dc8f8f" style="background:red"></li>
-                    <li class="pr-5  w-full h-7 rounded-sm" data-color="#e2daa7" style="background:yellow"></li>
-                    <li class="pr-5  w-full h-7 rounded-sm" data-color="#a2ade2" style="background:blue"></li>
-                    <li class="pr-5  w-full h-7 rounded-sm" data-color="#a2e2ba" style="background:green"></li>
-                    <li class="pr-5  w-full h-7 rounded-sm" data-color="transparent" style="background:transparent;border:6px solid red"></li>
+                    <li class="pr-5  w-full h-7 rounded-full" data-color="#dc8f8f" style="background:red"></li>
+                    <li class="pr-5  w-full h-7 rounded-full" data-color="#e2daa7" style="background:yellow"></li>
+                    <li class="pr-5  w-full h-7 rounded-full" data-color="#a2ade2" style="background:blue"></li>
+                    <li class="pr-5  w-full h-7 rounded-full" data-color="#a2e2ba" style="background:green"></li>
+                    <li class="pr-5  w-full h-7 rounded-full" data-color="transparent" style="background:transparent;border:6px solid red"></li>
                     <input class="pr-5  w-full h-8 rounded-sm" type="color" name="hiliteColor" id="hiliteColor">
                   </ul>
 
@@ -1415,7 +1416,7 @@
 
         
 
-        </nav>
+    <!-- </nav> -->
 
       
         
@@ -2761,9 +2762,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.min.js"></script>
     <script src="./scripts/main.js" type="module"></script>
     <script src="./scripts/docs.js" type="module"></script>
-    <script src="./scripts/functionality.js" type="module"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./script.js"  type="module"></script>
+    <script src="./scripts/functionality.js" type="module"></script>
     <script src="./notification.js" type="module"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-//Declaring variables for buttons
+//Declaring variables for ribbon dropdowns
 const undo = document.getElementsByClassName('undo')[0];
 const redo = document.getElementsByClassName('redo')[0];
 const editor = document.getElementsByClassName('editor')[0];
@@ -35,6 +35,19 @@ const dropDowmButton = document.getElementsByClassName('dropDownButton');
 const mark = document.getElementsByClassName('mark')[0];
 const heading = document.getElementsByClassName('heading')[0];
 const workarea_scale_output = document.getElementById('workarea_scale_output');
+
+// Declaring variables for buttons
+const previewBtn = document.getElementsByClassName('preview')[1];
+const fullScreenBtn = document.getElementsByClassName('fullScreen')[1];
+const boldBtn = document.getElementsByClassName('bold')[1];
+const italicBtn = document.getElementsByClassName('italic')[1];
+const strikethroughBtn = document.getElementsByClassName('strikethrough')[1];
+const superscriptBtn = document.getElementsByClassName('superscript')[1];
+const subscriptBtn = document.getElementsByClassName('subscript')[1];
+const outlineBtn = document.getElementsByClassName('outline')[1];
+const underlineBtn = document.getElementsByClassName('underline')[1];
+const markBtn = document.getElementsByClassName('mark')[1];
+
 
 function getIframeDocument() {
   return iframe.contentDocument || iframe.contentWindow.document;
@@ -219,11 +232,14 @@ iframe &&
 //Second box
 //Formatting text with the execCommand() function
 function execCommandInIframe(command, value = null) {
-  const editorDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-  if (!editorDoc) return;
-
-  // Focus on the contenteditable element inside the iframe
+  let editorDoc
+  if(iframe){
+    editorDoc = iframe.contentDocument || iframe.contentWindow.document;
+  }else {
+    alert('here')
+    document.execCommand(command, false, value);
+    return
+  };
   editorDoc.execCommand(command, false, value);
 }
 
@@ -232,13 +248,39 @@ bold &&
     execCommandInIframe('bold');
   });
 
+boldBtn &&
+  boldBtn.addEventListener('click', () => {
+    execCommandInIframe('bold');
+  });
+
 italic &&
   italic.addEventListener('click', () => {
     execCommandInIframe('italic');
   });
 
+italicBtn &&
+  italicBtn.addEventListener('click', () => {
+    execCommandInIframe('italic');
+  });
+
 subscript &&
   subscript.addEventListener('click', () => {
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const selection = iframeDoc.getSelection();
+
+    if (!selection.rangeCount) return;
+
+    const parentElement = selection.anchorNode.parentElement;
+
+    if (parentElement.tagName === 'SUB') {
+      execCommandInIframe('removeFormat'); // Applies superscript formatting
+    } else {
+      execCommandInIframe('subscript');
+    }
+  });
+
+subscriptBtn &&
+  subscriptBtn.addEventListener('click', () => {
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
     const selection = iframeDoc.getSelection();
 
@@ -269,8 +311,29 @@ superscript &&
     }
   });
 
+superscriptBtn &&
+  superscriptBtn.addEventListener('click', () => {
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const selection = iframeDoc.getSelection();
+
+    if (!selection.rangeCount) return;
+
+    const parentElement = selection.anchorNode.parentElement;
+
+    if (parentElement.tagName === 'SUP') {
+      execCommandInIframe('removeFormat'); // Applies superscript formatting
+    } else {
+      execCommandInIframe('superscript');
+    }
+  });
+
 strikethrough &&
   strikethrough.addEventListener('click', () => {
+    execCommandInIframe('strikethrough');
+  });
+
+strikethroughBtn &&
+  strikethroughBtn.addEventListener('click', () => {
     execCommandInIframe('strikethrough');
   });
 
@@ -279,8 +342,18 @@ outline &&
     execCommandInIframe('outline');
   });
 
+outlineBtn &&
+  outlineBtn.addEventListener('click', () => {
+    execCommandInIframe('outline');
+  });
+
 underline &&
   underline.addEventListener('click', () => {
+    execCommandInIframe('underline');
+  });
+
+underlineBtn &&
+  underlineBtn.addEventListener('click', () => {
     execCommandInIframe('underline');
   });
 
@@ -371,8 +444,26 @@ preview &&
     // workarea_scale_output.innerText = "57"
   });
 
+previewBtn &&
+  previewBtn.addEventListener('click', () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+    // const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    // const text = iframeDoc.getElementsByTagName('html')[0]
+    // iframe.style.setProperty('--scale-factor', '0.57');
+    // text.style.setProperty('--scale-factor', '0.57');
+    // workarea_scale.value = 57;
+    // workarea_scale_output.innerText = "57"
+  });
+
 fullScreen &&
   fullScreen.addEventListener('click', () => {
+    document.documentElement.requestFullscreen();
+  });
+
+fullScreenBtn &&
+  fullScreenBtn.addEventListener('click', () => {
     document.documentElement.requestFullscreen();
   });
 
@@ -445,10 +536,10 @@ const changeTextColor = (value) => {
 
 //toggling Drop downs
 for (let i = 0; i < dropDowmButton.length; i++) {
-  dropDowmButton[i].addEventListener('click', () => {
+  dropDowmButton[i] && dropDowmButton[i].addEventListener('click', () => {
     dropDowmButton[i].querySelector('.dropDownMenu').classList.toggle('hidden');
   });
-  dropDowmButton[i].addEventListener('blur', () => {
+  dropDowmButton[i] && dropDowmButton[i].addEventListener('blur', () => {
     dropDowmButton[i].querySelector('.dropDownMenu').classList.add('hidden');
   });
 }
@@ -458,9 +549,9 @@ const changeHiliteColor = (value) => {
   execCommandInIframe('hiliteColor', value);
 };
 
-const markcolors = mark.querySelectorAll('li')
+const markcolors = mark.getElementsByTagName('li')
 for (let i = 0; i < markcolors.length; i++) {
-  markcolors[i].addEventListener('click', () => {
+  markcolors[i] && markcolors[i].addEventListener('click', () => {
     changeHiliteColor(markcolors[i].dataset.color);
     markcolors[i].parentElement.classList.add("hidden")
   });
@@ -472,7 +563,7 @@ const changeHeading = (value)=>{
 }
 const textcolors = textColor.querySelectorAll('li')
 for (let i = 0; i < textcolors.length; i++) {
-  textcolors[i].addEventListener('click', () => {
+  textcolors[i] && textcolors[i].addEventListener('click', () => {
     changeTextColor(textcolors[i].dataset.color);
     textcolors[i].parentElement.classList.add("hidden")
   });
@@ -480,7 +571,7 @@ for (let i = 0; i < textcolors.length; i++) {
 
 const headings = heading.querySelectorAll('li')
 for (let i = 0; i < headings.length; i++) {
-  headings[i].addEventListener('click', () => {
+  headings[i] && headings[i].addEventListener('click', () => {
     changeHeading(headings[i].dataset.heading);
     // headings[i].parentElement.classList.add("hidden")
   });

@@ -50,12 +50,12 @@
               View
             </button>
             <ul class="dropdown-menu">
-              <li>
+              <li class="preview">
                 <a class="dropdown-item" href="#"><svg data-icon>
                     <use href="/icons/sprite.svg#preview-proper" />
                   </svg>Preview Proper</a>
               </li>
-              <li>
+              <li class="fullScreen">
                 <a class="dropdown-item" href="#"><svg data-icon>
                     <use href="/icons/sprite.svg#full-screen" />
                   </svg>Full Screen</a>
@@ -150,12 +150,13 @@
             </ul>
           </li>
           <!-- tab: text -->
+          <!-- tab: text -->
           <li class="ribbon_tab">
             <button class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-offset="-5,8" aria-expanded="false">
               Text
             </button>
             <ul class="dropdown-menu">
-              <li>
+              <li class="bold">
                 <a class="dropdown-item" href="#">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#bold" />
@@ -163,7 +164,7 @@
                   Bold
                 </a>
               </li>
-              <li>
+              <li class="italic !not-italic" >
                 <a class="dropdown-item" href="#">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#italics" />
@@ -171,7 +172,7 @@
                   Italic
                 </a>
               </li>
-              <li>
+              <li class="underline !no-underline">
                 <a class="dropdown-item" href="#">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#underline" />
@@ -179,7 +180,7 @@
                   Underline
                 </a>
               </li>
-              <li>
+              <li class="strikethrough">
                 <a class="dropdown-item" href="#">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#strike-through" />
@@ -210,7 +211,7 @@
                     <use href="/icons/sprite.svg#heading" />
                   </svg>Emphasize</a>
               </li>
-              <li>
+              <li class="outline outline-none">
                 <a class="dropdown-item" href="#"><svg data-icon>
                     <use href="/icons/sprite.svg#outline" />
                   </svg>Outline</a>
@@ -220,12 +221,12 @@
                     <use href="/icons/sprite.svg#speech-recognition" />
                   </svg>Speech Recognision</a>
               </li>
-              <li>
+              <li class="subscript">
                 <a class="dropdown-item" href="#"><svg data-icon>
                     <use href="/icons/sprite.svg#subscript" />
                   </svg>Subscript</a>
               </li>
-              <li>
+              <li class="superscript">
                 <a class="dropdown-item" href="#"><svg data-icon>
                     <use href="/icons/sprite.svg#superscript" />
                   </svg>Superscript</a>
@@ -369,17 +370,17 @@
              <ul class="flex gap-1 text-[white]">
               <li class="rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
                 <button class="dropdown-item" ><svg data-icon="create-fill" class="!size-6">
-                  <use href="/assets/sprite-BXKd8WYt.svg#create-fill"></use>
+                  <use href="/assets/sprite.svg#create-fill"></use>
                 </svg></button>
               </li>
             
               <li id="Message-btn" class="toggle_messages rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
                 <button class="dropdown-item" ><svg data-icon="chat-fill" class="!size-6">
-                    <use href="/assets/sprite-BXKd8WYt.svg#chat-fill"></use></svg></button>
+                    <use href="/assets/sprite.svg#chat-fill"></use></svg></button>
               </li>
               <li id="Notification-btn"  class="toggle_notification rounded-full bg-transparent p-2 hover:bg-[rgba(225,225,225,.3)]">
                 <button class="dropdown-item" ><svg data-icon="bell-fill" class="!size-6">
-                    <use href="/assets/sprite-BXKd8WYt.svg#bell-fill" class="not-pop"></use></svg></button>
+                    <use href="/assets/sprite.svg#bell-fill" class="not-pop"></use></svg></button>
               </li>
             </ul>
             <!-- user icon -->
@@ -856,452 +857,560 @@
 
         </div>
         <!-- ribbon content -->
-        <div class="ribbon_content">
-          <div class="ribbon_carousel">
-            <div class="ribbon_content__wrapper">
-              <button data-tooltip="Undo" data-icon="undo">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#undo" />
-                </svg>
-              </button>
-              <button data-tooltip="Redo">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#redo" />
-                </svg>
-              </button>
-              <button id="sidebar_toggle" aria-expanded="false" data-tooltip="Toggle Sidebar">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#menu" />
-                </svg>
-              </button>
-            </div>
-            <div class="ribbon_content__wrapper">
-              <button class="row-span-2 w-14 px-2" data-tooltip="Paste">
-                <svg data-icon class="!size-10">
-                  <use href="/icons/sprite.svg#paste-2x" stroke-width="2" />
-                </svg>
-              </button>
-              <button data-tooltip="Full Screen">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#full-screen" />
-                </svg>
-              </button>
-              <button data-tooltip="Cut">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#cut" />
-                </svg>
-              </button>
-              <button data-tooltip="Copy">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#copy" />
-                </svg>
-              </button>
-              <button data-tooltip="Preview">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#preview-proper" />
-                </svg>
-              </button>
-            </div>
-            <div class="ribbon_content__wrapper">
-              <button data-tooltip="New File">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#new-file" />
-                </svg>
-              </button>
-              <button data-tooltip="Download">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#download" />
-                </svg>
-              </button>
-              <button data-tooltip="Print">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#print" />
-                </svg>
-              </button>
-              <button data-tooltip="Save">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#save" />
-                </svg>
-              </button>
-              <button data-tooltip="Convert">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#convert" />
-                </svg>
-              </button>
-              <button data-tooltip="Rename">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#rename" />
-                </svg>
-              </button>
-              <button data-tooltip="Open">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#open" />
-                </svg>
-              </button>
-              <button data-tooltip="People">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#people" />
-                </svg>
-              </button>
-              <button data-tooltip="Remove">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#remove" />
-                </svg>
-              </button>
-            </div>
-            <div class="ribbon_content__wrapper">
-              <div class="col-span-6 flex items-center gap-1">
-                <select class="col-span-5 h-full flex-1 rounded border border-gray-300 bg-gray-100 p-0 px-1.5 text-left"
-                  value="Times of India">
-                  <option>Calibri Light</option>
-                  <option>Times of India</option>
-                  <option>Arial</option>
-                </select>
-                <select class="col-span-5 h-full w-16 rounded border border-gray-300 bg-gray-100 p-0 px-1.5 text-left"
-                  value="Times of India">
-                  <option>10</option>
-                  <option>12</option>
-                  <option>14</option>
-                  <option>16</option>
-                  <option>18</option>
-                  <option>20</option>
-                  <option>24</option>
-                  <option>32</option>
-                </select>
+          <!-- ribbon content -->
+          <div class="ribbon_content !block relative overflow-visible  !oveflow-x-scroll">
+            <div class="ribbon_carousel max-w-full">
+              <div class="ribbon_content__wrapper ">
+                <button class="undo" data-tooltip="Undo" data-icon="undo">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#undo" />
+                  </svg>
+                </button>
+                <button class="redo" data-tooltip="Redo">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#redo" />
+                  </svg>
+                </button>
+                <button
+                  id="sidebar_toggle"
+                  aria-expanded="false"
+                  data-tooltip="Toggle Sidebar">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#menu" />
+                  </svg>
+                </button>
               </div>
-              <button data-tooltip="Bold">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#bold" />
-                </svg>
-              </button>
-              <button data-tooltip="Letter Spacing">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#letter-spacing" />
-                </svg>
-              </button>
-              <button data-tooltip="Italics">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#italics" />
-                </svg>
-              </button>
-              <button data-tooltip="Line Height">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#line-height" />
-                </svg>
-              </button>
-              <button data-tooltip="Underline">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#underline" />
-                </svg>
-              </button>
-              <button data-tooltip="Type Color">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#type-color" />
-                </svg>
-              </button>
-              <button data-tooltip="Strike Through">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#strike-through" />
-                </svg>
-              </button>
-              <button data-tooltip="Mark">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#mark" />
-                </svg>
-              </button>
-              <button data-tooltip="Heading">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#heading" />
-                </svg>
-              </button>
-              <button data-tooltip="Subscript">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#subscript" />
-                </svg>
-              </button>
-              <button data-tooltip="Outline">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#outline" />
-                </svg>
-              </button>
-              <button data-tooltip="Superscript">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#superscript" />
-                </svg>
-              </button>
-            </div>
-            <div class="ribbon_content__wrapper">
-              <button data-tooltip="Speech Recognition">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#speech-recognition" />
-                </svg>
-              </button>
-              <button data-tooltip="Wrap Paragraph">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#paragraph-wrap" />
-                </svg>
-              </button>
-              <button data-tooltip="Image Indent Right">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#image-indent-right" />
-                </svg>
-              </button>
-              <button data-tooltip="Align Center">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#center-alighnment" />
-                </svg>
-              </button>
-              <button data-tooltip="Paragraph Spacing">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#paragraph-spacing" />
-                </svg>
-              </button>
-              <button data-tooltip="Bullet List">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#bullet-list" />
-                </svg>
-              </button>
-              <button data-tooltip="Justify">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#center-justification" />
-                </svg>
-              </button>
-              <button data-tooltip="Indent Left">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#left-indent" />
-                </svg>
-              </button>
-              <button data-tooltip="Number List">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#number-list" />
-                </svg>
-              </button>
-              <button data-tooltip="Left Alignment">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#left-alignment" />
-                </svg>
-              </button>
-              <button data-tooltip="Right Indent">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#right-indent" />
-                </svg>
-              </button>
-              <button data-tooltip="Image Indent Left">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#image-indent-left" />
-                </svg>
-              </button>
-              <button data-tooltip="Right Alignment">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#right-alignment" />
-                </svg>
-              </button>
-            </div>
-            <div class="ribbon_content__wrapper">
-              <button data-tooltip="Frame">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#frame" />
-                </svg>
-              </button>
-              <button data-tooltip="Emoji">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#emoji" />
-                </svg>
-              </button>
-              <button data-tooltip="Bookmark">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#bookmark" />
-                </svg>
-              </button>
-              <button data-tooltip="Add Image">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#add-image" />
-                </svg>
-              </button>
-              <button data-tooltip="Bar Chart">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#bar-chart" />
-                </svg>
-              </button>
-              <button data-tooltip="Media">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#media" />
-                </svg>
-              </button>
-              <button data-tooltip="Add Link">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#add-link" />
-                </svg>
-              </button>
-              <button data-tooltip="Line Chart">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#line-chart" />
-                </svg>
-              </button>
-              <button data-tooltip="Line">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#line" />
-                </svg>
-              </button>
-              <button data-tooltip="Equations">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#equations" />
-                </svg>
-              </button>
-              <button data-tooltip="Pie Chart">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#pie-chart" />
-                </svg>
-              </button>
-              <button data-tooltip="Quotation">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#quotation" />
-                </svg>
-              </button>
-              <button data-tooltip="Citation">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#citation" />
-                </svg>
-              </button>
-              <button data-tooltip="Special Character">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#special-character" />
-                </svg>
-              </button>
-              <button data-tooltip="Date">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#date" />
-                </svg>
-              </button>
-            </div>
-            <div class="ribbon_templates" aria-expanded="false">
-              <div>
-                <article>
-                  <img src="https://source.unsplash.com/random/300x200?size=9841" />
-                  <button>Edit</button>
-                  <button>Preview</button>
-                </article>
-                <article>
-                  <img src="https://source.unsplash.com/random/300x200?size=79841" />
-                  <button>Edit</button>
-                  <button>Preview</button>
-                </article>
-                <article>
-                  <img src="https://source.unsplash.com/random/300x200?size=5440" />
-                  <button>Edit</button>
-                  <button>Preview</button>
-                </article>
-                <article>
-                  <img src="https://source.unsplash.com/random/300x200?size=8733" />
-                  <button>Edit</button>
-                  <button>Preview</button>
-                </article>
-                <article>
-                  <img src="https://source.unsplash.com/random/300x200?size=9847" />
-                  <button>Edit</button>
-                  <button>Preview</button>
-                </article>
-                <article>
-                  <img src="https://source.unsplash.com/random/300x200?size=654187" />
-                  <button>Edit</button>
-                  <button>Preview</button>
-                </article>
+              <div class="ribbon_content__wrapper">
+                <button class="paste row-span-2 w-14 px-2" data-tooltip="Paste">
+                  <svg data-icon class="!size-10">
+                    <use href="/icons/sprite.svg#paste-2x" stroke-width="2" />
+                  </svg>
+                </button>
+                <button class="fullScreen" data-tooltip="Full Screen">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#full-screen" />
+                  </svg>
+                </button>
+                <button class="cut" data-tooltip="Cut">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#cut" />
+                  </svg>
+                </button>
+                <button class="copy" data-tooltip="Copy">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#copy" />
+                  </svg>
+                </button>
+                <button class="preview" data-tooltip="Preview">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#preview-proper" />
+                  </svg>
+                </button>
               </div>
-            </div>
-            <div class="ribbon_content__wrapper">
-              <button data-tooltip="rectangle">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#rectangle" />
-                </svg>
-              </button>
-              <button data-tooltip="pen">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#pen" />
-                </svg>
-              </button>
-              <button data-tooltip="add cell">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#add-cell" />
-                </svg>
-              </button>
-              <button data-tooltip="circle">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#circle" />
-                </svg>
-              </button>
-              <button data-tooltip="pencil">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#pencil" />
-                </svg>
-              </button>
-              <button data-tooltip="add column">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#add-column" />
-                </svg>
-              </button>
-              <button data-tooltip="triangle">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#triangle" />
-                </svg>
-              </button>
-              <button data-tooltip="arrow">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#arrow" />
-                </svg>
-              </button>
-              <button data-tooltip="play slide show">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#play-slide-show" />
-                </svg>
-              </button>
-              <button data-tooltip="new slide">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#new-slide" />
-                </svg>
-              </button>
-              <button data-tooltip="row grid center">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#row-grid-center" />
-                </svg>
-              </button>
-              <button data-tooltip="column grid left">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#column-grid-left" />
-                </svg>
-              </button>
-              <button data-tooltip="no grid">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#no-grid" />
-                </svg>
-              </button>
-              <button data-tooltip="row grid bottom">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#row-grid-bottom" />
-                </svg>
-              </button>
-              <button data-tooltip="column grid right">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#column-grid-right" />
-                </svg>
-              </button>
-              <button data-tooltip="column grid center">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#column-grid-center" />
-                </svg>
-              </button>
-              <button data-tooltip="row grid top">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#row-grid-top" />
-                </svg>
-              </button>
-              <button data-tooltip="otline grid">
-                <svg data-icon>
-                  <use href="/icons/sprite.svg#otline-grid" />
-                </svg>
-              </button>
+              <div class="ribbon_content__wrapper">
+                <button data-tooltip="New File">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#new-file" />
+                  </svg>
+                </button>
+                <button data-tooltip="Download">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#download" />
+                  </svg>
+                </button>
+                <button data-tooltip="Print">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#print" />
+                  </svg>
+                </button>
+                <button data-tooltip="Save">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#save" />
+                  </svg>
+                </button>
+                <button data-tooltip="Convert">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#convert" />
+                  </svg>
+                </button>
+                <button data-tooltip="Rename">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#rename" />
+                  </svg>
+                </button>
+                <button data-tooltip="Open">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#open" />
+                  </svg>
+                </button>
+                <button data-tooltip="People">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#people" />
+                  </svg>
+                </button>
+                <button data-tooltip="Remove">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#remove" />
+                  </svg>
+                </button>
+              </div>
+              <div class="ribbon_content__wrapper">
+                <div class="col-span-6 flex items-center gap-1">
+                  <select
+                    class="fontFamily col-span-5 h-full flex-1 rounded border border-gray-300 bg-gray-100 p-0 px-1.5 text-left">
+                    <option value="Arial">Arial</option>
+                    <option value="Arial Black">Arial Black</option>
+                    <option value="Comic Sans MS">Comic Sans MS</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Impact">Impact</option>
+                    <option value="Lucida Console">Lucida Console</option>
+                    <option value="Lucida Sans Unicode">
+                      Lucida Sans Unicode
+                    </option>
+                    <option value="Microsoft Sans Serif">
+                      Microsoft Sans Serif
+                    </option>
+                    <option value="Monaco">Monaco</option>
+                    <option value="MS Sans Serif">MS Sans Serif</option>
+                    <option value="MS Serif">MS Serif</option>
+                    <option value="Palatino Linotype">Palatino Linotype</option>
+                    <option value="Tahoma">Tahoma</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Trebuchet MS">Trebuchet MS</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Roboto">Roboto</option>
+                    <option value="Open Sans">Open Sans</option>
+                    <option value="Lato">Lato</option>
+                    <option value="Montserrat">Montserrat</option>
+                    <option value="Oswald">Oswald</option>
+                    <option value="Raleway">Raleway</option>
+                    <option value="Poppins">Poppins</option>
+                    <option value="Merriweather">Merriweather</option>
+                    <option value="Nunito">Nunito</option>
+                    <option value="Slabo 27px">Slabo 27px</option>
+                    <option value="Source Sans Pro">Source Sans Pro</option>
+                    <option value="Fira Sans">Fira Sans</option>
+                    <option value="Droid Sans">Droid Sans</option>
+                    <option value="PT Sans">PT Sans</option>
+                    <option value="Avenir">Avenir</option>
+                    <option value="Futura">Futura</option>
+                    <option value="Garamond">Garamond</option>
+                    <option value="Baskerville">Baskerville</option>
+                    <option value="Helvetica Neue">Helvetica Neue</option>
+                    <option value="Proxima Nova">Proxima Nova</option>
+                    <option value="Segoe UI">Segoe UI</option>
+                    <option value="Ubuntu">Ubuntu</option>
+                    <option value="Playfair Display">Playfair Display</option>
+                    <option value="Lora">Lora</option>
+                    <option value="Quicksand">Quicksand</option>
+                    <option value="PT Serif">PT Serif</option>
+                    <option value="Libre Baskerville">Libre Baskerville</option>
+                    <option value="Titillium Web">Titillium Web</option>
+                  </select>
+                  <select
+                    class="fontSize col-span-5 h-full w-16 rounded border border-gray-300 bg-gray-100 p-0 px-1.5 text-left">
+                    <option value="1">10</option>
+                    <option value="2">12</option>
+                    <option value="3">14</option>
+                    <option value="4">16</option>
+                    <option value="5">18</option>
+                    <option value="6">20</option>
+                    <option value="7">24</option>
+                    <option value="8">32</option>
+                  </select>
+                </div>
+                <button class="bold" data-tooltip="Bold">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#bold" />
+                  </svg>
+                </button>
+                <button data-tooltip="Letter Spacing" class="relative dropDownButton">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#letter-spacing" />
+                  </svg>
+                  <ul class="absolute bg-white p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full hidden dropDownMenu text-[.9rem]">
+                    <li class="pr-5" data-value=1.5>1.15</li>
+                    <li class="pr-5" data-value=1.5>1.15</li>
+                    <li class="pr-5" data-value=1.5>1.15</li>
+                    <li class="pr-5" data-value=1.5>1.15</li>
+                  </ul>
+                 
+                </button>
+                <button class="italic" data-tooltip="Italics">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#italics" />
+                  </svg>
+                </button>
+                <button data-tooltip="Line Height" class="relative outline-none border-none bg-white w-9 lineHeight dropDownButton">
+                  <span>
+                    <svg data-icon>
+                      <use href="/icons/sprite.svg#line-height" />
+                    </svg>
+                  </span>
+                  <ul class="absolute bg-white p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full hidden dropDownMenu text-[.9rem]">
+                    <li class="pr-5">1.0</li>
+                    <li class="pr-5">1.15</li>
+                    <li class="pr-5">1.5</li>
+                    <li class="pr-5">2.0</li>
+                  </ul>
+                </button>
+                <button class="underline" data-tooltip="Underline">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#underline" />
+                  </svg>
+                </button>
+                <button data-tooltip="Type Color" class="textColor dropDownButton relative">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#type-color" />
+                  </svg>
+                  <ul class="absolute bg-white hidden p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full dropDownMenu text-[.9rem] grid grid-cols-3 grid-flow-row gap-2 w-28">
+                    <li class="rounded-full w-full h-7" data-color="red" style="background:red"></li>
+                    <li class="rounded-full w-full h-7" data-color="yellow" style="background:yellow"></li>
+                    <li class="rounded-full w-full h-7" data-color="blue" style="background:blue"></li>
+                    <li class="rounded-full w-full h-7" data-color="green" style="background:green"></li>
+                    <li class="rounded-full w-full h-7" data-color="black" style="background:black"></li>
+                    <li class="rounded-full w-full h-7" data-color="gray" style="background:gray"></li>
+                  </ul>
+
+                </button>
+                <button class="strikethrough" data-tooltip="Strike Through">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#strike-through" />
+                  </svg>
+                </button>
+                <button data-tooltip="Mark" class="mark relative dropDownButton">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#mark" />
+                  </svg>
+
+                  <ul class="absolute bg-white hidden p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full dropDownMenu text-[.9rem] grid grid-cols-3 grid-flow-row gap-2 w-28">
+                    <li class="pr-5  w-full h-7 rounded-full" data-color="#dc8f8f" style="background:red"></li>
+                    <li class="pr-5  w-full h-7 rounded-full" data-color="#e2daa7" style="background:yellow"></li>
+                    <li class="pr-5  w-full h-7 rounded-full" data-color="#a2ade2" style="background:blue"></li>
+                    <li class="pr-5  w-full h-7 rounded-full" data-color="#a2e2ba" style="background:green"></li>
+                    <li class="pr-5  w-full h-7 rounded-full" data-color="transparent" style="background:transparent;border:6px solid red"></li>
+                    <input class="pr-5  w-full h-8 rounded-sm" type="color" name="hiliteColor" id="hiliteColor">
+                  </ul>
+
+                  
+                </button>
+                <button data-tooltip="Heading" class="dropDownButton heading relative">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#heading" />
+                  </svg>
+                  <ul class="absolute bg-white p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full hidden dropDownMenu text-[.9rem] text-left">
+                    <li class="pr-5 cursor-pointer font-bold text-[1.2rem] hover:bg-gray-100 rounded" data-heading="h1">h1</li>
+                    <li class="pr-5 cursor-pointer font-bold text-[1.1rem] hover:bg-gray-100 rounded" data-heading="h1">h2</li>
+                    <li class="pr-5 cursor-pointer font-bold text-[1rem] hover:bg-gray-100 rounded" data-heading="h1">h3</li>
+                    <li class="pr-5 cursor-pointer font-bold text-[0.9rem] hover:bg-gray-100 rounded" data-heading="h1">h4</li>
+                    <li class="pr-5 cursor-pointer font-bold text-[0.8rem] hover:bg-gray-100 rounded" data-heading="h1">h5</li>
+                    <li class="pr-5 cursor-pointer hover:bg-gray-100 rounded" data-heading="p">normal</li>
+                  </ul>
+                  
+                </button>
+                <button class="subscript" data-tooltip="Subscript">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#subscript" />
+                  </svg>
+                </button>
+                <button class="outline-none outline" data-tooltip="Outline">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#outline" />
+                  </svg>
+                </button>
+                <button class="superscript" data-tooltip="Superscript">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#superscript" />
+                  </svg>
+                </button>
+              </div>
+              <div class="ribbon_content__wrapper">
+                <button data-tooltip="Speech Recognition">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#speech-recognition" />
+                  </svg>
+                </button>
+                <button class="wrapParagraph" data-tooltip="Wrap Paragraph">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#paragraph-wrap" />
+                  </svg>
+                </button>
+                <button data-tooltip="Image Indent Right">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#image-indent-right" />
+                  </svg>
+                </button>
+                <button class="alignCenter" data-tooltip="Align Center">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#center-alighnment" />
+                  </svg>
+                </button>
+                <button data-tooltip="Paragraph Spacing">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#paragraph-spacing" />
+                  </svg>
+                </button>
+                <button class="bulletList" data-tooltip="Bullet List">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#bullet-list" />
+                  </svg>
+                </button>
+                <button class="alignJustify" data-tooltip="Justify">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#center-justification" />
+                  </svg>
+                </button>
+                <button class="indentLeft" data-tooltip="Indent Left">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#left-indent" />
+                  </svg>
+                </button>
+                <button class="numberList" data-tooltip="Number List">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#number-list" />
+                  </svg>
+                </button>
+                <button class="alignLeft" data-tooltip="Left Alignment">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#left-alignment" />
+                  </svg>
+                </button>
+                <button class="indentRight" data-tooltip="Right Indent">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#right-indent" />
+                  </svg>
+                </button>
+                <button data-tooltip="Image Indent Left">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#image-indent-left" />
+                  </svg>
+                </button>
+                <button class="alignRight" data-tooltip="Right Alignment">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#right-alignment" />
+                  </svg>
+                </button>
+              </div>
+              <div class="ribbon_content__wrapper">
+                <button data-tooltip="Frame">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#frame" />
+                  </svg>
+                </button>
+                <button data-tooltip="Emoji">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#emoji" />
+                  </svg>
+                </button>
+                <button data-tooltip="Bookmark">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#bookmark" />
+                  </svg>
+                </button>
+                <button data-tooltip="Add Image">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#add-image" />
+                  </svg>
+                </button>
+                <button data-tooltip="Bar Chart">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#bar-chart" />
+                  </svg>
+                </button>
+                <button data-tooltip="Media">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#media" />
+                  </svg>
+                </button>
+                <button data-tooltip="Add Link">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#add-link" />
+                  </svg>
+                </button>
+                <button data-tooltip="Line Chart">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#line-chart" />
+                  </svg>
+                </button>
+                <button data-tooltip="Line">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#line" />
+                  </svg>
+                </button>
+                <button data-tooltip="Equations">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#equations" />
+                  </svg>
+                </button>
+                <button data-tooltip="Pie Chart">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#pie-chart" />
+                  </svg>
+                </button>
+                <button data-tooltip="Quotation">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#quotation" />
+                  </svg>
+                </button>
+                <button data-tooltip="Citation">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#citation" />
+                  </svg>
+                </button>
+                <button data-tooltip="Special Character">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#special-character" />
+                  </svg>
+                </button>
+                <button data-tooltip="Date">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#date" />
+                  </svg>
+                </button>
+              </div>
+              <div class="ribbon_templates" aria-expanded="false">
+                <div>
+                  <article>
+                    <img
+                      src="https://source.unsplash.com/random/300x200?size=9841"
+                      loading="lazy"
+                      fetchpriority="low" />
+                    <button>Edit</button>
+                    <button>Preview</button>
+                  </article>
+                  <article>
+                    <img
+                      src="https://source.unsplash.com/random/300x200?size=79841"
+                      loading="lazy"
+                      fetchpriority="low" />
+                    <button>Edit</button>
+                    <button>Preview</button>
+                  </article>
+                  <article>
+                    <img
+                      src="https://source.unsplash.com/random/300x200?size=5440"
+                      loading="lazy"
+                      fetchpriority="low" />
+                    <button>Edit</button>
+                    <button>Preview</button>
+                  </article>
+                  <article>
+                    <img
+                      src="https://source.unsplash.com/random/300x200?size=8733"
+                      loading="lazy"
+                      fetchpriority="low" />
+                    <button>Edit</button>
+                    <button>Preview</button>
+                  </article>
+                  <article>
+                    <img
+                      src="https://source.unsplash.com/random/300x200?size=9847" />
+                    <button>Edit</button>
+                    <button>Preview</button>
+                  </article>
+                  <article>
+                    <img
+                      src="https://source.unsplash.com/random/300x200?size=654187" />
+                    <button>Edit</button>
+                    <button>Preview</button>
+                  </article>
+                </div>
+              </div>
+              <div class="ribbon_content__wrapper">
+                <button data-tooltip="rectangle">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#rectangle" />
+                  </svg>
+                </button>
+                <button data-tooltip="pen">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#pen" />
+                  </svg>
+                </button>
+                <button data-tooltip="add cell">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#add-cell" />
+                  </svg>
+                </button>
+                <button data-tooltip="circle">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#circle" />
+                  </svg>
+                </button>
+                <button data-tooltip="pencil">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#pencil" />
+                  </svg>
+                </button>
+                <button data-tooltip="add column">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#add-column" />
+                  </svg>
+                </button>
+                <button data-tooltip="triangle">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#triangle" />
+                  </svg>
+                </button>
+                <button data-tooltip="arrow">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#arrow" />
+                  </svg>
+                </button>
+                <button data-tooltip="play slide show">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#play-slide-show" />
+                  </svg>
+                </button>
+                <button data-tooltip="new slide">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#new-slide" />
+                  </svg>
+                </button>
+                <button data-tooltip="row grid center">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#row-grid-center" />
+                  </svg>
+                </button>
+                <button data-tooltip="column grid left">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#column-grid-left" />
+                  </svg>
+                </button>
+                <button data-tooltip="no grid">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#no-grid" />
+                  </svg>
+                </button>
+                <button data-tooltip="row grid bottom">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#row-grid-bottom" />
+                  </svg>
+                </button>
+                <button data-tooltip="column grid right">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#column-grid-right" />
+                  </svg>
+                </button>
+                <button data-tooltip="column grid center">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#column-grid-center" />
+                  </svg>
+                </button>
+                <button data-tooltip="row grid top">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#row-grid-top" />
+                  </svg>
+                </button>
+                <button data-tooltip="outline grid">
+                  <svg data-icon>
+                    <use href="/icons/sprite.svg#otline-grid" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
       </nav>
       <nav
         class="flex h-10 items-center gap-4 border-b border-gray-300 px-3 *:text-sm *:leading-none *:text-gray-500 print:hidden">
@@ -2293,7 +2402,7 @@
 
   
       <!-- main content area -->
-      <main id="spreadsheet" class="bg-gray-200">
+      <main id="spreadsheet" class="bg-gray-200" contenteditable="true">
         <div class="ruler_cols"></div>
         <div class="ruler_rows"></div>
         <section id="cells_wrapper"></section>
