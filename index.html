@@ -910,17 +910,17 @@
                 </button>
               </div>
               <div class="ribbon_content__wrapper">
-                <button data-tooltip="New File">
+                <button data-tooltip="New File" class="newFile">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#new-file" />
                   </svg>
                 </button>
-                <button data-tooltip="Download">
+                <button data-tooltip="Download" class="downloadFile">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#download" />
                   </svg>
                 </button>
-                <button data-tooltip="Print">
+                <button data-tooltip="Print" class="printFile">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#print" />
                   </svg>
@@ -930,12 +930,12 @@
                     <use href="/icons/sprite.svg#save" />
                   </svg>
                 </button>
-                <button data-tooltip="Convert">
+                <button data-tooltip="Convert" class="convertFile">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#convert" />
                   </svg>
                 </button>
-                <button data-tooltip="Rename">
+                <button data-tooltip="Rename" class="rename">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#rename" />
                   </svg>
@@ -950,7 +950,7 @@
                     <use href="/icons/sprite.svg#people" />
                   </svg>
                 </button>
-                <button data-tooltip="Remove">
+                <button data-tooltip="Remove" class="remove">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#remove" />
                   </svg>
@@ -2418,9 +2418,12 @@
               characters
             </label>
           </div>
-          <div class="flex">
-            <lavel class="line-clamp-1 flex-1 text-right md:text-center"
-              >document-01.doc</lavel
+          <div class="flex justify-center">
+            <lavel class="line-clamp-1 text-right md:text-center flex-none" id="documentName"
+              >document-01</lavel
+            >.
+            <lavel class="line-clamp-1 text-right md:text-center flex-none" id="documentType"
+              >docx</lavel
             >
           </div>
           <div class="hidden md:flex">
@@ -2446,6 +2449,77 @@
         class="hidden h-[100vh] flex-col gap-6 self-stretch border-l border-gray-300 bg-gray-100 p-6 aria-expanded:w-[calc(15vw_+_5rem)] 2xl:aria-expanded:flex print:hidden !overflow-y-scroll"
         aria-expanded="true"></aside>
     </div>
+
+    <div id="dummymodal" class="fixed w-wull h-full justify-center items-center  z-60 inset-0 hidden">
+    </div>
+
+    <template id="renameFileModal">
+      <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]">
+        <p class="text-center text-gray-700">Enter new name for document</p>
+        <input id="newName" name="newName" class="w-full p-3  border-gray-600 border-2 my-4">
+        <div class="flex justify-center gap-8">
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Rename</button>
+          <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="removeTextModal">
+      <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]">
+        <p class="text-center text-gray-700">Document content will be cleared <br/> Are you sure ? <br> <br/></p>
+        <div class="flex justify-center gap-8">
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Remove</button>
+          <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="addNewFileModal">
+      <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]">
+        <p class="text-center text-gray-700">Do you want to save this file <br> <br/></p>
+        <div class="flex justify-center gap-8">
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Yes</button>
+          <button class="bg-white !box-border text-violet-500 p-2 px-6 border-2 border-violet-500">No</button>
+          <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="downloadFileModal">
+      <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]">
+        <p class="text-center text-gray-700">Download this file <br> <br/></p>
+        <div class="flex justify-center gap-8">
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Download</button>
+          <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="convertFileModal">
+      <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]">
+        <p class="text-center text-gray-700">Change the type for this file <br></p>
+        <div class="grid grid-cols-3 gap-5 p-5">
+          <span class="py-4 text-center shadow-md" data-filetype="PDF">PDF</span>
+          <span class="py-4 text-center shadow-md" data-filetype="DOCX">DOCX</span>
+          <span class="py-4 text-center shadow-md" data-filetype="TXT">TXT</span>
+        </div>
+        <div class="flex justify-center gap-8">
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Convert</button>
+          <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
+        </div>
+      </div>
+    </template>
+    
+
+    <template id="printFileModal">
+      <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]">
+        <p class="text-center text-gray-700">Print this file <br> <br/></p>
+        <div class="flex justify-center gap-8">
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Download</button>
+          <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
+        </div>
+      </div>
+    </template>
 
     <!-- Template: Post  -->
     <template id="post_template">
@@ -2757,6 +2831,11 @@
     </aside> -->
 
     <!-- javascript assets -->
+        <!-- Include jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Include docx for DOCX generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.1.2/docx.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.min.js"></script>

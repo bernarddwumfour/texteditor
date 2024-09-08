@@ -48,7 +48,6 @@ const outlineBtn = document.getElementsByClassName('outline')[1];
 const underlineBtn = document.getElementsByClassName('underline')[1];
 const markBtn = document.getElementsByClassName('mark')[1];
 
-
 function getIframeDocument() {
   return iframe.contentDocument || iframe.contentWindow.document;
 }
@@ -232,14 +231,14 @@ iframe &&
 //Second box
 //Formatting text with the execCommand() function
 function execCommandInIframe(command, value = null) {
-  let editorDoc
-  if(iframe){
+  let editorDoc;
+  if (iframe) {
     editorDoc = iframe.contentDocument || iframe.contentWindow.document;
-  }else {
-    alert('here')
+  } else {
+    alert('here');
     document.execCommand(command, false, value);
-    return
-  };
+    return;
+  }
   editorDoc.execCommand(command, false, value);
 }
 
@@ -536,45 +535,50 @@ const changeTextColor = (value) => {
 
 //toggling Drop downs
 for (let i = 0; i < dropDowmButton.length; i++) {
-  dropDowmButton[i] && dropDowmButton[i].addEventListener('click', () => {
-    dropDowmButton[i].querySelector('.dropDownMenu').classList.toggle('hidden');
-  });
-  dropDowmButton[i] && dropDowmButton[i].addEventListener('blur', () => {
-    dropDowmButton[i].querySelector('.dropDownMenu').classList.add('hidden');
-  });
+  dropDowmButton[i] &&
+    dropDowmButton[i].addEventListener('click', () => {
+      dropDowmButton[i]
+        .querySelector('.dropDownMenu')
+        .classList.toggle('hidden');
+    });
+  dropDowmButton[i] &&
+    dropDowmButton[i].addEventListener('blur', () => {
+      dropDowmButton[i].querySelector('.dropDownMenu').classList.add('hidden');
+    });
 }
-
 
 const changeHiliteColor = (value) => {
   execCommandInIframe('hiliteColor', value);
 };
 
-const markcolors = mark.getElementsByTagName('li')
+const markcolors = mark.getElementsByTagName('li');
 for (let i = 0; i < markcolors.length; i++) {
-  markcolors[i] && markcolors[i].addEventListener('click', () => {
-    changeHiliteColor(markcolors[i].dataset.color);
-    markcolors[i].parentElement.classList.add("hidden")
-  });
+  markcolors[i] &&
+    markcolors[i].addEventListener('click', () => {
+      changeHiliteColor(markcolors[i].dataset.color);
+      markcolors[i].parentElement.classList.add('hidden');
+    });
 }
 
-
-const changeHeading = (value)=>{
-  execCommandInIframe('formatBlock',`<${value}>`)
-}
-const textcolors = textColor.querySelectorAll('li')
+const changeHeading = (value) => {
+  execCommandInIframe('formatBlock', `<${value}>`);
+};
+const textcolors = textColor.querySelectorAll('li');
 for (let i = 0; i < textcolors.length; i++) {
-  textcolors[i] && textcolors[i].addEventListener('click', () => {
-    changeTextColor(textcolors[i].dataset.color);
-    textcolors[i].parentElement.classList.add("hidden")
-  });
+  textcolors[i] &&
+    textcolors[i].addEventListener('click', () => {
+      changeTextColor(textcolors[i].dataset.color);
+      textcolors[i].parentElement.classList.add('hidden');
+    });
 }
 
-const headings = heading.querySelectorAll('li')
+const headings = heading.querySelectorAll('li');
 for (let i = 0; i < headings.length; i++) {
-  headings[i] && headings[i].addEventListener('click', () => {
-    changeHeading(headings[i].dataset.heading);
-    // headings[i].parentElement.classList.add("hidden")
-  });
+  headings[i] &&
+    headings[i].addEventListener('click', () => {
+      changeHeading(headings[i].dataset.heading);
+      // headings[i].parentElement.classList.add("hidden")
+    });
 }
 
 // textColor &&
@@ -582,3 +586,298 @@ for (let i = 0; i < headings.length; i++) {
 //     // alert(textColor.lastElementChild.value)
 //     changeTextColor(textColor.lastElementChild.value);
 //   });
+
+const rename = document.getElementsByClassName('rename')[0];
+const newFile = document.getElementsByClassName('newFile')[0];
+const downloadFile = document.getElementsByClassName('downloadFile')[0];
+const printFile = document.getElementsByClassName('printFile')[0];
+const convertFile = document.getElementsByClassName('convertFile')[0];
+const remove = document.getElementsByClassName('remove')[0];
+let modalCancel;
+const modal = document.querySelector('#dummymodal');
+
+const toggleModalContent = (clone) => {
+  // let clone  = template.content.cloneNode(true)
+  clone.querySelector('.modalCancel').addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  modal.replaceChildren(clone);
+  // console.log(modal)
+};
+
+const removeText = () => {
+  const editor = getEditorElement();
+  if (editor.innerHTML != '') {
+    const template = document.querySelector('#removeTextModal');
+    let clone = template.content.cloneNode(true);
+    let actionButton = clone.querySelector('.action');
+    actionButton.addEventListener('click', () => {
+      //Button action goes here
+      editor.innerHTML = '';
+      closeModal();
+    });
+    toggleModalContent(clone);
+    openModal();
+  } else {
+    return;
+  }
+};
+const renameFile = () => {
+  const template = document.querySelector('#renameFileModal');
+  const clone = template.content.cloneNode(true);
+
+  let actionButton = clone.querySelector('.action');
+  let fileName = document.querySelector('#documentName');
+  let newFileNameInput = clone.querySelector('#newName'); // Use querySelector instead of getElementById
+
+  actionButton.addEventListener('click', () => {
+    let newFileName = newFileNameInput.value; // Get the value at the time of the click
+    console.log(newFileName);
+    if (newFileName) {
+      fileName.innerHTML = newFileName;
+    }
+    closeModal();
+  });
+
+  toggleModalContent(clone);
+  openModal();
+};
+
+const convertFileType = () => {
+  const template = document.querySelector('#convertFileModal');
+  const clone = template.content.cloneNode(true);
+  let fileType = document.querySelector('#documentType');
+
+  let actionButton = clone.querySelector('.action');
+  // let fileName = document.querySelector("#documentName"); // Your file name element
+  let editor = getEditorElement(); // Assuming you have an editor element with content
+  let selectedType = null;
+
+  // Add click event listeners to file type options using data-filetype
+  clone.querySelectorAll('span').forEach((span) => {
+    span.addEventListener('click', () => {
+      selectedType = span.getAttribute('data-filetype'); // Get selected file type from data attribute
+      console.log(`Selected Type: ${selectedType}`);
+
+      // Highlight the selected type by adding a class
+      clone
+        .querySelectorAll('span')
+        .forEach((s) => s.classList.remove('bg-violet-500', 'text-white'));
+      span.classList.add('bg-violet-500', 'text-white');
+    });
+  });
+
+  // Handle the "Convert" button click
+  actionButton.addEventListener('click', () => {
+    if (selectedType && editor.innerHTML.trim() !== '') {
+      if (selectedType === 'PDF') {
+        fileType.innerHTML = 'PDF';
+        // downloadPDF(editor);
+      } else if (selectedType === 'DOCX') {
+        fileType.innerHTML = 'DOCX';
+        // downloadDOCX(editor);
+      } else if (selectedType === 'TXT') {
+        // downloadTXT(editor);
+        fileType.innerHTML = 'TXT';
+      }
+      closeModal(); // Close the modal after conversion
+    } else {
+      console.log(
+        'Please select a file type and ensure the editor has content.',
+      );
+    }
+  });
+
+  toggleModalContent(clone);
+  openModal();
+};
+
+const addNewFile = () => {
+  const editor = getEditorElement();
+  const template = document.querySelector('#addNewFileModal');
+  let clone = template.content.cloneNode(true);
+  if (editor.innerHTML != '') {
+    clone.querySelectorAll("button")[1].style.display = "block"
+  } else {
+    clone.querySelector("p").innerHTML = "Create a New File <br/> <br/>"
+    clone.querySelectorAll("button")[1].style.display = "none"
+  }
+  
+  toggleModalContent(clone);
+  openModal();
+  let actionButton = clone.querySelector('.action');
+  // actionButton.addEventListener('click', () => {
+  //   alert('clicked');
+  //   //Button action goes here
+
+  //   closeModal();
+  // });
+};
+
+// Download as PDF
+const downloadPDF = (editor) => {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  // Use html2pdf to preserve HTML formatting
+  doc.html(editor, {
+    callback: function (doc) {
+      doc.save('document.pdf'); // Save the PDF with formatting
+    },
+    x: 10,
+    y: 10,
+    width: 180, // Adjust width if necessary
+  });
+};
+
+
+// Download as DOCX
+const downloadDOCX = async (editor) => {
+  const docx = window.docx; // Access docx from CDN
+  const doc = new docx.Document({
+    sections: [
+      {
+        properties: {},
+        children: [
+          new docx.Paragraph({
+            children: [new docx.TextRun(editor.innerText)],
+          }),
+        ],
+      },
+    ],
+  });
+
+  const packer = new docx.Packer();
+  const blob = await packer.toBlob(doc);
+
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'document.docx';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+// Download as TXT
+const downloadTXT = (editor) => {
+  const fileContent = editor.innerText || editor.textContent; // Get the text content of the editor
+  const fileBlob = new Blob([fileContent], { type: 'text/plain' });
+  const fileUrl = URL.createObjectURL(fileBlob);
+  const link = document.createElement('a');
+
+  link.href = fileUrl;
+  link.download = 'document.txt'; // Download as TXT
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(fileUrl); // Clean up the URL
+};
+
+
+const downloadNewFile = () => {
+  const editor = getEditorElement();
+  let selectedType = document.querySelector('#documentType').innerHTML; // Assuming a dropdown or similar element for file type
+  if (editor.innerHTML.trim() !== '') {
+    // Check if editor has meaningful content
+    const template = document.querySelector('#downloadFileModal');
+    let clone = template.content.cloneNode(true);
+    let actionButton = clone.querySelector('.action');
+
+    actionButton.addEventListener('click', () => {
+      const fileContent = editor.innerText || editor.textContent;  // Get text content from the editor
+
+      if (selectedType === 'PDF') {
+        downloadPDF(editor);
+      } else if (selectedType === 'DOCX') {
+        downloadDOCX(editor);
+      } else if (selectedType === 'TXT') {
+        downloadTXT(editor);
+      } else {
+        console.log('Unsupported file type selected.');
+      }
+
+      closeModal();
+    });
+
+    toggleModalContent(clone); // Ensure correct spelling
+    openModal();
+  } else {
+    console.log('Editor is empty.');
+    return;
+  }
+};
+
+
+const printNewFile = () => {
+  const editor = getEditorElement();
+  if (editor.innerHTML != '') {
+    const template = document.querySelector('#printFileModal');
+    let clone = template.content.cloneNode(true);
+    let actionButton = clone.querySelector('.action');
+    actionButton.addEventListener('click', () => {
+      alert('clicked');
+      //Button action goes here
+
+      closeModal();
+    });
+    toggleModalContent(clone);
+    openModal();
+  } else {
+    return;
+  }
+};
+
+const openModal = () => {
+  modal.style.display = 'flex';
+  // console.log(modalCancel)
+};
+
+const closeModal = () => {
+  modal.style.display = 'none';
+};
+
+const clearDocument = () => {
+  editor.innerHTML = '';
+};
+
+rename &&
+  rename.addEventListener('click', () => {
+    renameFile();
+  });
+
+convertFile &&
+  convertFile.addEventListener('click', () => {
+    convertFileType();
+  });
+
+remove &&
+  remove.addEventListener('click', () => {
+    removeText();
+  });
+
+newFile &&
+  newFile.addEventListener('click', () => {
+    addNewFile();
+  });
+
+downloadFile &&
+  downloadFile.addEventListener('click', () => {
+    downloadNewFile();
+  });
+
+printFile &&
+  printFile.addEventListener('click', () => {
+    printNewFile();
+  });
+
+convertFile &&
+  convertFile.addEventListener('click', () => {
+    convertFileType();
+  });
+
+modalCancel &&
+  modalCancel.addEventListener('click', () => {
+    alert('clicked');
+    closeModal();
+  });
