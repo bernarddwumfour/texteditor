@@ -623,6 +623,7 @@ const removeText = () => {
     return;
   }
 };
+
 const renameFile = () => {
   const template = document.querySelector('#renameFileModal');
   const clone = template.content.cloneNode(true);
@@ -657,30 +658,35 @@ const convertFileType = () => {
   // Add click event listeners to file type options using data-filetype
   clone.querySelectorAll('span').forEach((span) => {
     span.addEventListener('click', () => {
-      selectedType = span.getAttribute('data-filetype'); // Get selected file type from data attribute
-      console.log(`Selected Type: ${selectedType}`);
 
+      selectedType = span.getAttribute('data-filetype'); // Get selected file type from data attribute
+      
+      // console.log()
+      let otherSpans = span.parentNode.querySelectorAll("span")
+      for (let i = 0; i < otherSpans.length; i++) {
+        otherSpans[i].classList.remove("bg-violet-500","text-white")        
+      }
+      
       // Highlight the selected type by adding a class
-      clone
-        .querySelectorAll('span')
-        .forEach((s) => s.classList.remove('bg-violet-500', 'text-white'));
       span.classList.add('bg-violet-500', 'text-white');
     });
   });
 
   // Handle the "Convert" button click
   actionButton.addEventListener('click', () => {
-    if (selectedType && editor.innerHTML.trim() !== '') {
-      if (selectedType === 'PDF') {
-        fileType.innerHTML = 'PDF';
+    if (selectedType) {
+      if (selectedType === 'pdf') {
+        fileType.innerHTML = 'pdf';
         // downloadPDF(editor);
-      } else if (selectedType === 'DOCX') {
-        fileType.innerHTML = 'DOCX';
+      } else if (selectedType === 'docx') {
+        fileType.innerHTML = 'docx';
         // downloadDOCX(editor);
-      } else if (selectedType === 'TXT') {
+      } else if (selectedType === 'txt') {
         // downloadTXT(editor);
-        fileType.innerHTML = 'TXT';
+        fileType.innerHTML = 'txt';
       }
+
+
       closeModal(); // Close the modal after conversion
     } else {
       console.log(
@@ -696,12 +702,38 @@ const convertFileType = () => {
 const addNewFile = () => {
   const editor = getEditorElement();
   const template = document.querySelector('#addNewFileModal');
+  let fileName = document.querySelector('#documentName');
+
   let clone = template.content.cloneNode(true);
   if (editor.innerHTML != '') {
     clone.querySelectorAll("button")[1].style.display = "block"
+    clone.querySelectorAll("button")[1].addEventListener("click",()=>{
+      editor.innerHTML = ""
+      fileName.innerHTML = "document-01"
+      closeModal()
+      // alert("You Clicked Yes")
+    })
+
+    clone.querySelectorAll("button")[0].addEventListener("click",()=>{
+      // Save file before creating a new one
+      // SAVE FILE HERE
+      alert("Saving file")
+      editor.innerHTML = ""
+      fileName.innerHTML = "document-01"
+      // alert("You Clicked Yes")
+      closeModal()
+    })
   } else {
     clone.querySelector("p").innerHTML = "Create a New File <br/> <br/>"
     clone.querySelectorAll("button")[1].style.display = "none"
+
+
+    clone.querySelectorAll("button")[1].addEventListener("click",()=>{
+      editor.innerHTML = ""
+      fileName.innerHTML = "document-01"
+      // alert("You Clicked Yes")
+      closeModal()
+    })
   }
   
   toggleModalContent(clone);
@@ -777,7 +809,8 @@ const downloadTXT = (editor) => {
 
 const downloadNewFile = () => {
   const editor = getEditorElement();
-  let selectedType = document.querySelector('#documentType').innerHTML; // Assuming a dropdown or similar element for file type
+  let selectedType = document.querySelector('#documentType').innerHTML;
+  console.log(selectedType)
   if (editor.innerHTML.trim() !== '') {
     // Check if editor has meaningful content
     const template = document.querySelector('#downloadFileModal');
@@ -787,11 +820,11 @@ const downloadNewFile = () => {
     actionButton.addEventListener('click', () => {
       const fileContent = editor.innerText || editor.textContent;  // Get text content from the editor
 
-      if (selectedType === 'PDF') {
+      if (selectedType === 'pdf') {
         downloadPDF(editor);
-      } else if (selectedType === 'DOCX') {
+      } else if (selectedType === 'docx') {
         downloadDOCX(editor);
-      } else if (selectedType === 'TXT') {
+      } else if (selectedType === 'txt') {
         downloadTXT(editor);
       } else {
         console.log('Unsupported file type selected.');

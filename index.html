@@ -1066,13 +1066,14 @@
                   <svg data-icon>
                     <use href="/icons/sprite.svg#type-color" />
                   </svg>
-                  <ul class="absolute bg-white hidden p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full dropDownMenu text-[.9rem] grid grid-cols-3 grid-flow-row gap-2 w-28">
-                    <li class="rounded-full w-full h-7" data-color="red" style="background:red"></li>
-                    <li class="rounded-full w-full h-7" data-color="yellow" style="background:yellow"></li>
-                    <li class="rounded-full w-full h-7" data-color="blue" style="background:blue"></li>
-                    <li class="rounded-full w-full h-7" data-color="green" style="background:green"></li>
-                    <li class="rounded-full w-full h-7" data-color="black" style="background:black"></li>
-                    <li class="rounded-full w-full h-7" data-color="gray" style="background:gray"></li>
+                  <ul class="absolute bg-white hidden p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full dropDownMenu text-[.9rem] grid grid-cols-4 grid-flow-row gap-2 w-max">
+                    <li class="rounded-full w-7 h-7" data-color="red" style="background:red"></li>
+                    <li class="rounded-full w-7 h-7" data-color="yellow" style="background:yellow"></li>
+                    <li class="rounded-full w-7 h-7" data-color="blue" style="background:blue"></li>
+                    <li class="rounded-full w-7 h-7" data-color="#992799" style="background:#992799"></li>
+                    <li class="rounded-full w-7 h-7" data-color="green" style="background:green"></li>
+                    <li class="rounded-full w-7 h-7" data-color="black" style="background:black"></li>
+                    <li class="rounded-full w-7 h-7" data-color="gray" style="background:gray"></li>
                   </ul>
 
                 </button>
@@ -1086,12 +1087,13 @@
                     <use href="/icons/sprite.svg#mark" />
                   </svg>
 
-                  <ul class="absolute bg-white hidden p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full dropDownMenu text-[.9rem] grid grid-cols-3 grid-flow-row gap-2 w-28">
-                    <li class="pr-5  w-full h-7 rounded-full" data-color="#dc8f8f" style="background:red"></li>
-                    <li class="pr-5  w-full h-7 rounded-full" data-color="#e2daa7" style="background:yellow"></li>
-                    <li class="pr-5  w-full h-7 rounded-full" data-color="#a2ade2" style="background:blue"></li>
-                    <li class="pr-5  w-full h-7 rounded-full" data-color="#a2e2ba" style="background:green"></li>
-                    <li class="pr-5  w-full h-7 rounded-full" data-color="transparent" style="background:transparent;border:6px solid red"></li>
+                  <ul class="absolute bg-white hidden p-2 rounded-md shadow-md top-[calc(100%-.3rem)] left-full dropDownMenu text-[.9rem] grid grid-cols-4 grid-flow-row gap-2 w-max">
+                    <li class="pr-5  w-7 h-7 rounded-full" data-color="#dc8f8f" style="background:red"></li>
+                    <li class="pr-5  w-7 h-7 rounded-full" data-color="#e2daa7" style="background:yellow"></li>
+                    <li class="pr-5  w-7 h-7 rounded-full" data-color="#a2ade2" style="background:blue"></li>
+                    <li class="pr-5  w-7 h-7 rounded-full" data-color="#d88bd8" style="background:purple"></li>
+                    <li class="pr-5  w-7 h-7 rounded-full" data-color="#d3ffd3" style="background:green"></li>
+                    <li class="pr-5  w-7 h-7 rounded-full shadow-lg" data-color="transparent" style="background:white"></li>
                     <input class="pr-5  w-full h-8 rounded-sm" type="color" name="hiliteColor" id="hiliteColor">
                   </ul>
 
@@ -2499,9 +2501,9 @@
       <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]">
         <p class="text-center text-gray-700">Change the type for this file <br></p>
         <div class="grid grid-cols-3 gap-5 p-5">
-          <span class="py-4 text-center shadow-md" data-filetype="PDF">PDF</span>
-          <span class="py-4 text-center shadow-md" data-filetype="DOCX">DOCX</span>
-          <span class="py-4 text-center shadow-md" data-filetype="TXT">TXT</span>
+          <span class="py-4 text-center shadow-md" data-filetype="pdf">PDF</span>
+          <span class="py-4 text-center shadow-md" data-filetype="docx">DOCX</span>
+          <span class="py-4 text-center shadow-md" data-filetype="txt">TXT</span>
         </div>
         <div class="flex justify-center gap-8">
           <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Convert</button>
@@ -2515,7 +2517,7 @@
       <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]">
         <p class="text-center text-gray-700">Print this file <br> <br/></p>
         <div class="flex justify-center gap-8">
-          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Download</button>
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Print</button>
           <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
         </div>
       </div>
