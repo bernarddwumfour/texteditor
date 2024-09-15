@@ -35,9 +35,11 @@ $(() => calcRibbonWidth());
 for (let i = 0; i < 10; i++) {
   const $clone = cloneSocialPost({
     permalink: '/#custom-post',
-    image: randomImage(),
+    // image: randomImage(),
+    image: `https://picsum.photos/seed/${i}picsum/600/600` ,
     author: {
-      avatar: randomImage({ size: '48x48' }),
+      // avatar: randomImage({ size: '48x48' }),
+      avatar: `https://picsum.photos/seed/${i}picsum/48/48` ,
       name: 'Atque vel eveniet',
     },
     title: 'Corrupti voluptatem dolorum earum tempora',

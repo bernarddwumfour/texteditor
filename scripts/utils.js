@@ -4,11 +4,11 @@
  */
 export function randomImage({ size, ...params } = {}) {
   const random = Math.floor(Math.random() * 1000) + 1;
-  const baseURL = new URL('https://source.unsplash.com/random/500x500');
+  const baseURL = new URL('https://picsum.photos/500x500');
   // const baseURL = new URL('https://https://api.unsplash.com/photos');
 
   if (size) {
-    baseURL.pathname = `random/${size}/`;
+    baseURL.pathname = `/${size}/`;
   }
   const searchParams = baseURL.searchParams;
   searchParams.append(random, '');

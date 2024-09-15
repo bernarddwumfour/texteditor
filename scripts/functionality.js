@@ -593,7 +593,16 @@ const downloadFile = document.getElementsByClassName('downloadFile')[0];
 const printFile = document.getElementsByClassName('printFile')[0];
 const convertFile = document.getElementsByClassName('convertFile')[0];
 const remove = document.getElementsByClassName('remove')[0];
+
+const renameBtn = document.getElementsByClassName('rename')[1];
+const newFileBtn = document.getElementsByClassName('newFile')[1];
+const downloadFileBtn = document.getElementsByClassName('downloadFile')[1];
+const printFileBtn = document.getElementsByClassName('printFile')[1];
+const convertFileBtn = document.getElementsByClassName('convertFile')[1];
+const removeBtn = document.getElementsByClassName('remove')[1];
 let modalCancel;
+
+
 const modal = document.querySelector('#dummymodal');
 
 const toggleModalContent = (clone) => {
@@ -728,7 +737,8 @@ const addNewFile = () => {
     clone.querySelectorAll("button")[1].style.display = "none"
 
 
-    clone.querySelectorAll("button")[1].addEventListener("click",()=>{
+    clone.querySelectorAll("button")[0].addEventListener("click",()=>{
+      alert("clicked")
       editor.innerHTML = ""
       fileName.innerHTML = "document-01"
       // alert("You Clicked Yes")
@@ -747,19 +757,24 @@ const addNewFile = () => {
   // });
 };
 
-// Download as PDF
+// Download as PDF with preserved formatting
 const downloadPDF = (editor) => {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
-  // Use html2pdf to preserve HTML formatting
+  // Ensure the editor contains a valid DOM element
   doc.html(editor, {
     callback: function (doc) {
-      doc.save('document.pdf'); // Save the PDF with formatting
+      doc.save('document.pdf'); // Save the PDF
     },
     x: 10,
     y: 10,
     width: 180, // Adjust width if necessary
+    html2canvas: {
+      scale: 0.255, // Adjust the resolution of the HTML content
+    },
+    autoPaging: 'text', // Enables automatic pagination
+    windowWidth: editor.clientWidth, // Ensures full width is captured
   });
 };
 
@@ -849,8 +864,19 @@ const printNewFile = () => {
     let clone = template.content.cloneNode(true);
     let actionButton = clone.querySelector('.action');
     actionButton.addEventListener('click', () => {
-      alert('clicked');
-      //Button action goes here
+      const printfile = ()=>{
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        doc.html(document.getElementById('contentToPrint'), {
+          callback: function (doc) {
+            doc.autoPrint(); // Automatically open print dialog
+            doc.output('dataurlnewwindow'); // Open PDF in new window
+          }
+      });
+
+      }
+      printfile()
 
       closeModal();
     });
@@ -879,8 +905,18 @@ rename &&
     renameFile();
   });
 
+renameBtn &&
+  renameBtn.addEventListener('click', () => {
+    renameFile();
+  });
+
 convertFile &&
   convertFile.addEventListener('click', () => {
+    convertFileType();
+  });
+
+convertFileBtn &&
+  convertFileBtn.addEventListener('click', () => {
     convertFileType();
   });
 
@@ -889,8 +925,18 @@ remove &&
     removeText();
   });
 
+removeBtn &&
+  removeBtn.addEventListener('click', () => {
+    removeText();
+  });
+
 newFile &&
   newFile.addEventListener('click', () => {
+    addNewFile();
+  });
+
+newFileBtn &&
+  newFileBtn.addEventListener('click', () => {
     addNewFile();
   });
 
@@ -899,13 +945,28 @@ downloadFile &&
     downloadNewFile();
   });
 
+downloadFileBtn &&
+  downloadFileBtn.addEventListener('click', () => {
+    downloadNewFile();
+  });
+
 printFile &&
   printFile.addEventListener('click', () => {
     printNewFile();
   });
 
+printFileBtn &&
+  printFileBtn.addEventListener('click', () => {
+    printNewFile();
+  });
+
 convertFile &&
   convertFile.addEventListener('click', () => {
+    convertFileType();
+  });
+
+convertFileBtn &&
+  convertFileBtn.addEventListener('click', () => {
     convertFileType();
   });
 

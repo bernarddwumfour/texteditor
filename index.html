@@ -283,7 +283,7 @@
                 File
               </button>
               <ul class="dropdown-menu">
-                <li>
+                <li class="newFile">
                   <a class="dropdown-item" href="#"><svg data-icon>
                       <use href="/icons/sprite.svg#new-file" />
                     </svg>New Paper</a>
@@ -293,11 +293,11 @@
                       <use href="/icons/sprite.svg#save" />
                     </svg>Save Paper</a>
                 </li>
-                <li>
+                <li class="downloadFile">
                   <a class="dropdown-item" href="#"><svg data-icon>
                       <use href="/icons/sprite.svg#download" />
                     </svg>Download</a>
-                  <ul class="dropdown-menu submenu">
+                  <!-- <ul class="dropdown-menu submenu">
                     <li class="dropdown-label">Select Format</li>
                     <li><a class="dropdown-item" href="#">PDF</a></li>
                     <li><a class="dropdown-item" href="#">DOC</a></li>
@@ -312,14 +312,14 @@
                         </li>
                       </ul>
                     </li>
-                  </ul>
+                  </ul> -->
                 </li>
-                <li>
+                <li class="convertFile">
                   <a class="dropdown-item" href="#"><svg data-icon>
                       <use href="/icons/sprite.svg#convert" />
                     </svg>Convert</a>
                 </li>
-                <li>
+                <li class="printFile">
                   <a class="dropdown-item" data-action="print"><svg data-icon>
                       <use href="/icons/sprite.svg#print" />
                     </svg>Print</a>
@@ -334,12 +334,12 @@
                       <use href="/icons/sprite.svg#people" />
                     </svg>People</a>
                 </li>
-                <li>
+                <li class="rename">
                   <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#rename_modal"><svg data-icon>
                       <use href="/icons/sprite.svg#rename" />
                     </svg>Rename</a>
                 </li>
-                <li>
+                <li class="remove">
                   <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#confirmation_modal"
                     data-modal-message="Are you sure you want to remove the paper: File Name"><svg data-icon>
                       <use href="/icons/sprite.svg#remove" />
@@ -1277,7 +1277,7 @@
                 <div>
                   <article>
                     <img
-                      src="https://source.unsplash.com/random/300x200?size=9841"
+                      src="https://picsum.photos/seed/1picsum/600/600"
                       loading="lazy"
                       fetchpriority="low" />
                     <button>Edit</button>
@@ -1285,7 +1285,7 @@
                   </article>
                   <article>
                     <img
-                      src="https://source.unsplash.com/random/300x200?size=79841"
+                    src="https://picsum.photos/seed/2picsum/600/600"
                       loading="lazy"
                       fetchpriority="low" />
                     <button>Edit</button>
@@ -1293,7 +1293,7 @@
                   </article>
                   <article>
                     <img
-                      src="https://source.unsplash.com/random/300x200?size=5440"
+                    src="https://picsum.photos/seed/3picsum/600/600"
                       loading="lazy"
                       fetchpriority="low" />
                     <button>Edit</button>
@@ -1301,7 +1301,7 @@
                   </article>
                   <article>
                     <img
-                      src="https://source.unsplash.com/random/300x200?size=8733"
+                    src="https://picsum.photos/seed/4picsum/600/600"
                       loading="lazy"
                       fetchpriority="low" />
                     <button>Edit</button>
@@ -1309,13 +1309,13 @@
                   </article>
                   <article>
                     <img
-                      src="https://source.unsplash.com/random/300x200?size=9847" />
+                    src="https://picsum.photos/seed/5picsum/600/600" />
                     <button>Edit</button>
                     <button>Preview</button>
                   </article>
                   <article>
                     <img
-                      src="https://source.unsplash.com/random/300x200?size=654187" />
+                    src="https://picsum.photos/seed/6picsum/600/600" />
                     <button>Edit</button>
                     <button>Preview</button>
                   </article>
@@ -2834,9 +2834,15 @@
 
     <!-- javascript assets -->
         <!-- Include jsPDF for PDF generation -->
+    <!-- jsPDF library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- html2canvas library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <!-- Include docx for DOCX generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.1.2/docx.min.js"></script>
+    <script src="https://unpkg.com/docx@7.0.0/build/docx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.0.0/docx.min.js"></script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
