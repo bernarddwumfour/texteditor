@@ -860,9 +860,9 @@
   
           </div>
           <!-- ribbon content -->
-          <div class="ribbon_content !block relative overflow-visible  !oveflow-x-scroll">
-            <div class="ribbon_carousel max-w-full">
-              <div class="ribbon_content__wrapper ">
+          <div class="ribbon_content !flex relative !overflow-x-scroll !overflow-y-visible">
+            <div class="ribbon_carousel max-w-full !overflow-visible h-full">
+              <div class="ribbon_content__wrapper">
                 <button class="undo" data-tooltip="Undo" data-icon="undo">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#undo" />
@@ -1202,7 +1202,7 @@
                     <use href="/icons/sprite.svg#frame" />
                   </svg>
                 </button>
-                <button data-tooltip="Emoji">
+                <button data-tooltip="Emoji" id="emoji">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#emoji" />
                   </svg>
@@ -1217,7 +1217,7 @@
                     <use href="/icons/sprite.svg#add-image" />
                   </svg>
                 </button>
-                <button data-tooltip="Bar Chart">
+                <button data-tooltip="Bar Chart" id="barChart">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#bar-chart" />
                   </svg>
@@ -1227,32 +1227,32 @@
                     <use href="/icons/sprite.svg#media" />
                   </svg>
                 </button>
-                <button data-tooltip="Add Link">
+                <button data-tooltip="Add Link" id="addLink">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#add-link" />
                   </svg>
                 </button>
-                <button data-tooltip="Line Chart">
+                <button data-tooltip="Line Chart" id="lineChart">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#line-chart" />
                   </svg>
                 </button>
-                <button data-tooltip="Line">
+                <button data-tooltip="Line" class="horizontalLine">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#line" />
                   </svg>
                 </button>
-                <button data-tooltip="Equations">
+                <button data-tooltip="Equations" id="equation">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#equations" />
                   </svg>
                 </button>
-                <button data-tooltip="Pie Chart">
+                <button data-tooltip="Pie Chart" id="pieChart">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#pie-chart" />
                   </svg>
                 </button>
-                <button data-tooltip="Quotation">
+                <button data-tooltip="Quotation" class="quotation">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#quotation" />
                   </svg>
@@ -1262,7 +1262,7 @@
                     <use href="/icons/sprite.svg#citation" />
                   </svg>
                 </button>
-                <button data-tooltip="Special Character">
+                <button data-tooltip="Special Character" id="specialCharacters">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#special-character" />
                   </svg>
@@ -2458,7 +2458,7 @@
     <template id="renameFileModal">
       <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]">
         <p class="text-center text-gray-700">Enter new name for document</p>
-        <input id="newName" name="newName" class="w-full p-3  border-gray-600 border-2 my-4">
+        <input id="newName" name="newName" class="w-full p-2 text-[.9rem] border-gray-400 border-[1.5px] border-2 my-4">
         <div class="flex justify-center gap-8">
           <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Rename</button>
           <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
@@ -2518,6 +2518,201 @@
         <p class="text-center text-gray-700">Print this file <br> <br/></p>
         <div class="flex justify-center gap-8">
           <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Print</button>
+          <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="addEmojiModal">
+      <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]">
+        <p class="text-center text-gray-700">Add Emojis<br/></p>
+        <div class="h-[200px] overflow-y-scroll">
+          <div class="py-6 grid grid-cols-7">
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">😀</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">😁</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">😂</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">🤣</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">😊</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">😍</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">🤩</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">😎</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">🥳</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">😏</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">😜</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">🤪</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">😇</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">😷</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">🤔</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">🙄</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">😬</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">😭</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">😡</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">🥺</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">👍</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">👎</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">👊</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">👏</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">🙌</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">🙏</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">💪</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">🤙</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">💡</span>
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">💥</span>
+  
+          </div>
+        </div>
+
+        <input id="newName" name="newName" class="w-full p-2  border-gray-300 border-2 outline-none my-4">
+
+        <div class="flex justify-center gap-8">
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Add</button>
+          <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="addSpecialCharactersModal">
+      <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]">
+        <p class="text-center text-gray-700">Add Special Characters<br/></p>
+
+        <div class="h-[200px] overflow-y-scroll">
+          <div class="py-6 grid grid-cols-7">
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#9733;</span> <!-- ★ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#9734;</span> <!-- ☆ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#9829;</span> <!-- ♥ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#9830;</span> <!-- ♦ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#9827;</span> <!-- ♣ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#9824;</span> <!-- ♠ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8704;</span> <!-- ∀ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8706;</span> <!-- ∂ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8707;</span> <!-- ∃ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8711;</span> <!-- ∇ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8712;</span> <!-- ∈ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8715;</span> <!-- ∋ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8721;</span> <!-- ∑ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8727;</span> <!-- ∗ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8730;</span> <!-- √ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8734;</span> <!-- ∞ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8743;</span> <!-- ∧ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8744;</span> <!-- ∨ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8747;</span> <!-- ∫ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8756;</span> <!-- ∴ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8800;</span> <!-- ≠ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8801;</span> <!-- ≡ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8804;</span> <!-- ≤ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8805;</span> <!-- ≥ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8834;</span> <!-- ⊂ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8835;</span> <!-- ⊃ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8838;</span> <!-- ⊆ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8839;</span> <!-- ⊇ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8853;</span> <!-- ⊕ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8869;</span> <!-- ⊥ -->
+            
+          </div>
+        </div>
+
+        <input id="newName" name="newName" class="w-full p-2  border-gray-300 border-2 outline-none my-4">
+        <div class="flex justify-center gap-8">
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Add</button>
+          <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="addLinkModal">
+      <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]">
+        <p class="text-center text-gray-700">Add A Link<br/></p>
+        <input id="link" name="link" class="w-full p-2 text-[.9rem] border-gray-400 border-[1.5px] border-2 my-4">
+        <div class="flex justify-center gap-8">
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Add</button>
+          <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="addEquationModal">
+      <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]">
+        <p class="text-center text-gray-700">Add equation symbols<br/></p>
+
+
+        <div class="h-[200px] overflow-y-scroll">
+          <div class="py-6 grid grid-cols-7">
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#43;</span>  <!-- + -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8722;</span> <!-- − (minus sign) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#215;</span>  <!-- × -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#247;</span>  <!-- ÷ -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#61;</span>   <!-- = -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#60;</span>   <!-- < (less than) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#62;</span>   <!-- > (greater than) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#177;</span>  <!-- ± (plus-minus) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8730;</span> <!-- √ (square root) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8776;</span> <!-- ≈ (approximately equal) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8800;</span> <!-- ≠ (not equal) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8804;</span> <!-- ≤ (less than or equal to) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8805;</span> <!-- ≥ (greater than or equal to) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8721;</span> <!-- ∑ (summation) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8747;</span> <!-- ∫ (integral) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8719;</span> <!-- ∏ (product) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8706;</span> <!-- ∂ (partial differential) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8711;</span> <!-- ∇ (nabla/gradient) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8733;</span> <!-- ∝ (proportional to) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8734;</span> <!-- ∞ (infinity) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8743;</span> <!-- ∧ (logical and) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8744;</span> <!-- ∨ (logical or) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8745;</span> <!-- ∩ (intersection) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8746;</span> <!-- ∪ (union) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8756;</span> <!-- ∴ (therefore) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8869;</span> <!-- ⊥ (perpendicular) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8853;</span> <!-- ⊕ (circled plus) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8757;</span> <!-- ∵ (because) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8764;</span> <!-- ∼ (similar to) -->
+            <span class="text-3xl cursor-pointer p-2 hover:bg-gray-200 flex items-center justify-center">&#8712;</span> <!-- ∈ (element of) -->
+                        
+          </div>
+        </div>
+
+        <input id="newName" name="newName" class="w-full p-2  border-gray-300 border-2 outline-none my-4">
+        <div class="flex justify-center gap-8">
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Add</button>
+          <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="addBarChartModal">
+      <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]" data-graph = "bar">
+        <p class="text-center text-gray-700">Add Bar Chart<br/></p>
+        <input id="labels" name="labels" placeholder="Labels(x-values) eg.red,yellow,blue..." class="w-full p-2 text-[.9rem] border-gray-400 border-[1.5px] border-2 my-4">
+        <input id="values" name="values" placeholder="Values(y-values) eg.25,16,18..." class="w-full p-2 text-[.9rem] border-gray-400 border-[1.5px] border-2 my-4">
+        <input id="label" name="label" placeholder="Chart Label(title)" class="w-full p-2 text-[.9rem] border-gray-400 border-[1.5px] border-2 my-4">
+        <div class="flex justify-center gap-8">
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Add</button>
+          <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="addLineChartModal">
+      <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px] "  data-graph = "line">
+        <p class="text-center text-gray-700">Add Line Chart<br/></p>
+        <input id="labels" name="labels" placeholder="Labels(x-values) eg.red,yellow,blue..." class="w-full p-2 text-[.9rem] border-gray-400 border-[1.5px] border-2 my-4">
+        <input id="values" name="values" placeholder="Values(y-values) eg.25,16,18..." class="w-full p-2 text-[.9rem] border-gray-400 border-[1.5px] border-2 my-4">
+        <input id="label" name="label" placeholder="Chart Label(title)" class="w-full p-2 text-[.9rem] border-gray-400 border-[1.5px] border-2 my-4">
+        <div class="flex justify-center gap-8">
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Add</button>
+          <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="addPieChartModal">
+      <div class="dummmymodal bg-white rounded-lg p-8 shadow-lg w-[500px]"  data-graph = "pie">
+        <p class="text-center text-gray-700">Add Pie Chart<br/></p>
+        <input id="labels" name="labels" placeholder="Labels(x-values) eg.red,yellow,blue..." class="w-full p-2 text-[.9rem] border-gray-400 border-[1.5px] border-2 my-4">
+        <input id="values" name="values" placeholder="Values(y-values) eg.25,16,18..." class="w-full p-2 text-[.9rem] border-gray-400 border-[1.5px] border-2 my-4">
+        <input id="label" name="label" placeholder="Chart Label(title)" class="w-full p-2 text-[.9rem] border-gray-400 border-[1.5px] border-2 my-4">
+        <div class="flex justify-center gap-8">
+          <button class="bg-violet-500 text-white p-2 px-6 rounded-md action">Add</button>
           <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
         </div>
       </div>
@@ -2842,6 +3037,10 @@
     <!-- Include docx for DOCX generation -->
     <script src="https://unpkg.com/docx@7.0.0/build/docx.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.0.0/docx.min.js"></script>
+
+    <!-- Adding a Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js"></script>

@@ -34,6 +34,8 @@ const hiliteColor = document.getElementsByClassName('hiliteColor')[0];
 const dropDowmButton = document.getElementsByClassName('dropDownButton');
 const mark = document.getElementsByClassName('mark')[0];
 const heading = document.getElementsByClassName('heading')[0];
+const quotation = document.getElementsByClassName('quotation')[0];
+const horizontalLine = document.getElementsByClassName('horizontalLine')[0];
 const workarea_scale_output = document.getElementById('workarea_scale_output');
 
 // Declaring variables for buttons
@@ -242,6 +244,8 @@ function execCommandInIframe(command, value = null) {
   editorDoc.execCommand(command, false, value);
 }
 
+
+
 bold &&
   bold.addEventListener('click', () => {
     execCommandInIframe('bold');
@@ -412,6 +416,16 @@ fontFamily &&
     execCommandInIframe('fontName', fontFamily.value);
   });
 
+quotation &&
+  quotation.addEventListener('click', () => {
+    execCommandInIframe('formatBlock', "blockquote");
+  });
+
+horizontalLine &&
+  horizontalLine.addEventListener('click', () => {
+    execCommandInIframe('insertHorizontalRule');
+  });
+
 wrapParagraph &&
   wrapParagraph.addEventListener('click', () => {
     // var selection = window.getSelection();
@@ -425,9 +439,9 @@ wrapParagraph &&
     // //     selection.removeAllRanges();
     // //     selection.addRange(range);
     // }
-    iframe.contentWindow.focus();
-    execCommandInIframe('formatBlock', 'p');
-    // execCommandInIframe('insertParagraph','p');
+    // iframe.contentWindow.focus();
+    // execCommandInIframe('formatBlock', 'p');
+    execCommandInIframe('insertParagraph','p');
   });
 
 preview &&
@@ -602,7 +616,6 @@ const convertFileBtn = document.getElementsByClassName('convertFile')[1];
 const removeBtn = document.getElementsByClassName('remove')[1];
 let modalCancel;
 
-
 const modal = document.querySelector('#dummymodal');
 
 const toggleModalContent = (clone) => {
@@ -667,15 +680,14 @@ const convertFileType = () => {
   // Add click event listeners to file type options using data-filetype
   clone.querySelectorAll('span').forEach((span) => {
     span.addEventListener('click', () => {
-
       selectedType = span.getAttribute('data-filetype'); // Get selected file type from data attribute
-      
+
       // console.log()
-      let otherSpans = span.parentNode.querySelectorAll("span")
+      let otherSpans = span.parentNode.querySelectorAll('span');
       for (let i = 0; i < otherSpans.length; i++) {
-        otherSpans[i].classList.remove("bg-violet-500","text-white")        
+        otherSpans[i].classList.remove('bg-violet-500', 'text-white');
       }
-      
+
       // Highlight the selected type by adding a class
       span.classList.add('bg-violet-500', 'text-white');
     });
@@ -694,7 +706,6 @@ const convertFileType = () => {
         // downloadTXT(editor);
         fileType.innerHTML = 'txt';
       }
-
 
       closeModal(); // Close the modal after conversion
     } else {
@@ -715,37 +726,36 @@ const addNewFile = () => {
 
   let clone = template.content.cloneNode(true);
   if (editor.innerHTML != '') {
-    clone.querySelectorAll("button")[1].style.display = "block"
-    clone.querySelectorAll("button")[1].addEventListener("click",()=>{
-      editor.innerHTML = ""
-      fileName.innerHTML = "document-01"
-      closeModal()
+    clone.querySelectorAll('button')[1].style.display = 'block';
+    clone.querySelectorAll('button')[1].addEventListener('click', () => {
+      editor.innerHTML = '';
+      fileName.innerHTML = 'document-01';
+      closeModal();
       // alert("You Clicked Yes")
-    })
+    });
 
-    clone.querySelectorAll("button")[0].addEventListener("click",()=>{
+    clone.querySelectorAll('button')[0].addEventListener('click', () => {
       // Save file before creating a new one
       // SAVE FILE HERE
-      alert("Saving file")
-      editor.innerHTML = ""
-      fileName.innerHTML = "document-01"
+      alert('Saving file');
+      editor.innerHTML = '';
+      fileName.innerHTML = 'document-01';
       // alert("You Clicked Yes")
-      closeModal()
-    })
+      closeModal();
+    });
   } else {
-    clone.querySelector("p").innerHTML = "Create a New File <br/> <br/>"
-    clone.querySelectorAll("button")[1].style.display = "none"
+    clone.querySelector('p').innerHTML = 'Create a New File <br/> <br/>';
+    clone.querySelectorAll('button')[1].style.display = 'none';
 
-
-    clone.querySelectorAll("button")[0].addEventListener("click",()=>{
-      alert("clicked")
-      editor.innerHTML = ""
-      fileName.innerHTML = "document-01"
+    clone.querySelectorAll('button')[0].addEventListener('click', () => {
+      alert('clicked');
+      editor.innerHTML = '';
+      fileName.innerHTML = 'document-01';
       // alert("You Clicked Yes")
-      closeModal()
-    })
+      closeModal();
+    });
   }
-  
+
   toggleModalContent(clone);
   openModal();
   let actionButton = clone.querySelector('.action');
@@ -777,7 +787,6 @@ const downloadPDF = (editor) => {
     windowWidth: editor.clientWidth, // Ensures full width is captured
   });
 };
-
 
 // Download as DOCX
 const downloadDOCX = async (editor) => {
@@ -821,11 +830,10 @@ const downloadTXT = (editor) => {
   URL.revokeObjectURL(fileUrl); // Clean up the URL
 };
 
-
 const downloadNewFile = () => {
   const editor = getEditorElement();
   let selectedType = document.querySelector('#documentType').innerHTML;
-  console.log(selectedType)
+  console.log(selectedType);
   if (editor.innerHTML.trim() !== '') {
     // Check if editor has meaningful content
     const template = document.querySelector('#downloadFileModal');
@@ -833,7 +841,7 @@ const downloadNewFile = () => {
     let actionButton = clone.querySelector('.action');
 
     actionButton.addEventListener('click', () => {
-      const fileContent = editor.innerText || editor.textContent;  // Get text content from the editor
+      const fileContent = editor.innerText || editor.textContent; // Get text content from the editor
 
       if (selectedType === 'pdf') {
         downloadPDF(editor);
@@ -856,7 +864,6 @@ const downloadNewFile = () => {
   }
 };
 
-
 const printNewFile = () => {
   const editor = getEditorElement();
   if (editor.innerHTML != '') {
@@ -864,7 +871,7 @@ const printNewFile = () => {
     let clone = template.content.cloneNode(true);
     let actionButton = clone.querySelector('.action');
     actionButton.addEventListener('click', () => {
-      const printfile = ()=>{
+      const printfile = () => {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
@@ -872,11 +879,10 @@ const printNewFile = () => {
           callback: function (doc) {
             doc.autoPrint(); // Automatically open print dialog
             doc.output('dataurlnewwindow'); // Open PDF in new window
-          }
-      });
-
-      }
-      printfile()
+          },
+        });
+      };
+      printfile();
 
       closeModal();
     });
@@ -975,3 +981,295 @@ modalCancel &&
     alert('clicked');
     closeModal();
   });
+
+class Pagemodal {
+  // #backdrop = document.getElementById('#modal');
+  #button;
+  #modalcontent;
+  #modal = document.querySelector('#dummymodal');
+  #type;
+
+  constructor(button, modalcontent, type) {
+    this.#button = document.querySelector(button);
+    this.#modalcontent = document.querySelector(modalcontent);
+    this.#type = type;
+    this.showModal();
+  }
+
+  #cloneContent = () => {
+    let clone = this.#modalcontent.content.cloneNode(true);
+
+    clone.querySelector('.modalCancel').addEventListener('click', () => {
+      this.#modal.style.display = 'none';
+    });
+
+    let action = () => {
+      if (this.#type == 'editText') {
+        const texts = clone.querySelectorAll('span');
+        const input = clone.querySelector('input');
+        let actionButton = clone.querySelectorAll('.action')[0];
+        // debugger
+        for (let i = 0; i < texts.length; i++) {
+          texts[i].addEventListener('click', () => {
+            const emoji = texts[i].textContent;
+            input.value += emoji;
+          });
+        }
+
+        actionButton.addEventListener('click', () => {
+          const editor = getEditorElement();
+          editor.focus();
+          execCommandInIframe('insertText', input.value);
+          this.#modal.style.display = 'none';
+        });
+      } else if (this.#type == 'addGraph') {
+        // alert("Add graph")
+        let actionButton = clone.querySelectorAll('.action')[0];
+        let graphType = clone.querySelector('div').dataset.graph;
+        let labels = clone.querySelectorAll("input")[0]
+        let values = clone.querySelectorAll("input")[1]
+        let label = clone.querySelectorAll("input")[2]
+        const editor = getEditorElement();
+
+        
+
+        // console.log(graphType);
+        actionButton.addEventListener('click', function () {
+          labels = labels.value.split(",")
+          values = values.value.split(",")
+          let backgroundColor = 'rgb(153, 102, 255)'
+          const colors = [
+            'rgb(255, 99, 132)',  // Soft Red
+            'rgb(75, 192, 192)',  // Teal
+            'rgb(54, 162, 235)',  // Light Blue
+            'rgb(255, 206, 86)',  // Soft Yellow
+            'rgb(153, 102, 255)', // Light Purple
+            'rgb(255, 159, 64)',  // Orange
+            'rgb(100, 149, 237)', // Cornflower Blue
+            'rgb(255, 182, 193)', // Light Pink
+            'rgb(144, 238, 144)', // Light Green
+            'rgb(240, 128, 128)', // Light Coral
+            'rgb(255, 140, 0)',   // Dark Orange
+            'rgb(173, 216, 230)', // Light Sky Blue
+            'rgb(255, 228, 181)', // Moccasin
+            'rgb(221, 160, 221)', // Plum
+            'rgb(250, 128, 114)', // Salmon
+            'rgb(124, 252, 0)',   // Lawn Green
+            'rgb(135, 206, 250)', // Light Steel Blue
+            'rgb(255, 222, 173)', // Navajo White
+            'rgb(238, 130, 238)', // Violet
+            'rgb(176, 224, 230)'  // Powder Blue
+          ];
+                
+          if(graphType == "pie"){
+            backgroundColor = []
+            for (let i = 0; i < values.length; i++) {
+              backgroundColor.push(colors[i])              
+            }
+          }
+
+          label =label.value
+          // console.log(labels,values)
+          const wrapper = document.createElement('div');
+          wrapper.classList.add('resizable');
+
+          const resizeHandle = document.createElement('div');
+          resizeHandle.classList.add('resize-handle');
+
+          // Create a canvas element for the chart
+          const canvas = document.createElement('canvas');
+          canvas.width = 400; // Set width
+          canvas.height = 200; // Set height
+
+          let lineBreak = document.createElement("br")
+
+          const editor = getEditorElement();
+          editor.appendChild(lineBreak)
+          wrapper.appendChild(canvas);
+          wrapper.appendChild(resizeHandle);
+
+          // Insert the canvas into the editor
+          editor.appendChild(wrapper);
+
+          // Create a chart
+          const ctx = canvas.getContext('2d');
+          const chart = new Chart(ctx, {
+            type: `${graphType}`, // Type of chart
+            data: {
+              labels,
+              datasets: [
+                {
+                  label,
+                  data: values,
+                  backgroundColor,
+                  // borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              scales: {
+                 y: (graphType != ('pie') ) && {
+                  beginAtZero: true,
+                },
+              },
+            },
+          });
+
+          // Function to make the chart resizable
+          function makeResizable(wrapper) {
+            const resizeHandle = wrapper.querySelector('.resize-handle');
+
+            resizeHandle.addEventListener('mousedown', function (event) {
+              event.preventDefault();
+
+              const startX = event.clientX;
+              const startY = event.clientY;
+              const startWidth = parseInt(
+                document.defaultView.getComputedStyle(wrapper).width,
+                10,
+              );
+              const startHeight = parseInt(
+                document.defaultView.getComputedStyle(wrapper).height,
+                10,
+              );
+
+              function doDrag(e) {
+                wrapper.style.width = startWidth + e.clientX - startX + 'px';
+                wrapper.style.height = startHeight + e.clientY - startY + 'px';
+
+                // Update the chart dimensions to match the wrapper
+                const canvas = wrapper.querySelector('canvas');
+                canvas.width = wrapper.clientWidth;
+                canvas.height = wrapper.clientHeight;
+
+                const ctx = canvas.getContext('2d');
+                // Recreate the chart to adjust to the new dimensions
+                new Chart(ctx, {
+                  type: `${graphType}`,
+                  data: {
+                    labels,
+                    datasets: [
+                      {
+                        label: 'Demo Chart',
+                        data: values,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                      },
+                    ],
+                  },
+                  options: {
+                    responsive: true,
+                    scales: {
+                      y: {
+                        beginAtZero: true,
+                      },
+                    },
+                  },
+                });
+              }
+
+              function stopDrag() {
+                document.documentElement.removeEventListener(
+                  'mousemove',
+                  doDrag,
+                  false,
+                );
+                document.documentElement.removeEventListener(
+                  'mouseup',
+                  stopDrag,
+                  false,
+                );
+              }
+
+              document.documentElement.addEventListener(
+                'mousemove',
+                doDrag,
+                false,
+              );
+              document.documentElement.addEventListener(
+                'mouseup',
+                stopDrag,
+                false,
+              );
+            });
+          }
+
+          makeResizable(wrapper);
+
+          // Create a chart
+        });
+      } else if (this.#type == 'addLink') {
+        const input = clone.querySelector('input');
+        let actionButton = clone.querySelectorAll('.action')[0];
+        actionButton.addEventListener('click', () => {
+          const editor = getEditorElement();
+          editor.focus();
+          execCommandInIframe('createLink', input.value);
+          let links = editor.getElementsByTagName('a');
+          for (var i = 0; i < links.length; i++) {
+            links[i].setAttribute('target', '_blank');
+            links[i].setAttribute('style', 'color : blue');
+
+            links[i].addEventListener('click', () => {
+              window.open(event.target.href, '_blank');
+            });
+          }
+          this.#modal.style.display = 'none';
+        });
+      }
+    };
+
+    action();
+
+    this.#modal.replaceChildren(clone);
+
+    // console.log(modal)
+  };
+
+  showModal() {
+    this.#button.addEventListener('click', () => {
+      // debugger
+      this.#modal.style.display = 'flex';
+      this.#cloneContent(this.#modalcontent);
+    });
+    return;
+  }
+
+  hidemodal() {
+    this.#button.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    return;
+  }
+}
+
+const emojiModal = new Pagemodal('#emoji', '#addEmojiModal', 'editText');
+const equationModal = new Pagemodal(
+  '#equation',
+  '#addEquationModal',
+  'editText',
+);
+const specialCharacters = new Pagemodal(
+  '#specialCharacters',
+  '#addSpecialCharactersModal',
+  'editText',
+);
+const linkModal = new Pagemodal('#addLink', '#addLinkModal', 'addLink');
+const pieChartModal = new Pagemodal(
+  '#pieChart',
+  '#addPieChartModal',
+  'addGraph',
+);
+const lineChartModal = new Pagemodal(
+  '#lineChart',
+  '#addLineChartModal',
+  'addGraph',
+);
+const barChartModal = new Pagemodal(
+  '#barChart',
+  '#addBarChartModal',
+  'addGraph',
+);

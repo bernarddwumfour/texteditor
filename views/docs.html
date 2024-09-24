@@ -1,100 +1,136 @@
 <!doctype html>
 <html lang="en" class="overflow-hidden">
+  <head>
+    <link rel="stylesheet" href="../styles/docs.scss" />
+    <style>
+      body {
+        font-size: 16px;
+      }
+      ul {
+        list-style-type: disc !important;
+        list-style-position: inside;
+      }
 
-<head>
-  <link rel="stylesheet" href="../styles/docs.scss" />
-  <style>
-    body{
-      font-size: 16px;
-    }
-    ul{
-      list-style-type: disc !important;
-      list-style-position: inside;
-    }
+      ol {
+        list-style-type: decimal !important;
+        list-style-position: inside;
+      }
 
-    ol{
-      list-style-type: decimal !important;
-      list-style-position: inside;
-    }
+      /* General Heading Styles */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: 'Arial', sans-serif;
+        margin-bottom: 0.5em;
+        line-height: 1.2;
+      }
 
-    /* General Heading Styles */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Arial', sans-serif;
-  margin-bottom: 0.5em;
-  line-height: 1.2;
-}
+      /* Specific Styles for Each Heading Level */
 
-/* Specific Styles for Each Heading Level */
+      /* Main Title - Largest and most prominent */
+      h1 {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        margin-top: 1em;
+      }
 
-/* Main Title - Largest and most prominent */
-h1 {
-  font-size: 2.5em;
-  font-weight: bold;
-  color: #333;
-  text-align: center;
-  margin-top: 1em;
-}
+      /* Section Titles */
+      h2 {
+        font-size: 2em;
+        font-weight: bold;
+        color: #444;
+        margin-top: 1em;
+        border-bottom: 2px solid #eaeaea;
+        padding-bottom: 0.25em;
+      }
 
-/* Section Titles */
-h2 {
-  font-size: 2em;
-  font-weight: bold;
-  color: #444;
-  margin-top: 1em;
-  border-bottom: 2px solid #eaeaea;
-  padding-bottom: 0.25em;
-}
+      /* Subsections */
+      h3 {
+        font-size: 1.75em;
+        font-weight: bold;
+        color: #555;
+        margin-top: 0.75em;
+        padding-left: 0.25em;
+        border-left: 4px solid #e0e0e0;
+      }
 
-/* Subsections */
-h3 {
-  font-size: 1.75em;
-  font-weight: bold;
-  color: #555;
-  margin-top: 0.75em;
-  padding-left: 0.25em;
-  border-left: 4px solid #e0e0e0;
-}
+      /* Sub-subsections */
+      h4 {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #666;
+        margin-top: 0.75em;
+      }
 
-/* Sub-subsections */
-h4 {
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #666;
-  margin-top: 0.75em;
-}
+      /* Minor Headings */
+      h5 {
+        font-size: 1.25em;
+        font-weight: normal;
+        color: #777;
+        margin-top: 0.5em;
+      }
 
-/* Minor Headings */
-h5 {
-  font-size: 1.25em;
-  font-weight: normal;
-  color: #777;
-  margin-top: 0.5em;
-}
+      /* Smallest Headings */
+      h6 {
+        font-size: 1em;
+        font-weight: normal;
+        color: #888;
+        margin-top: 0.5em;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
 
-/* Smallest Headings */
-h6 {
-  font-size: 1em;
-  font-weight: normal;
-  color: #888;
-  margin-top: 0.5em;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
+      .resizable {
+        position: relative;
+        display: inline-block; /* Allows resizing without breaking layout */
+      }
 
-  </style>
-</head>
+      .resize-handle {
+        width: 10px;
+        height: 10px;
+        background: #000;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        cursor: nwse-resize; /* Diagonal resize cursor */
+      }
 
-<body style="height: 100%;">
-  <div class="editor" contenteditable="true" style="outline: none;height:100%">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, suscipit
-  quidem enim nisi repellendus iste quod excepturi mollitia facilis deleniti
-  neque deserunt aspernatur quaerat unde cum maiores, fugiat rerum saepe?
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
-  provident eveniet corrupti sed cum voluptate quae, vel exercitationem eius
-  reprehenderit ratione id sapiente doloremque nihil iste, nesciunt, esse
-  autem
-  </div>
-  <!-- <script src="../scripts/functionality.js"></script> -->
-</body>
+      blockquote {
+            margin: 20px;
+            padding-left: 20px;
+            /* border-left: 3px solid #ccc; */
+            color: #555;
+            font-style: italic;
+        }
 
+        hr {
+            border: 0;
+            height: 1.5px;
+            background-color: #505050; /* Line color */
+            width: 95%; /* Line width */
+            margin: 20px auto; /* Centering and spacing */
+        }
+    </style>
+  </head>
+
+  <body style="height: 100%">
+    <div
+      class="editor"
+      contenteditable="true"
+      style="outline: none; height: 100%">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, suscipit
+      quidem enim nisi repellendus iste quod excepturi mollitia facilis deleniti
+      neque deserunt aspernatur quaerat unde cum maiores, fugiat rerum saepe?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+      provident eveniet corrupti sed cum voluptate quae, vel exercitationem eius
+      reprehenderit ratione id sapiente doloremque nihil iste, nesciunt, esse
+      autem
+    </div>
+    <!-- <script src="../scripts/functionality.js"></script> -->
+  </body>
 </html>
