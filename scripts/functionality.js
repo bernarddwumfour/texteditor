@@ -221,13 +221,30 @@ function initializeEditor() {
   addInputListeners(); // Add listeners for input events
 }
 
+function tryInitializeEditor() {
+  try {
+    initializeEditor();
+  } catch (error) {
+    setTimeout(tryInitializeEditor, 1000); // Retry after 100ms
+  }
+}
+
+iframe.addEventListener('load', () => {
+  console.log('iframe loaded');
+  tryInitializeEditor();
+});
+
+
 // Wait for the iframe to load before initializing
 // document.addEventListener('load',()=>{
-iframe &&
-  iframe.addEventListener('load', () => {
+// iframe &&
+iframe.addEventListener('load', () => {
+  setTimeout(() => {
     console.log('initialized');
     initializeEditor();
-  });
+  }, 100); // 100ms delay
+});
+
 // });
 
 //Second box
@@ -982,6 +999,7 @@ modalCancel &&
     closeModal();
   });
 
+
 class Pagemodal {
   // #backdrop = document.getElementById('#modal');
   #button;
@@ -1228,6 +1246,7 @@ class Pagemodal {
 
     // console.log(modal)
   };
+  
 
   showModal() {
     this.#button.addEventListener('click', () => {
@@ -1245,6 +1264,8 @@ class Pagemodal {
     return;
   }
 }
+
+// window.addEventListener("load",()=>{
 
 const emojiModal = new Pagemodal('#emoji', '#addEmojiModal', 'editText');
 const equationModal = new Pagemodal(
@@ -1273,3 +1294,6 @@ const barChartModal = new Pagemodal(
   '#addBarChartModal',
   'addGraph',
 );
+
+// })
+

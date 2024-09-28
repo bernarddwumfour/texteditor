@@ -827,7 +827,7 @@
                         <use href="/icons/sprite.svg#open" />
                       </svg>Open</a>
                   </li>
-                  <li>
+                  <li class="people">
                     <a class="dropdown-item" href="#"><svg data-icon>
                         <use href="/icons/sprite.svg#people" />
                       </svg>People</a>
@@ -945,7 +945,7 @@
                     <use href="/icons/sprite.svg#open" />
                   </svg>
                 </button>
-                <button data-tooltip="People">
+                <button data-tooltip="People" class="people">
                   <svg data-icon>
                     <use href="/icons/sprite.svg#people" />
                   </svg>
@@ -2406,7 +2406,8 @@
           <iframe
             class="editorIframe"
             src="./views/docs.html"
-            data-page-size="A4"></iframe>
+            data-page-size="A4">
+          </iframe>
         </main>
         <nav
           class="grid h-8 grid-cols-[auto,1fr,auto] items-center gap-4 border-t border-gray-300 bg-gray-100 px-6 *:text-sm *:leading-none *:text-gray-500 print:hidden">
@@ -2452,7 +2453,10 @@
         aria-expanded="true"></aside>
     </div>
 
-    <div id="dummymodal" class="fixed w-wull h-full justify-center items-center  z-60 inset-0 hidden">
+    <div id="dummymodal" class="fixed w-wull h-full justify-center items-center  z-60 inset-0 hidden bg-[rgba(0,0,0,0.3)]">
+    </div>
+    <div id="subModal" class="fixed w-wull h-full justify-center items-center  z-60 inset-0 hidden bg-[rgba(0,0,0,0.3)]">
+
     </div>
 
     <template id="renameFileModal">
@@ -2716,6 +2720,562 @@
           <button class="shadow-md text-violet-500 p-2 px-6 rounded-md modalCancel">Cancel</button>
         </div>
       </div>
+    </template>
+
+
+
+    <template id="peopleModal">
+     <!-- Follow and Follower -->
+     <div class="follower_following_modal">
+      <!--  Mobile Cancel -->
+      <button class="mobile_cancel--btn">
+        <img src="icons/cancel.svg" alt="" />
+      </button>
+
+      <div class="modal_header">
+        <div class="follow_modal_header_switch_button">
+          <button class="active">following</button>
+          <button>followers</button>
+        </div>
+
+        <form>
+          <!-- prettier-ignore -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="1.3em" height="1.3em" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="#8c8c8c" d="M10.5 2a8.5 8.5 0 1 0 5.262 15.176l3.652 3.652a1 1 0 0 0 1.414-1.414l-3.652-3.652A8.5 8.5 0 0 0 10.5 2M4 10.5a6.5 6.5 0 1 1 13 0a6.5 6.5 0 0 1-13 0"/></g></svg>
+          <input type="text" placeholder="Search following" />
+        </form>
+      </div>
+
+      <div class="follow_modal_lists">
+        <div class="follow_modal_row">
+          <h2 class="select--all">Select all</h2>
+
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" class="select" width="0.9em" height="0.9em" viewBox="0 0 2048 2048"><path fill="#ffffff" d="M1837 557L768 1627l-557-558l90-90l467 466l979-978z" /></svg>
+          </button>
+        </div>
+
+        <div class="follow_users">
+          <!-- Following -->
+          <div class="followings">
+            <div class="follow_modal_row">
+              <div>
+                <img src="https://images.unsplash.com/photo-1712847331906-fac48177f9f7?w=500&amp;auto=format&amp;fit=crop&amp;q=60&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHx8" alt="User Photo" />
+
+                <h2>Waden Warren</h2>
+              </div>
+
+              <button>
+                <svg xmlns="http://www.w3.org/2000/svg" class="select" width="0.9em" height="0.9em" viewBox="0 0 2048 2048"><path fill="#ffffff" d="M1837 557L768 1627l-557-558l90-90l467 466l979-978z" /></svg>
+              </button>
+            </div>
+
+            <div class="follow_modal_row">
+              <div>
+                <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&amp;auto=format&amp;fit=crop&amp;q=60&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnN8ZW58MHx8MHx8fDA%3D" alt="User Photo" />
+
+                <h2>Alenxander Hipp</h2>
+              </div>
+
+              <button>
+                <svg xmlns="http://www.w3.org/2000/svg" class="select" width="0.9em" height="0.9em" viewBox="0 0 2048 2048"><path fill="#ffffff" d="M1837 557L768 1627l-557-558l90-90l467 466l979-978z" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Followers -->
+          <div class="followers marketing-hidden">
+            <div class="follow_modal_row">
+              <div>
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&amp;auto=format&amp;fit=crop&amp;q=60&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnN8ZW58MHx8MHx8fDA%3D" alt="User Photo" />
+
+                <h2>Macheal Dam</h2>
+              </div>
+
+              <button>
+                <svg xmlns="http://www.w3.org/2000/svg" class="select" width="0.9em" height="0.9em" viewBox="0 0 2048 2048"><path fill="#ffffff" d="M1837 557L768 1627l-557-558l90-90l467 466l979-978z" /></svg>
+              </button>
+            </div>
+
+            <div class="follow_modal_row">
+              <div>
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&amp;auto=format&amp;fit=crop&amp;q=60&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHVzZXJzfGVufDB8fDB8fHww" alt="User Photo" />
+
+                <h2>Joe Ben</h2>
+              </div>
+
+              <button class="checkbox">
+                <svg xmlns="http://www.w3.org/2000/svg" class="select" width="0.9em" height="0.9em" viewBox="0 0 2048 2048"><path fill="#ffffff" d="M1837 557L768 1627l-557-558l90-90l467 466l979-978z" /></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal_footer">
+        <button class="modalCancel">Cancel</button>
+        <button>Send</button>
+      </div>
+    </div>
+    </template>
+
+    <template id="commentModal">
+      <div
+      data-modal="user-post-details"
+      class="popup-overlay user-post-details top-0 left"
+    >
+      <div class="post-details">
+        <!-- Attachment -->
+        <div class="post-attachment">
+          <div class="post-attachment-header">
+            <span class="post-attachment-header-controller-icon">
+              <i class="fa-solid fa-circle-play"></i>
+            </span>
+            <div class="post-attachment-header-name">
+              <span class="post-attachment-header-name-title">Sound name</span>
+              <span class="post-attachment-header-name-slug">Wade Warren</span>
+            </div>
+            <div class="post-attachment-header-close" title="Close">
+              <span class="material-symbols-outlined">
+                <img src="icons/cancel.svg" alt="Cancel" />
+              </span>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: center">
+            <div class="post-attachment-footer">
+              <!-- <div class="avatar-items"> -->
+              <img src="images/img1.jpg" alt="" class="avatar-item" />
+              <img src="images/img2.jpg" alt="" class="avatar-item" />
+              <img src="images/img5.jpg" alt="" class="avatar-item" />
+              <img src="images/img6.jpg" alt="" class="avatar-item" />
+              <div class="avatar-item" @click="image_viewers=true">+5</div>
+              <!-- </div> -->
+            </div>
+          </div>
+
+          <img src="images/img2.jpg" alt="Main Image" />
+        </div>
+
+        <!-- Post Content -->
+        <div class="post-contents">
+          <div class="user-post">
+            <div class="post-user-detail">
+              <label for="" class="post-name-img">
+                <img class="post-user-img" src="images/img6.jpg" alt="" />
+                <span class="post-user-name-group">
+                  <span class="post-user-name">Olivia Rhye</span>
+                </span>
+              </label>
+              <a href="#" class="post-user-follow">Follow</a>
+            </div>
+            <div class="post-menu">
+              <!-- <button class="material-symbols-outlined">
+                <img src="icons/ellipsis.svg" alt="" />
+              </button> -->
+
+              <!-- Divider -->
+              <button class="popular_task_ellipsis">
+                <img
+                  src="icons/ellipsis.svg"
+                  alt="Item options"
+                  class="button"
+                />
+
+                <ul class="hidden">
+                  <li class="save">
+                    <img src="icons/save.svg" alt="Save Icon" />
+                    <span>Save</span>
+                  </li>
+
+                  <li class="share task_option_share">
+                    <img src="icons/share_home.svg" alt="Share Icon" />
+                    <span>Share</span>
+                  </li>
+
+                  <li>
+                    <a>
+                      <img src="icons/promote.svg" alt="Promote Icon" />
+                      <span>Promote</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a>
+                      <img src="icons/edit_light.svg" alt="Edit Icon" />
+                      <span>Edit</span>
+                    </a>
+                  </li>
+                </ul>
+              </button>
+            </div>
+          </div>
+
+          <div class="post-contents-overflow">
+            <div class="post-comments">
+              <div class="post-content">
+                <div class="post-content-header">
+                  <span class="post-content-title"
+                    >The Miracle called: Woman</span
+                  >
+                  <div class="post-hash-tag">
+                    <span>#woman</span> <span>#miracle</span>
+                  </div>
+                </div>
+
+                <div class="comment_user_tags">
+                  <h3>Tags</h3>
+
+                  <div class="tags" id="tags">
+                    <img src="images/img1.jpg" alt="" class="people-tags" />
+                    <img src="images/img2.jpg" alt="" class="people-tags" />
+                    <img src="images/img3.jpg" alt="" class="people-tags" />
+                    <img src="images/img4.jpg" alt="" class="people-tags" />
+                    <div class="tags--more people-tags">+2</div>
+                  </div>
+                </div>
+
+                <button class="content-see-more">
+                  See more
+                  <span class="material-symbols-outlined">
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <i class="fa-solid fa-chevron-down hidden"></i>
+                  </span>
+                </button>
+
+                <div class="see-more-content hidden" aria-expanded="false">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas
+                  fugit inventore perferendis iste autem eos numquam, deserunt
+                  quia ipsa eligendi reiciendis ad possimus enim? Voluptate
+                  mollitia repellendus vitae nulla aut.
+                </div>
+
+                <div class="content-details">
+                  <div class="comments-label">
+                    <span>Comments</span>
+                    <span class="comment-count">3</span>
+                  </div>
+                  <div class="comment-containers thin-scroll">
+                    <div class="comment-contents">
+                      <img
+                        src="images/img3.jpg"
+                        class="comment-sender-avatar rounded-full"
+                      />
+                      <div class="comment-message-container">
+                        <p class="comment-message">Short sample comment</p>
+                        <div class="comment-tlr-group">
+                          <span class="comment-time">Just now</span>
+                          <div class="comment-lr-group">
+                            <span class="comment-l-group">
+                              <span class="likes material-symbols-outlined">
+                                <i class="fa-solid fa-thumbs-up"></i>
+                              </span>
+                              <span class="count-likes">2.4k</span>
+                            </span>
+                            <a href="#" class="comment-reply">Reply 1</a>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="comment-reply-line"></div> -->
+                    </div>
+
+                    <div
+                      class="comment-contents replied-comment homepage-hidden"
+                    >
+                      <img
+                        src="images/img4.jpg"
+                        class="comment-sender-avatar rounded-full"
+                      />
+                      <div class="comment-message-container">
+                        <p class="comment-message">Short sample comment</p>
+                        <div class="comment-tlr-group">
+                          <span class="comment-time">Just now</span>
+                          <div class="comment-lr-group">
+                            <span class="comment-l-group">
+                              <span class="likes material-symbols-outlined">
+                                <i class="fa-solid fa-thumbs-up"></i>
+                              </span>
+                              <span class="count-likes">2.4k</span>
+                            </span>
+                            <a href="#" class="comment-reply">Reply 1</a>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="comment-reply-line hidden"></div> -->
+                    </div>
+
+                    <div class="comment-contents">
+                      <img
+                        src="images/img3.jpg"
+                        class="comment-sender-avatar rounded-full"
+                      />
+                      <div class="comment-message-container">
+                        <p class="comment-message">
+                          Short sample comment Short sample comment
+                        </p>
+                        <div class="comment-tlr-group">
+                          <span class="comment-time">1 hour ago</span>
+                          <div class="comment-lr-group hidden hide">
+                            <span class="comment-l-group"
+                              ><span class="likes material-symbols-outlined"
+                                >thumb_up</span
+                              ><span class="count-likes">2.4k</span></span
+                            >
+                            <a href="#" class="comment-reply">Reply 1</a>
+                            <a
+                              href="#"
+                              class="w-4 h-4 font-medium material-symbols-outlined"
+                              >message</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="comment-contents">
+                      <img
+                        src="images/img5.jpg"
+                        class="comment-sender-avatar rounded-full"
+                      />
+                      <div class="comment-message-container">
+                        <p class="comment-message">
+                          Short sample Short sample comment Short sample comment
+                        </p>
+                        <div class="comment-tlr-group">
+                          <span class="comment-time">1 min ago</span>
+                          <div class="comment-lr-group hidden hide">
+                            <span class="comment-l-group"
+                              ><span class="likes material-symbols-outlined"
+                                >thumb_up</span
+                              ><span class="count-likes">2.4k</span></span
+                            >
+                            <a href="#" class="comment-reply">Reply 1</a>
+                            <a
+                              href="#"
+                              class="w-4 h-4 font-medium material-symbols-outlined"
+                              >message</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="post-comment-container">
+              <textarea
+                name="comment_message"
+                class="comment-message-box"
+                id="comment_message"
+                placeholder="Enter comment..."
+              ></textarea>
+
+              <button class="message-send-btn">
+                <svg
+                  width="34"
+                  height="35"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M9.93917 13.1463L7.69193 12.3972L7.69192 12.3972L7.69192 12.3972C5.33871 11.6128 4.16211 11.2206 4.16211 10.4999C4.16211 9.77909 5.33872 9.38689 7.69193 8.60249L16.2051 5.76476C17.8609 5.21283 18.6888 4.93687 19.1258 5.37388C19.5628 5.8109 19.2869 6.6388 18.7349 8.29459L15.8972 16.8078L15.8972 16.8078L15.8972 16.8078C15.1128 19.161 14.7206 20.3376 13.9998 20.3376C13.2791 20.3376 12.8869 19.161 12.1025 16.8078L11.3534 14.5605L15.7069 10.207C16.0975 9.81643 16.0975 9.18327 15.7069 8.79275C15.3164 8.40222 14.6832 8.40222 14.2927 8.79275L9.93917 13.1463Z"
+                    fill="white"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Aside Component -->
+        <div class="post-related thin-scroll">
+          <div class="post-related-group">
+            <div class="post-image-wrapper">
+              <img
+                src="images/img6.jpg"
+                alt="related-attachment"
+                class="post-related-attachment"
+              />
+            </div>
+
+            <div class="post-related-content">
+              <div class="post-user-detail scrolling">
+                <label for="" class="post-name-img">
+                  <img class="post-user-img" src="images/img1.jpg" alt="" />
+                  <span class="post-user-name-group">
+                    <span class="post-user-name">Olivia Rhye</span>
+                    <a
+                      href="olivia@untitledui.com"
+                      class="post-user-link hidden"
+                      >olivia@untitledui.com</a
+                    >
+                  </span>
+                </label>
+                <a href="#" class="post-user-follow">Follow</a>
+              </div>
+              <p class="comment-message comment-sidebar-overflow text-black">
+                Short sample comment Short sample comment
+              </p>
+              <span class="comment-time">1 hour ago</span>
+            </div>
+          </div>
+
+          <div class="post-related-group">
+            <div class="post-image-wrapper">
+              <img
+                src="images/img2.jpg"
+                alt="related-attachment"
+                class="post-related-attachment"
+              />
+            </div>
+
+            <div class="post-related-content">
+              <div class="post-user-detail scrolling">
+                <label for="" class="post-name-img">
+                  <img class="post-user-img" src="images/img3.jpg" alt="" />
+                  <span class="post-user-name-group">
+                    <span class="post-user-name">Olivia Rhye</span>
+                    <a
+                      href="olivia@untitledui.com"
+                      class="post-user-link hidden"
+                      >olivia@untitledui.com</a
+                    >
+                  </span>
+                </label>
+                <a href="#" class="post-user-follow">Follow</a>
+              </div>
+              <p class="comment-message comment-sidebar-overflow text-black">
+                Short sample comment Short sample comment
+              </p>
+              <span class="comment-time">1 hour ago</span>
+            </div>
+          </div>
+
+          <div class="post-related-group">
+            <div class="post-image-wrapper">
+              <img
+                src="images/img3.jpg"
+                alt="related-attachment"
+                class="post-related-attachment"
+              />
+            </div>
+
+            <div class="post-related-content">
+              <div class="post-user-detail scrolling">
+                <label for="" class="post-name-img">
+                  <img class="post-user-img" src="images/img4.jpg" alt="" />
+                  <span class="post-user-name-group">
+                    <span class="post-user-name">Olivia Rhye</span>
+                    <a
+                      href="olivia@untitledui.com"
+                      class="post-user-link hidden"
+                      >olivia@untitledui.com</a
+                    >
+                  </span>
+                </label>
+                <a href="#" class="post-user-follow">Follow</a>
+              </div>
+              <div class="comment-message comment-sidebar-overflow text-black">
+                Short sample comment Short sample comment
+              </div>
+              <span class="comment-time">1 hour ago</span>
+            </div>
+          </div>
+
+          <div class="post-related-group">
+            <img
+              src="images/img3.jpg"
+              alt="related-attachment"
+              class="post-related-attachment"
+            />
+            <div class="post-related-content">
+              <div class="post-user-detail scrolling">
+                <label for="" class="post-name-img">
+                  <img class="post-user-img" src="images/img4.jpg" alt="" />
+                  <span class="post-user-name-group">
+                    <span class="post-user-name">Olivia Rhye</span>
+                    <a
+                      href="olivia@untitledui.com"
+                      class="post-user-link hidden"
+                      >olivia@untitledui.com</a
+                    >
+                  </span>
+                </label>
+                <a href="#" class="post-user-follow">Follow</a>
+              </div>
+              <div class="comment-message comment-sidebar-overflow text-black">
+                Short sample comment Short sample comment
+              </div>
+              <span class="comment-time">1 hour ago</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Close Button  -->
+        <div class="post-close modalCancel">
+          <span
+            class="close-pt close-popup"
+            data-trigger=".user-post-details"
+            title="Close"
+          >
+            <i class="share-close-icon material-symbols-outlined">
+              <img src="icons/cancel.svg" alt="Cancel" />
+            </i>
+          </span>
+        </div>
+      </div>
+    </div>
+    </template>
+
+    <template id="postsSlider">
+       <!-- Image viewers -->
+       <div class="image-viewer">
+        <div class='slides smooth-scroll'>
+        
+            <div class='slide'>
+            <img src="https://images.pexels.com/photos/687501/pexels-photo-687501.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 1" class='img__slider' />
+            </div>
+        
+            <div class='slide'>
+            <img src="https://images.pexels.com/photos/1459347/pexels-photo-1459347.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 2" class='img__slider' />
+            </div>
+        
+            <div class='slide'>
+            <img src="https://images.pexels.com/photos/1022166/pexels-photo-1022166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 3" class='img__slider' />
+            </div>
+        
+            <div class='slide'>
+            <img src="https://images.pexels.com/photos/3162822/pexels-photo-3162822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 4" class='img__slider' />
+            </div>
+        
+            <div class='slide'>
+            <img src="https://images.pexels.com/photos/2016703/pexels-photo-2016703.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 5" class='img__slider' />
+            </div>
+        
+            <div class='slide'>
+            <img src="https://images.pexels.com/photos/5818810/pexels-photo-5818810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 6" class='img__slider' />
+            </div>
+        
+            <div class='slide'>
+            <img src="https://images.pexels.com/photos/5896359/pexels-photo-5896359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 7" class='img__slider' />
+            </div>
+        
+            <div class='slide'>
+            <img src="https://images.pexels.com/photos/5430078/pexels-photo-5430078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 8" class='img__slider' />
+            </div>
+        
+            <div class='slide'>
+            <img src="https://images.pexels.com/photos/1431114/pexels-photo-1431114.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 9" class='img__slider' />
+            </div>
+        
+            <div class='slide'>
+            <img src="https://images.pexels.com/photos/1722179/pexels-photo-1722179.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Image 10" class='img__slider' />
+            </div>
+        </div>
+        </div>
     </template>
 
     <!-- Template: Post  -->
