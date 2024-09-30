@@ -3,7 +3,6 @@ import './_templates';
 import './_dialog';
 import './_sidebar';
 import './_ribbon';
-import './_modals';
 import { getPPI } from './utils';
 
 $(() => {

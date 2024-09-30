@@ -17,8 +17,8 @@ class Modal {
   }
 
   #cloneContent = () => {
-    let clone = this.#modalcontent.content.cloneNode(true);
-
+    let clone = this.#modalcontent.querySelector("div")
+    console.log(clone)
     clone.querySelector('.modalCancel') &&
       clone.querySelector('.modalCancel').addEventListener('click', () => {
         this.#modal.style.display = 'none';

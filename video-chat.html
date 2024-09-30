@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sizemug</title>
+    <link rel="shortcut icon" type="image/icon" href="favicon-sizemug.svg" />
+    <!-- inter google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- external scripts -->
+    <script src="./jquery.js"></script>
+    <script src="./chat-script.js"></script>
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="./chat-converted.css" />
+    <link rel="stylesheet" href="./video-chat.css" />
+    <link rel="import" href="./icons/sprite.svg" />
+    <link
+      rel="stylesheet"
+      href="./font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/cbfa24e26c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <!-- header starts -->
+    <nav class="header">
+      <!-- app-logo -->
+      <div class="header_logo">
+        <button class="sidebar_trigger header_action__button !-ml-4 !mr-1">
+          <svg data-icon="menu">
+            <use href="./icons/sprite.svg#menu" />
+          </svg>
+        </button>
+        <a href="./index.html">
+          <img
+            loading="lazy"
+            src="logo.svg"
+            height="64"
+            width="110"
+            loading="lazy"
+          />
+        </a>
+
+        <button class="popup_trigger" data-popup-target=".header_dropdown">
+          <svg data-icon="expand">
+            <use href="./icons/sprite.svg#expand" />
+          </svg>
+        </button>
+        <dialog class="popup header_dropdown sidebar_nav" data-variant="base">
+          <ul>
+            <li>
+              <h4 class="text-base font-semibold py-2 px-4">Sizemug</h4>
+            </li>
+            <li>
+              <a href="#" class="sidebar_nav__link">
+                <img
+                  loading="lazy"
+                  src="icons/logo-marketplace.svg"
+                  class="size-6"
+                />
+                <span>Marketplace</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="sidebar_nav__link">
+                <img
+                  loading="lazy"
+                  src="icons/logo-calender.svg"
+                  class="size-6"
+                />
+                <span>Calender</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="sidebar_nav__link">
+                <img
+                  loading="lazy"
+                  src="icons/logo-board-mode.svg"
+                  class="size-6"
+                />
+                <span>Board Mode</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="sidebar_nav__link">
+                <img loading="lazy" src="icons/logo-saved.svg" class="size-6" />
+                <span>Saved</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="sidebar_nav__link">
+                <img
+                  loading="lazy"
+                  src="icons/logo-dropped.svg"
+                  class="size-6"
+                />
+                <span>Dropped</span>
+              </a>
+            </li>
+          </ul>
+        </dialog>
+      </div>
+      <!-- search-bar -->
+      <div class="md:flex px-10 lg:px-0 hidden col-span-2">
+        <label class="relative flex w-full">
+          <svg
+            data-icon="search"
+            class="absolute top-1/2 -translate-y-1/2 left-3 text-gray-500"
+          >
+            <use href="./icons/sprite.svg#search" />
+          </svg>
+          <input
+            placeholder="Search contents"
+            class="placeholder:text-gray-500 flex-1 font-roboto bg-gray-100 h-10 pr-4 py-3 rounded-xl pl-12"
+          />
+        </label>
+      </div>
+      <!-- action buttons -->
+      <div class="header_action">
+        <div class="flex gap-2 items-center">
+          <button class="header_action__button hidden md:flex">
+            <svg data-icon="create-fill" class="!size-8">
+              <use href="./icons/sprite.svg#create-fill" />
+            </svg>
+            <i class="tooltip">Create</i>
+          </button>
+          <button class="header_action__button">
+            <svg data-icon="chat-fill" class="!size-8">
+              <use href="./icons/sprite.svg#chat-fill" />
+            </svg>
+            <i class="tooltip">Message</i>
+          </button>
+          <button class="header_action__button">
+            <div
+              class="bg-red-500 rounded-full size-1.5 absolute top-2 right-2.5 ring-2 ring-white"
+            ></div>
+            <svg data-icon="bell-fill" class="!size-8">
+              <use href="./icons/sprite.svg#bell-fill" />
+            </svg>
+            <i class="tooltip">Notifications</i>
+          </button>
+          <button class="header_action__button flex md:hidden">
+            <svg data-icon="bell-fill" class="!size-7">
+              <use href="./icons/sprite.svg#search" class="stroke-[3]" />
+            </svg>
+            <i class="tooltip">Search</i>
+          </button>
+        </div>
+        <img
+          loading="lazy"
+          src="https://source.unsplash.com/random/100x100/?person"
+          width="40"
+          height="40"
+          loading="lazy"
+          class="object-cover rounded-full border border-purple-600 shrink-0 hidden md:flex"
+        />
+      </div>
+    </nav>
+
+    <section>
+      <main class="video-layout">
+        <div class="profile-component">
+          <img
+            src="https://via.placeholder.com/40"
+            alt="Profile Picture"
+            class="profile-picture"
+          />
+          <div class="profile-info">
+            <div class="profile-details">
+              <div class="profile-name">Sophia Vera</div>
+              <div class="status">
+                <span class="status-indicator"></span> Online
+              </div>
+            </div>
+          </div>
+          <div class="actions">
+            <a href="./video-chat.html">
+              <i
+                class="fa fa-video-camera action-button video"
+                aria-hidden="true"
+              ></i>
+            </a>
+          </div>
+        </div>
+        <div class="video-container">
+          <div class="invite-buttons">
+            <div class="users-icon" id="openModalBtn">
+              <span>
+                <i class="fa fa-users" aria-hidden="true"></i>
+                2
+              </span>
+            </div>
+            <button class="invite-button">
+              <span> Invite </span>
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <div class="container"></div>
+          <div class="top-controls">
+            <div class="control-button">
+              <div class="user-icon">
+                <i class="fa fa-minus" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="control-button">
+              <div class="user-icon down">
+                <i class="fa-solid fa-grip"></i>
+              </div>
+            </div>
+            <div class="control-button" id="expandBtn">
+              <div class="user-icon down">
+                <i
+                  class="fa-solid fa-up-right-and-down-left-from-center"
+                  aria-hidden="true"
+                ></i>
+              </div>
+            </div>
+          </div>
+          <div class="controls">
+            <div class="control-button">
+              <div class="user-icon">
+                <i class="fa fa-video-camera" aria-hidden="true"></i>
+              </div>
+              <span>Camera</span>
+            </div>
+            <div class="control-button">
+              <div class="user-icon">
+                <i class="fa fa-microphone" aria-hidden="true"></i>
+              </div>
+              <span>Mute</span>
+            </div>
+            <div class="control-button">
+              <div class="user-icon">
+                <img src="./assets/repeat.png" alt="Flip" />
+              </div>
+              <span>Flip</span>
+            </div>
+            <div class="control-button">
+              <div class="user-icon">
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+              </div>
+              <span>Share</span>
+            </div>
+            <div class="control-button" id="open-modal-button">
+              <div class="user-icon">
+                <i class="fa fa-user" aria-hidden="true"></i>
+              </div>
+              <span>Background</span>
+            </div>
+            <div class="control-button">
+              <a href="./chat.html" class="end-call">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+              </a>
+              <span>End</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="invite-modal" class="modal">
+          <div class="modal-content invite">
+            <div class="modal-header">
+              <h2>Create Chat</h2>
+              <input
+                type="text"
+                placeholder="Search followers"
+                class="search-input"
+              />
+            </div>
+            <div class="modal-body">
+              <div class="select-all">
+                <label for="selectAll">Select all</label>
+                <input type="checkbox" id="selectAll" />
+              </div>
+              <ul class="user-list"></ul>
+            </div>
+            <div class="modal-footer">
+              <button class="close" id="cancelBtn">Cancel</button>
+              <button id="createBtn">Create</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="user-status-modal" class="invite-modal">
+          <div class="modal-content">
+            <div class="modal-header-f">
+              <h2>People</h2>
+              <span class="close" id="close-invite-modal">
+                <i class="fa-solid fa-xmark"></i>
+              </span>
+            </div>
+
+            <div class="person-card">
+              <div class="person">
+                <img src="./assets/user1.png" alt="Jade Lynn" />
+                <span>Jade Lynn</span>
+              </div>
+              <input type="checkbox" class="user-checkbox" />
+            </div>
+
+            <div class="person-card">
+              <div class="person">
+                <img src="./assets/user2.png" alt="Jade Lynn" />
+                <span>Jade Lynn</span>
+              </div>
+              <input type="checkbox" class="user-checkbox" />
+            </div>
+            <div class="person-card">
+              <div class="person">
+                <img src="./assets/user3.png" alt="Jade Lynn" />
+                <span>Jade Lynn</span>
+              </div>
+              <input type="checkbox" class="user-checkbox" />
+            </div>
+            <div class="person-card">
+              <div class="person">
+                <img src="./assets/user4.png" alt="Jade Lynn" />
+                <span>Jade Lynn</span>
+              </div>
+              <input type="checkbox" class="user-checkbox" />
+            </div>
+            <div class="person-card">
+              <div class="person">
+                <img src="./assets/user5.png" alt="Jade Lynn" />
+                <span>Jade Lynn</span>
+              </div>
+              <input type="checkbox" class="user-checkbox" />
+            </div>
+            <div class="person-card">
+              <div class="person">
+                <img src="./assets/user1.png" alt="Jade Lynn" />
+                <span>Jade Lynn</span>
+              </div>
+              <input type="checkbox" class="user-checkbox" />
+            </div>
+          </div>
+        </div>
+
+        <div id="invite-modal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>Create Chat</h2>
+              <input
+                type="text"
+                placeholder="Search followers"
+                class="search-input"
+              />
+            </div>
+            <div class="modal-body">
+              <div class="select-all">
+                <label for="selectAll">Select all</label>
+                <input type="checkbox" id="selectAll" />
+              </div>
+              <ul class="user-list"></ul>
+            </div>
+            <div class="modal-footer">
+              <button class="close" id="cancelBtn">Cancel</button>
+              <button id="createBtn">Create</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="background-modal" class="background-modal">
+          <div class="background-modal-content">
+            <div class="background-modal-header">
+              <h2>Background</h2>
+              <span id="close-modal-button"><i class="fa-solid fa-xmark"></i></span>
+            </div>
+            <div class="background-modal-modal-body">
+              <div class="modal-item">
+                <img src="./assets/back1.png" alt="background" />
+                <span>Blur</span>
+              </div>
+              <div class="modal-item">
+                <img src="./assets/back2.png" alt="background" />
+                <span>Blur</span>
+              </div>
+              <div class="modal-item">
+                <img src="./assets/back3.png" alt="background" />
+                <span>Blur</span>
+              </div>
+              <div class="modal-item">
+                <img src="./assets/back4.png" alt="background" />
+                <span>Blur</span>
+              </div>
+              <div class="modal-item">
+                <img src="./assets/back5.png" alt="background" />
+                <span>Blur</span>
+              </div>
+              <div class="modal-item">
+                <img src="./assets/back6.png" alt="background" />
+                <span>Blur</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </section>
+  </body>
+</html>
